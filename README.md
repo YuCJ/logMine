@@ -1,0 +1,2 @@
+# logMine
+My Learning Note
