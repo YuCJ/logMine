@@ -1,0 +1,1822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Frontend Note]]></title>
+  <link href="https://yucj.github.io/logMine/atom.xml" rel="self"/>
+  <link href="https://yucj.github.io/logMine/"/>
+  <updated>2016-11-28T21:00:29+08:00</updated>
+  <id>https://yucj.github.io/logMine/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Git筆記：實務協作的一些注意事項]]></title>
+    <link href="https://yucj.github.io/logMine/14803274002958.html"/>
+    <updated>2016-11-28T18:03:20+08:00</updated>
+    <id>https://yucj.github.io/logMine/14803274002958.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">一般協作開發操作流程簡介：</h2>
+
+<pre><code>情境：在 GitHub 上有一個別人的專案，要怎麼加入協作開發？
+</code></pre>
+
+<p><img src="media/14803274002958/frontend_note.001.png" alt="frontend_note.001"/></p>
+
+<h3 id="toc_1">步驟簡述：</h3>
+
+<h4 id="toc_2">一、複製專案下來本機電腦開始開發：</h4>
+
+<h6 id="toc_3">1. Fork</h6>
+
+<h6 id="toc_4">2. Git clone</h6>
+
+<h6 id="toc_5">3. Develop on my computer</h6>
+
+<ul>
+<li>記得檢查設定 remote 相關設定，讓 <code>git fetch</code> 和 <code>git push</code> 等指令指向正確的目標</li>
+</ul>
+
+<h6 id="toc_6">4. Git push</h6>
+
+<h6 id="toc_7">5. Open a pull request</h6>
+
+<h4 id="toc_8">二、開發中：</h4>
+
+<ul>
+<li>開發一個小階段就可以再 <code>git push</code> 到 GitHub 上，會自動更新到 PR 內容，在 PR 內進行 code review 和修改</li>
+<li>開發中有需要和別人新的開發成果整合時，可使用 <code>git fetch</code>。</li>
+<li>不要用 <code>git pull</code> 拉回遠端 <code>upstream</code> 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
+</ul>
+
+<h4 id="toc_9">三、開發完成後合併到原始專案：</h4>
+
+<ul>
+<li>開發完成後要整理 commit log ，並且抓回最新的程式碼作 merge 處理 conflict</li>
+</ul>
+
+<h5 id="toc_10">6. Git fetch</h5>
+
+<ul>
+<li>不要用 <code>git pull</code> 拉回遠端 upstream 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
+</ul>
+
+<h5 id="toc_11">7. Merge with <code>upstream</code>, combine commits</h5>
+
+<ul>
+<li>相關 <code>git rebase</code> 指令見下節</li>
+</ul>
+
+<h5 id="toc_12">8. Git push --force</h5>
+
+<h5 id="toc_13">9. merge &amp; close the pull request</h5>
+
+<h2 id="toc_14">用 <code>git rebase</code> 整理自己的 commit log</h2>
+
+<pre><code>git rebase -i e3rji30c
+</code></pre>
+
+<p>可參考資料：<br/>
+<a href="https://blog.yorkxin.org/2011/07/29/git-rebase">Git-rebase 小筆記 - Yu-Cheng Chuang’s Blog</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[0 ES2015 Syllabus]]></title>
+    <link href="https://yucj.github.io/logMine/14796613356121.html"/>
+    <updated>2016-11-21T01:02:15+08:00</updated>
+    <id>https://yucj.github.io/logMine/14796613356121.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">1. Declarations</a>
+<ul>
+<li>
+<a href="#toc_1">1-1 LET</a>
+</li>
+<li>
+<a href="#toc_2">1-2 CONST</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">2. Functions</a>
+<ul>
+<li>
+<a href="#toc_4">2-1 FUNCTIONS: ARGUMENTS &amp; PARAMETERS</a>
+</li>
+<li>
+<a href="#toc_5">2-2 ARROW FUNCTION</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">3. Objects, Strings, and Object.assign</a>
+<ul>
+<li>
+<a href="#toc_7">3-1 OBJECTS</a>
+</li>
+<li>
+<a href="#toc_8">3-3 OBJECT.ASSIGN</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">4. Arrays, Maps, and Sets</a>
+<ul>
+<li>
+<a href="#toc_10">4-4 ARRAYS</a>
+</li>
+<li>
+<a href="#toc_11">4-5 MAPS</a>
+</li>
+<li>
+<a href="#toc_12">4-6 SETS</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">5. Classes and Modules</a>
+<ul>
+<li>
+<a href="#toc_14">5-7 CLASSES</a>
+</li>
+<li>
+<a href="#toc_15">5-8 MODULES</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_16">6. Promises, Iterators, and Generators</a>
+<ul>
+<li>
+<a href="#toc_17">6-1. PROMISES</a>
+</li>
+<li>
+<a href="#toc_18">6-2 ITERATORS</a>
+</li>
+<li>
+<a href="#toc_19">6-3 GENERATORS</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">1. Declarations</h2>
+
+<h3 id="toc_1">1-1 LET</h3>
+
+<p>DECLARATIONS WITH LET<br/>
+ Using let<br/>
+ Refactoring to let<br/>
+ Moving Variable Declarations</p>
+
+<p>DECLARATIONS WITH LET IN FOR LOOPS<br/>
+ Using let in for loops<br/>
+ Vars and the for Loop<br/>
+ Reassigning With let<br/>
+ Redeclaring With let<br/>
+ Redeclaring let Inside a Function</p>
+
+<h3 id="toc_2">1-2 CONST</h3>
+
+<p>DECLARATIONS WITH CONST<br/>
+ Using const<br/>
+ Refactoring Magic Number<br/>
+ Fix const Error<br/>
+ const and scope<br/>
+ const vs. let</p>
+
+<h2 id="toc_3">2. Functions</h2>
+
+<h3 id="toc_4">2-1 FUNCTIONS: ARGUMENTS &amp; PARAMETERS</h3>
+
+<p>FUNCTIONS<br/>
+ Function Defaults<br/>
+ Fixing Undefined Arguments<br/>
+ Basic Named Parameters<br/>
+ Replacing Object With Named Parameters<br/>
+ Calling a Function With Named Parameters<br/>
+ Advanced Named Parameters</p>
+
+<p>REST PARAMETER, SPREAD OPERATOR, AND ARROW FUNCTIONS<br/>
+ Rest Params, Spread Op, Arrow Function<br/>
+ Refactoring to Rest Params<br/>
+ The Spread Operator</p>
+
+<h3 id="toc_5">2-2 ARROW FUNCTION</h3>
+
+<p>Arrow Function Syntax<br/>
+ Arrow Functions in Action</p>
+
+<h2 id="toc_6">3. Objects, Strings, and Object.assign</h2>
+
+<h3 id="toc_7">3-1 OBJECTS</h3>
+
+<p>OBJECTS AND STRINGS<br/>
+ Objects and Strings<br/>
+ Building Objects With the New Syntax<br/>
+ Object Initializer Shorthand<br/>
+ Object Destructuring<br/>
+ Destructuring vs. Initializer<br/>
+ Method Initializer Shorthand<br/>
+ String Interpolation<br/>
+ Template Strings</p>
+
+<h3 id="toc_8">3-3 OBJECT.ASSIGN</h3>
+
+<p>OBJECT.ASSIGN<br/>
+ Object.assign<br/>
+ Merging Properties<br/>
+ Merging Options With Defaults<br/>
+ Merge Output</p>
+
+<h2 id="toc_9">4. Arrays, Maps, and Sets</h2>
+
+<h3 id="toc_10">4-4 ARRAYS</h3>
+
+<p>ARRAYS<br/>
+ Arrays<br/>
+ Assigning With Array Destructuring<br/>
+ Destructuring and Rest Parameters<br/>
+ Destructuring From Return Values<br/>
+ The for...of Loop<br/>
+ Objects and for...of<br/>
+ Array.find()</p>
+
+<h3 id="toc_11">4-5 MAPS</h3>
+
+<p>MAPS<br/>
+ Maps<br/>
+ The Map Data Structure<br/>
+ Issues With Objects as Maps<br/>
+ The Map Object<br/>
+ Adding Entries to a Map Object<br/>
+ Maps and Objects<br/>
+ Objects Are Still Useful<br/>
+ Iterating Maps With for...of<br/>
+ WeakMaps</p>
+
+<h3 id="toc_12">4-6 SETS</h3>
+
+<p>SETS<br/>
+ Sets<br/>
+ Limitations With Array<br/>
+ Using Sets<br/>
+ Sets and for...of<br/>
+ Sets and Destructuring<br/>
+ WeakSets<br/>
+ WeakSets in Action</p>
+
+<h2 id="toc_13">5. Classes and Modules</h2>
+
+<h3 id="toc_14">5-7 CLASSES</h3>
+
+<p>CLASSES<br/>
+ Classes<br/>
+ Initializing Classes<br/>
+ Implementing a Method on a Class<br/>
+ From Function to Class<br/>
+ Subclassing<br/>
+ Calling Methods From the Parent Class</p>
+
+<h3 id="toc_15">5-8 MODULES</h3>
+
+<p>MODULES - PART I</p>
+
+<p>Modules - Part I<br/>
+ Benefit of JavaScript Modules<br/>
+ Exporting Modules<br/>
+ Importing Modules<br/>
+ Named Exports<br/>
+ Importing Named Exports</p>
+
+<p>MODULES - PART II<br/>
+ Modules - Part II<br/>
+ Exporting Constants<br/>
+ Exporting Classes<br/>
+ Loading Classes From Modules<br/>
+ Export Subclasses</p>
+
+<h2 id="toc_16">6. Promises, Iterators, and Generators</h2>
+
+<h3 id="toc_17">6-1. PROMISES</h3>
+
+<p>PROMISES<br/>
+ Promises<br/>
+ The Lifecycle of a Promise<br/>
+ Writing Promises<br/>
+ Catching Errors From Promises</p>
+
+<h3 id="toc_18">6-2 ITERATORS</h3>
+
+<p>ITERATORS<br/>
+ Iterators<br/>
+ About Iterables<br/>
+ Iterator Objects<br/>
+ Writing a Custom Iterator Object</p>
+
+<h3 id="toc_19">6-3 GENERATORS</h3>
+
+<p>GENERATORS<br/>
+ Generators<br/>
+ Generator Functions<br/>
+ Generators and for...of<br/>
+ Advanced Generators<br/>
+ Refactoring to Generator Functions</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）]]></title>
+    <link href="https://yucj.github.io/logMine/14792994690791.html"/>
+    <updated>2016-11-16T20:31:09+08:00</updated>
+    <id>https://yucj.github.io/logMine/14792994690791.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">情況：</a>
+</li>
+<li>
+<a href="#toc_1">解決方法一：更換 Git binary（失敗）</a>
+</li>
+<li>
+<a href="#toc_2">解決方法二：從 terminal 開 Tower（成功）</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">情況：</h2>
+
+<p>在 Tower 裡面提交 commit 時會跳出環境錯誤，無法執行 lint。</p>
+
+<p><img src="media/14792994690791/error.png" alt="erro"/></p>
+
+<p>在專案的 <code>package.json</code> 裡面 <code>lint</code> 的內容是：</p>
+
+<pre><code class="language-json">&quot;scripts&quot;: {
+    &quot;lint&quot;: &quot;eslint -c .eslintrc src server api spec&quot;
+}
+</code></pre>
+
+<p>在 command line 進行 commit，或是直接執行 eslint 都可以跑得起來。我猜可能是 PATH 之類的設定有問題吧但我跟 Unix 系統實在不熟完全不知道要檢查哪裡 QQ </p>
+
+<p>※ 註：其實直接執行 eslint 或跑 npm global 的 eslint，然後就找不到plugin... 要把指令加上路徑 <code>node_modules/.bin/</code> 也就是跑 <code>node_modules/.bin/eslint -c .eslintrc src server api spec</code> 指定跑 local 的 eslint 才可以 不知道怎麼讓 npm 預設去找local的 Orz</p>
+
+<h2 id="toc_1">解決方法一：更換 Git binary（失敗）</h2>
+
+<p>寫信去 Tower 官方，回覆是說：</p>
+
+<blockquote>
+<p>Please try changing the Git binary used by Tower. You can do so by opening Tower&#39;s preferences on the &quot;Git Config&quot; tab. There, you should try using the system binary <code>/usr/bin/git</code>.</p>
+</blockquote>
+
+<p>我才因此知道原來可以指定跑電腦裡那個 Git XD</p>
+
+<p>不過這沒有解決上面的問題，我原本就是用 mac 內建的 Git，就算換成用 homebrew 灌的 <code>&#39;usr/local/bin/git&#39;</code> 或 Tower 內建的 Git 都一樣 Orz</p>
+
+<h2 id="toc_2">解決方法二：從 terminal 開 Tower（成功）</h2>
+
+<p>在網路上搜尋錯誤訊息時找到這個討論串：</p>
+
+<p><a href="https://answers.atlassian.com/questions/140339/answers/32030983">SourceTree : Hook failing because paths don&#39;t seem to be set correctly</a></p>
+
+<p>SorceTree 是另一個在 MAC 上有 GUI 的 Git 軟體，看起來錯誤訊息也都一樣，所以就姑且抱著死馬當活馬醫的心態，在 iTerm2 上執行類似的指令：</p>
+
+<pre><code class="language-bash">open /Applications/Tower.app/Contents/MacOS/Tower
+</code></pre>
+
+<p>結果就可以正常的跑 lint 了哦哦哦！（雖然還是不知原理為何…）</p>
+
+<p>或是在 Tower 的 <code>Preference</code> -&gt; <code>Intergration</code> 裡面點選安裝 Tower command line utility，就可以從 command line 執行 ：</p>
+
+<pre><code class="language-bash">gittower &lt;git_repository_path&gt;
+</code></pre>
+
+<p>（ &lt;git_repository_path&gt; 是你的專案資料夾路徑）</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[5-2 Iterator]]></title>
+    <link href="https://yucj.github.io/logMine/14791371653052.html"/>
+    <updated>2016-11-14T23:26:05+08:00</updated>
+    <id>https://yucj.github.io/logMine/14791371653052.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">怎麼讓 objects 變得 iterable</a>
+</li>
+<li>
+<a href="#toc_1">變成 iterable 可以幹嘛？</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p><strong>Iterables</strong> are <strong>objects</strong> that know how to return a special objects called an <strong>iterator</strong>.</p>
+
+<p><strong>Iterator</strong> is an object that knows how to access items from a collection one at a time, while keeping track of its current position within the sequence.</p>
+
+<p><strong>Iterables</strong> return an <strong>iterator</strong> object. This object </p>
+
+<p>重要</p>
+
+<h3 id="toc_0">怎麼讓 objects 變得 iterable</h3>
+
+<p>An iterator is an object with a <code>next</code> property, returned  by the result of calling the <code>Symbol.iterator</code> method</p>
+
+<p>An iterator is an object with a <code>next</code> property, returned by a function assigned to the <code>Symbol.iterator</code> property</p>
+
+<pre><code class="language-js">let post = {
+    title: &quot;New Features in JS&quot;,
+    replies: 19
+};
+
+post[Symbol.iterator] = function() {
+
+    let properties = Object.keys(this);
+    let count = 0;
+    let isDone = false;
+
+    let next = () =&gt; {
+        if(count&gt;= properties.length) {
+            isDone = true;
+        }
+        return { done: isDone, value: this[properties[count++]] }
+        // this -&gt; post object
+        // count++ -&gt; increments count after it&#39;s read
+    
+    return { next };  // &lt;= iterator object
+};
+
+</code></pre>
+
+<h3 id="toc_1">變成 iterable 可以幹嘛？</h3>
+
+<p><strong>for...of</strong></p>
+
+<pre><code class="language-js">for (let p of post) {
+    console.log(p);
+}
+
+// &gt; &quot;New Features in JS&quot;
+// &gt; 19
+</code></pre>
+
+<p><strong>spread operator</strong></p>
+
+<pre><code class="language-js">let values = [...post];
+console.log(values);
+
+// &gt; [&#39;New Features in JS&#39;, 19]
+</code></pre>
+
+<p><strong>destructuring</strong></p>
+
+<pre><code class="language-js">let [title, replies] = post;
+console.log(title);
+console.log(replies);
+
+// &gt; &#39;New Features in JS&#39;
+// &gt; 19
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[5-1 Promise]]></title>
+    <link href="https://yucj.github.io/logMine/14790602904060.html"/>
+    <updated>2016-11-14T02:04:50+08:00</updated>
+    <id>https://yucj.github.io/logMine/14790602904060.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">方法一（ES5）：callback</a>
+</li>
+<li>
+<a href="#toc_1">方法二（ES2016）：Promise</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p>非同步處理</p>
+
+<h3 id="toc_0">方法一（ES5）：callback</h3>
+
+<p><img src="media/14790602904060/cps.png" alt="cps"/></p>
+
+<p>會有以下問題：</p>
+
+<ol>
+<li>complicated nested code，難以讀懂</li>
+<li>每個callback function 都要處理錯誤</li>
+</ol>
+
+<h3 id="toc_1">方法二（ES2016）：Promise</h3>
+
+<p><img src="media/14790602904060/promise_object.png" alt="promise_object"/></p>
+
+<p>Promise constructor function takes an anonymous function with 2 callback arguments known as <strong>handlers</strong></p>
+
+<pre><code class="language-js">function anAsyncFunction(arguments){
+    return new Promise(
+        function(resolve, reject) {
+            // ...
+            resolve(someValue);
+        
+            // ...
+            reject(someValue);
+        }
+    );
+};
+</code></pre>
+
+<p></p>
+
+<blockquote>
+<p>A promise represents a <strong>future value</strong>, such as the eventual result of an <strong>asynchronous</strong> operation.</p>
+
+<p>Whenever we return a new Promise object we are not returning a result, we ar returning a <strong>future value</strong>, such as the eventual result of an <strong>async operation</strong>. </p>
+
+<p>Use <code>then()</code> method to read results from the Promise once it&#39;s resolved.</p>
+
+<p>This method takes a function that will only be invoked once the Promise is <strong>resolved</strong>.</p>
+
+<p>then方法可以接受两个 callback function 作为参数。第一个 callback function 是 Promise object 的状态变为 Resolved 时调用，第二个 callback function 是 Promise object 的状态变为 Reject 时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受 Promise object 传出的值作为参数。</p>
+</blockquote>
+
+<p><img src="media/14790602904060/promise_then.png" alt="promise_then"/></p>
+
+<pre><code class="language-js">function anAsyncFunction(arguments) {
+    return new Promise( // =&gt; promise: pending state
+        function(resolve, reject) {
+            if (成功) {
+                resolve(result); // =&gt; promise: fulfilled state
+            } else {
+                reject(error); // =&gt; promise: rejected state
+            }
+        }
+    );
+};
+
+anAsyncFunction(arguments) // =&gt; return a Promise object
+    .then( // call back function as argument will be invoked when Promise object resolved
+        function(results){
+            return results.filter(
+                (result) =&gt; result.city === &quot;Orlando&quot;
+            );
+        };
+    )
+    .then(
+    )
+</code></pre>
+
+<p>We can pass value one by one</p>
+
+<blockquote>
+<p>The value return by the first <code>then()</code> becomes the argument of the next one</p>
+</blockquote>
+
+<p><img src="media/14790602904060/promise_chaning_then.png" alt="promise_chaning_then"/></p>
+
+<p><img src="media/14790602904060/catching_reject.png" alt="catching_reject"/></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[4-6 Set]]></title>
+    <link href="https://yucj.github.io/logMine/14790356005591.html"/>
+    <updated>2016-11-13T19:13:20+08:00</updated>
+    <id>https://yucj.github.io/logMine/14790356005591.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0"><code>Set</code> objects are iterable （可以用 <code>for...of</code>）</a>
+</li>
+<li>
+<a href="#toc_1">WeakSet</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p>a type of object</p>
+
+<p>The <code>Set</code> object stores <strong>unique</strong> values of <strong>any type</strong>.</p>
+
+<p>重複add會被ignore</p>
+
+<h3 id="toc_0"><code>Set</code> objects are iterable （可以用 <code>for...of</code>）</h3>
+
+<h3 id="toc_1">WeakSet</h3>
+
+<p>只可以存 objects</p>
+
+<p>weakSet.prototype.add(obj)<br/>
+weakSet.prototype.has(obj)<br/>
+weakSet.prototype.delete(obj)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[4-5 Map]]></title>
+    <link href="https://yucj.github.io/logMine/14789626942710.html"/>
+    <updated>2016-11-12T22:58:14+08:00</updated>
+    <id>https://yucj.github.io/logMine/14789626942710.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">key 會自動轉為字串（只能用字串當 key）</a>
+</li>
+<li>
+<a href="#toc_1">使用map的時機：</a>
+</li>
+<li>
+<a href="#toc_2">maps are iterable （可以用 fro...of）</a>
+</li>
+<li>
+<a href="#toc_3">Weakmap</a>
+<ul>
+<li>
+<a href="#toc_4">All methods on a <code>WeakMap</code> required a key (object)</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p>使用 object 作為 map 的壞處：</p>
+
+<h3 id="toc_0">key 會自動轉為字串（只能用字串當 key）</h3>
+
+<pre><code class="language-js">let user1 = { name: Sam }
+let user2 = { name: Tyler }
+
+let totalReplies ={}
+totalReplies[user1] = 5
+totalReplies[user2] = 42
+
+
+</code></pre>
+
+<pre><code class="language-js">let user1 = { name: Sam }
+let user2 = { name: Tyler }
+
+let totalReplies = new Map();
+totalReplies.set( user1, 5 )
+totalReplies.set( user2, 42 )
+
+</code></pre>
+
+<p>設值： <code>object.set(key, value)</code> =&gt;<br/>
+取值： <code>object.get(key)</code> =&gt; return value</p>
+
+<h3 id="toc_1">使用map的時機：</h3>
+
+<ol>
+<li><p>Use maps when key are unknown until runtime</p>
+
+<p>Since keys like perPage and canSort are previously defined, we don&#39;t run the risk of accidentally overwriting values.</p>
+
+<p><img src="media/14789626942710/when_to_use_maps.png" alt="when_to_use_maps"/></p></li>
+<li><p>when all keys are the same type and all values are the same type</p>
+
+<p><img src="media/14789626942710/when_to_use_maps_2.png" alt="when_to_use_maps_2"/></p></li>
+</ol>
+
+<h3 id="toc_2">maps are iterable （可以用 fro...of）</h3>
+
+<p>each run of the loops returns a [key, value] pair for an entry in the map</p>
+
+<p><img src="media/14789626942710/maps_iterable.png" alt="maps_iterable"/></p>
+
+<h3 id="toc_3">Weakmap</h3>
+
+<p>A type of <code>Map</code> where only objects can be passed as keys. Primitive data types (such as strings, numbers, booleans, etc) are not allowed.</p>
+
+<h4 id="toc_4">All methods on a <code>WeakMap</code> required a key (object)</h4>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2-2 Arrow Function]]></title>
+    <link href="https://yucj.github.io/logMine/14780130314779.html"/>
+    <updated>2016-11-01T23:10:31+08:00</updated>
+    <id>https://yucj.github.io/logMine/14780130314779.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+
+
+<span id="more"></span><!-- more -->
+
+<p>There are two benefits to arrow functions.</p>
+
+<p>First, they are less verbose than traditional function expressions:</p>
+
+<p>const arr = [1, 2, 3];<br/>
+const squares = arr.map(x =&gt; x * x);</p>
+
+<p>// Traditional function expression:<br/>
+const squares = arr.map(function (x) { return x * x });<br/>
+Second, their this is picked up from surroundings (lexical). Therefore, you don’t need bind() or that = this, anymore.</p>
+
+<p>function UiComponent() {<br/>
+    const button = document.getElementById(&#39;myButton&#39;);<br/>
+    button.addEventListener(&#39;click&#39;, () =&gt; {<br/>
+        console.log(&#39;CLICK&#39;);<br/>
+        this.handleClick(); // lexical <code>this</code><br/>
+    });<br/>
+}<br/>
+The following variables are all lexical inside arrow functions:</p>
+
+<p>arguments<br/>
+super<br/>
+this<br/>
+new.target</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3-1 OBJECTS]]></title>
+    <link href="https://yucj.github.io/logMine/14780122908734.html"/>
+    <updated>2016-11-01T22:58:10+08:00</updated>
+    <id>https://yucj.github.io/logMine/14780122908734.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+
+
+<span id="more"></span><!-- more -->
+
+<p>可以在以下這些情況使用解構賦值</p>
+
+<p>變數宣告時：</p>
+
+<pre><code class="language-js">const [x] = [&#39;a&#39;];
+let [x] = [&#39;a&#39;];
+var [x] = [&#39;a&#39;];
+</code></pre>
+
+<p>Assignments: </p>
+
+<pre><code class="language-js">[x, y, z] = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;];
+</code></pre>
+
+<p>Parameter definitions:</p>
+
+<pre><code class="language-js">function f([x]) { ··· }
+    f([&#39;a&#39;]);
+</code></pre>
+
+<p>In a for-of loop:</p>
+
+<pre><code class="language-js">const arr1 = [&#39;a&#39;, &#39;b&#39;];
+for (const [index, element] of arr1.entries()) {
+    console.log(index, element);
+}
+// Output:
+// 0 a
+// 1 b
+
+const arr2 = [
+    {name: &#39;Jane&#39;, age: 41},
+    {name: &#39;John&#39;, age: 40},
+];
+for (const {name, age} of arr2) {
+    console.log(name, age);
+}
+// Output:
+// Jane 41
+// John 40
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2-1 Functions: Arguments & Parameters]]></title>
+    <link href="https://yucj.github.io/logMine/14772335435907.html"/>
+    <updated>2016-10-23T22:39:03+08:00</updated>
+    <id>https://yucj.github.io/logMine/14772335435907.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">預設引數 Default Parameters</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">預設引數 Default Parameters</h2>
+
+<p><strong>預設引數</strong></p>
+
+<ul>
+<li>Default Parameters</li>
+</ul>
+
+<p><strong>物件引數</strong></p>
+
+<ul>
+<li>Name Parameters</li>
+</ul>
+
+<p><strong>length不一定的陣列引數</strong></p>
+
+<ul>
+<li><p>Rest Parameter -&gt; Function Definition</p>
+
+<pre><code class="language-js">
+    function xxx (...paraList){
+
+    }
+
+</code></pre></li>
+<li><p>Spread Operator -&gt; Function invocation</p>
+
+<pre><code class="language-javascript">
+    var paraList = [para1, para2, ...];
+
+    xxx(...paraList);
+
+    // the same as xxx(para1,para2,...)
+
+</code></pre></li>
+<li><p>spep  </p></li>
+</ul>
+
+<ol>
+<li><p>列表1 </p>
+
+<pre><code class="language-js">var paraList = [para1, para2];
+xxx(...paraList);
+// Same as xxx(para1,para2,...)
+</code></pre></li>
+<li><p>列表2</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[定義一個函式：宣告、運算式、有時還有建構器]]></title>
+    <link href="https://yucj.github.io/logMine/14758453690233.html"/>
+    <updated>2016-10-07T21:02:49+08:00</updated>
+    <id>https://yucj.github.io/logMine/14758453690233.html</id>
+    <content type="html"><![CDATA[
+<p>在 Javascript 中，定義一個函式（產生一個函式物件）有三種方法：</p>
+
+<p><strong>(1) 函式宣告（function declarations）<br/>
+(2) 函式運算式（function expression）<br/>
+(3) 函式建構式（the function constructor）</strong></p>
+
+<p>以下是一些這三種方法的比較和特殊性（以較常用的函式宣告和函式建構式為主）：</p>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">一、比較各種情況的 function.name</a>
+</li>
+<li>
+<a href="#toc_1">二、原來是函式運算式啊，我還以為是函式宣告呢</a>
+<ul>
+<li>
+<a href="#toc_2">待解問題:</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">偵測函式是否存在</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">一、比較各種情況的 function.name</h2>
+
+<p>The function.name property returns the name of the function.</p>
+
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/name">MDN: Function.name</a></p>
+
+<pre><code class="language-js">// 函式宣告：
+function f1 (){}
+console.log(f1.name); // f1.name = f1
+
+// 匿名函式運算式（在ES2015是空字串）
+var f2 = function (){}; // f2.name = f2
+console.log(f2.name);
+
+// 具名函式運算式
+var f3 = function aname(){}; // f3.name = aname
+console.log(f3.name);
+
+// 將函式宣告建立的函式 f1 指派給另一變數 f4
+f4= f1;  // f4.name =f1
+console.log(f4.name);
+
+// 將具名函式運算式作為參數傳入
+(function another(f){
+  console.log(f.name);
+  var f5 = f; // f5.name = aname
+  console.log(f5.name);
+}(f3))
+</code></pre>
+
+<p><strong>函式名稱只能在該函式內部取用，在外部是抓不到的</strong>（通常用來進行 self-recursion）：</p>
+
+<blockquote>
+<p>The function name can be used only within the function&#39;s body. Attempting to use it outside the function&#39;s body results in an error (or undefined if the function name was previously declared via a var statement). [<sup>function_compare]</sup></p>
+</blockquote>
+
+<pre><code class="language-js">var f3 = function aname(){
+    console.log(aname.name); // aname.name = aname
+}; 
+f3(); // ReferenceError: aname is not defined
+</code></pre>
+
+<p><strong>函式宣告進行時會將建立的函式指派到一個同名變數</strong>，所以不會有這個問題：</p>
+
+<blockquote>
+<p>A function declaration also creates a variable with the same name as the function name. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+</blockquote>
+
+<p>用建構器 new 建立的函式沒有函式名稱：</p>
+
+<blockquote>
+<p>A function defined by &#39;new Function&#39; does not have a function name. However, in the SpiderMonkey JavaScript engine, the serialized form of the function shows as if it has the name &quot;anonymous&quot;. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+</blockquote>
+
+<h2 id="toc_1">二、原來是函式運算式啊，我還以為是函式宣告呢</h2>
+
+<p>某些函式實字樣子長得跟函式述句乍看之下一模一樣，但其實當它是<strong>跟其他運算式牽扯上關係（變為整個運算式的一部份）</strong>，或是<strong>在巢狀區塊內（not a sorce element）</strong>時，會被 Javascript 引擎判定函式運算式。</p>
+
+<blockquote>
+<p>A function declaration is very easily (and often unintentionally) turned into a function expression. A function declaration ceases to be one when it either:</p>
+
+<ol>
+<li>becomes part of an expression</li>
+<li>is no longer a &quot;source element&quot; of a function or the script itself.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></li>
+</ol>
+</blockquote>
+
+<p>什麼是 source element？</p>
+
+<blockquote>
+<p>A &quot;source element&quot; is a non-nested statement in the script or a function body. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+</blockquote>
+
+<pre><code class="language-js">var x = 0;               // source element
+if (x == 0) {            // source element
+   x = 10;               // not a source element
+   function boo() {}     // not a source element
+}
+function foo() {         // source element
+   var y = 20;           // source element
+   function bar() {}     // source element
+   while (y == 10) {     // source element
+      function blah() {} // not a source element
+      y++;               // not a source element
+   }
+}
+</code></pre>
+
+<p>以下是各種情境的示例：</p>
+
+<pre><code class="language-js">// function declaration
+function foo() {}
+
+// function expression
+(function bar() {})
+
+// function expression
+x = function hello() {}
+
+
+if (x) {
+   // function expression
+   function world() {}
+}
+
+
+// function declaration
+function a() {
+   // function declaration
+   function b() {}
+   if (0) {
+      // function expression
+      function c() {}
+   }
+}
+</code></pre>
+
+<p>函式宣告變成函式運算式，我目前想到有兩個重要的影響：</p>
+
+<ol>
+<li>函式運算式不會拉升（hoisting），所以程式碼要在宣告後才能 call 該函式。</li>
+<li>函式運算式不會自動建立同名變數，若未指派給其他變數，其 scope 在該函式內。</li>
+</ol>
+
+<p>另外有一個相關的東西是「即刻調用的函式運算式」（IIFE），在一般情況取用需要強制轉為運算式。(Speaking Javascript p.213)</p>
+
+<h3 id="toc_2">待解問題:</h3>
+
+<p>什麼是 non-nested statement? 測試如果 if 判斷通過，程式就可以正常執行，但如果判斷不通過，結果如下：</p>
+
+<pre><code class="language-js">// function declaration
+function a() {
+   // function declaration
+   function b() {}
+   if (false) {
+      // function expression
+      function c() {}
+   }
+  console.log(a); // 成功輸出 funciton a(){ ... }
+  console.log(b); // 成功輸出 function b(){}
+  console.log(c); // undefined
+  c(); // ReferenceError: c is not a function
+}
+a();
+</code></pre>
+
+<p>但不管有沒有通過都 JSHint 都會跳出 <strong>&quot;Function declaration should not be placed in blocks.&quot;</strong></p>
+
+<pre><code class="language-js">var c = console;
+
+function originFunc(arg1,arg2){
+  return &quot;this is the result text of function: &quot;+arg1+&quot;&amp;&quot;+arg2;
+}
+
+c.log(originFunc); //function literal
+c.log(typeof(originFunc)); //&quot;funciton&quot;
+c.log(originFunc.name); //originFunc
+c.log(originFunc(&quot;pp&quot;,&quot;tt&quot;)); //content of return
+
+
+var copy1 = originFunc;
+
+c.log(copy1); //function literal
+c.log(typeof(copy1)); //&quot;funciton&quot;
+c.log(copy1.name); //originFunc
+c.log(copy1(&quot;xx&quot;,&quot;zz&quot;)); //content of return
+
+
+var copyResult  = originFunc();
+c.log(copyResult); //content of return
+c.log(typeof(copyResult)); //&quot;string&quot;
+
+</code></pre>
+
+<h2 id="toc_3">偵測函式是否存在</h2>
+
+<blockquote>
+<p>You can determine whether a function exists by using the typeof operator. In the following example, a test is performed to determine if the window object has a property called noFunc that is a function. If so, it is used; otherwise some other action is taken.</p>
+</blockquote>
+
+<pre><code class="language-js">if (&#39;function&#39; == typeof window.noFunc) {
+   // use noFunc()
+ } else {
+   // do something else
+ }
+</code></pre>
+
+<blockquote>
+<p>Note that in the if test, a reference to noFunc is used—there are no brackets &quot;()&quot; after the function name so the actual function is not called.</p>
+</blockquote>
+
+<div class="footnotes">
+<hr/>
+<ol>
+
+<li id="fn1">
+<p>資料來源：<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#Function_constructor_vs._function_declaration_vs._function_expression">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#Function_constructor_vs._function_declaration_vs._function_expression</a>&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro Git 筆記 (5) 各種情況的復原指令]]></title>
+    <link href="https://yucj.github.io/logMine/14749897217192.html"/>
+    <updated>2016-09-27T23:22:01+08:00</updated>
+    <id>https://yucj.github.io/logMine/14749897217192.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Commit --amend 用新的 commit 快照取代前一個</a>
+</li>
+<li>
+<a href="#toc_1">Reset HEAD</a>
+</li>
+<li>
+<a href="#toc_2">Checkout --[file_name]</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Commit --amend 用新的 commit 快照取代前一個</h2>
+
+<p>我的commit漏掉檔案了！message寫錯了！</p>
+
+<pre><code class="language-zsh">$ git commit -m &#39;initial commit&#39;
+$ git add [forgotten_file]
+$ git commit --amend
+</code></pre>
+
+<p>新的 commit 會用新的 staging area snapshot 取代前一個 commit</p>
+
+<h2 id="toc_1">Reset HEAD</h2>
+
+<p>Add 錯檔案到 staging area 了！怎麼刪掉？</p>
+
+<pre><code class="language-zsh">$ git reset HEAD [worng_file]
+</code></pre>
+
+<p>Merge 後想要取消合併，怎麼辦？</p>
+
+<pre><code class="language-zsh">$ git reset --hard HEAD~
+</code></pre>
+
+<p>參考：<a href="https://goo.gl/y9DG3m">https://goo.gl/y9DG3m</a></p>
+
+<h2 id="toc_2">Checkout --[file_name]</h2>
+
+<p>修改搞砸了... 要把檔案復原到前一個 commit 的狀態</p>
+
+<pre><code class="language-zsh">$ git checkout -- [file_name]
+</code></pre>
+
+<p><strong>注意：被放棄的修改將無法復原</strong></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro Git 筆記 (4) Branch 實務：遠端連線]]></title>
+    <link href="https://yucj.github.io/logMine/14749728055067.html"/>
+    <updated>2016-09-27T18:40:05+08:00</updated>
+    <id>https://yucj.github.io/logMine/14749728055067.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">遠端連線基礎指令</a>
+<ul>
+<li>
+<a href="#toc_1">Remote show 顯示遠端基本資訊</a>
+</li>
+<li>
+<a href="#toc_2">Ls-remote顯示所有遠端標記</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">分支相關指令</a>
+<ul>
+<li>
+<a href="#toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</a>
+</li>
+<li>
+<a href="#toc_5">Fetch 把遠端更新拉回本機端資料庫</a>
+<ul>
+<li>
+<a href="#toc_6">如果 reomte 有本機沒有的分支</a>
+</li>
+<li>
+<a href="#toc_7">推送本地新分支到遠端</a>
+</li>
+<li>
+<a href="#toc_8">刪除遠端分支：</a>
+</li>
+<li>
+<a href="#toc_9">儲存密碼至快取</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">遠端連線基礎指令</h2>
+
+<h3 id="toc_1">Remote show 顯示遠端基本資訊</h3>
+
+<pre><code>$ git remote show [remote_name]
+</code></pre>
+
+<pre><code class="language-zsh"> $ git remote show origin
+ 
+  remote origin
+  Fetch URL: https://github.com/falau/pogom.git
+  Push  URL: https://github.com/falau/pogom.git
+  HEAD branch: mewmewmew
+  Remote branches:
+    fb            tracked
+    master        tracked
+    mewmewmew     tracked
+    respawn_point tracked
+  Local branch configured for &#39;git pull&#39;:
+    mewmewmew merges with remote mewmewmew
+  Local ref configured for &#39;git push&#39;:
+    mewmewmew pushes to mewmewmew (fast-forwardable)
+</code></pre>
+
+<h3 id="toc_2">Ls-remote顯示所有遠端標記</h3>
+
+<pre><code>$ git ls-remote [remote_name]
+</code></pre>
+
+<pre><code class="language-zsh">$ git ls-remote origin
+8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        HEAD
+a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/heads/fb
+64cebfacddb3bb6564763ffa6341e1340df0c835        refs/heads/master
+8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        refs/heads/mewmewmew
+e3181f6b2c8b63e9679047010229c500bf165f65        refs/heads/respawn_point
+bb35f740f7d53cb5e522fb99dbea498dcd161f29        refs/pull/1/head
+f6c7f1f9791a76592a83a9e94b87e62ff5efa7ac        refs/pull/2/head
+0a262dd1267cea202fb4dda8121e2a8443424e41        refs/pull/3/head
+121dc5f48ba546e81a9e1615a91a08b6789f33e6        refs/pull/4/head
+6dfc441093810b1610b570667a4568a0e00340fd        refs/pull/5/head
+2dda89e00775e35bb37c0eb8f2848015da25989f        refs/pull/6/head
+043f5573d87c0cdecd80f4105e3c07ab952b49b6        refs/pull/7/head
+e3181f6b2c8b63e9679047010229c500bf165f65        refs/pull/8/head
+a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/pull/9/head
+</code></pre>
+
+<blockquote>
+<p><strong>(TIPS)</strong> 就像「master」對 Git 程式並沒特殊的意義，只是執行 <code>git init</code> 時的預設   branch 名稱，「origin」也沒有特殊意義，只是執行 <code>git clone</code> 的預設遠端名稱。若要指定名稱須加上參數： <code>git clone -o [remote name]</code>。</p>
+</blockquote>
+
+<h2 id="toc_3">分支相關指令</h2>
+
+<p>遠端伺服器可能也有人已經做了一些開發，兩邊的 mater branch 此時可能有不一樣的修改時：</p>
+
+<h3 id="toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</h3>
+
+<pre><code class="language-zsh">$ git branch -vv
+  iss53     7e424c3 [origin/iss53: ahead 2] forgot the brackets
+  master    1ae2a45 [origin/master] deploying index fix
+* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] this should do it
+  testing   5ea463a trying something new
+</code></pre>
+
+<p><strong><code>ahead 2</code></strong> we have two commits locally that are not pushed to the server.<br/>
+<strong><code>behind 1</code></strong> there is one commit on the server we haven’t merged in yet</p>
+
+<h3 id="toc_5">Fetch 把遠端更新拉回本機端資料庫</h3>
+
+<pre><code>$ git fetch [remote_name]
+</code></pre>
+
+<p>這個指令會做兩件事：</p>
+
+<ol>
+<li>把遠端有、本機沒有的 commits 拉回來本機</li>
+<li>把 [remote_name/branch_name] pointers 更新到最新的位置</li>
+</ol>
+
+<p>例如下圖：<br/>
+<img src="https://git-scm.com/figures/18333fig0324-tn.png" alt=""/></p>
+
+<blockquote>
+<p>值得注意的是，fetch 指令只會下載資料和 pointer，並不會主動新增本機沒有的分支，你仍然無法在本地編輯該遠端倉庫中的分支。</p>
+</blockquote>
+
+<h4 id="toc_6">如果 reomte 有本機沒有的分支</h4>
+
+<blockquote>
+<p>如果要把該遠端分支的內容合併到當前分支，可以運行 <code>git merge origin/master</code>。如果想要一份自己的新分支來開發，可以在遠端分支的基礎上分化出一個新的分支來：</p>
+</blockquote>
+
+<p>建立新分支：</p>
+
+<pre><code class="language-zsh">$ git checkout -b newbranch origin/master
+# 建立一個新分支 newbranch，內容與 origin/master 一致 
+
+$ git checkout --track origin/serverfix
+# 若名稱未與本地分支衝突就與上面相同效果
+
+$ git branch -u origin/serverfix
+
+# &lt;cf.&gt; 若要用已經有的分支追蹤遠端分支
+# 將當前分支設定為追蹤 origin/serverfix
+# 等同於：
+$ git branch -set-upstream-to origin/serverfix
+</code></pre>
+
+<blockquote>
+<p>從遠端分支 checkout 出來的本地分支，稱為<strong>追蹤分支（tracking branch）</strong>，被追蹤的分支則稱為<strong>上游分支（upstream branch）</strong>。追蹤分支是一種和某個遠端分支有直接聯繫的本地分支。在追蹤分支裡輸入 <code>git push</code>，Git 會自行推斷應該向哪個伺服器的哪個分支推送資料。同樣，在這些分支裡運行 <code>git pull</code> 會獲取遠端上游分支，並把它們的資料都 merge 到本地分支中來。</p>
+</blockquote>
+
+<pre><code class="language-zsh"># 從本地 tracking branch 執行：
+
+$ git pull
+
+# 大多數情況下等同於：
+$ git fetch [remote]
+$ git merge [remote]/[upstream branch]
+
+# 教學建議使用後者，會比較清楚自己 merge 了什麼
+</code></pre>
+
+<h4 id="toc_7">推送本地新分支到遠端</h4>
+
+<pre><code class="language-zsh">$ git push [remote] [local_brach_name]:[remote_branch_name]
+
+# Take my local branch and make it the remotes.
+</code></pre>
+
+<h4 id="toc_8">刪除遠端分支：</h4>
+
+<pre><code class="language-zsh">$ git push origin --delete serverfix
+
+
+# 舊版教學使用以下方法太不直觀：
+$ git push origin :serverfix
+To git@github.com:schacon/simplegit.git
+ - [deleted]         serverfix
+
+</code></pre>
+
+<h4 id="toc_9">儲存密碼至快取</h4>
+
+<blockquote>
+<p>If you’re using an HTTPS URL to push over, the Git server will ask you for your username and password for authentication. By default it will prompt you on the terminal for this information so the server can tell if you’re allowed to push.</p>
+
+<p>If you don’t want to type it every single time you push, you can set up a “credential cache”. The simplest is just to keep it in memory for a few minutes, which you can easily set up by running git config --global credential.helper cache.</p>
+
+<p>For more information on the various credential caching options available, see Credential Storage.</p>
+</blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro Git 筆記 (3) Branch 分支]]></title>
+    <link href="https://yucj.github.io/logMine/14743779326332.html"/>
+    <updated>2016-09-20T21:25:32+08:00</updated>
+    <id>https://yucj.github.io/logMine/14743779326332.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">運作原理</a>
+</li>
+<li>
+<a href="#toc_1">Branch 新增分支, Checkout 切換分支</a>
+</li>
+<li>
+<a href="#toc_2">Log 檢視紀錄</a>
+</li>
+<li>
+<a href="#toc_3">實例：新建與合併 Merge</a>
+</li>
+<li>
+<a href="#toc_4">Branch 檢視分支資訊相關指令</a>
+</li>
+<li>
+<a href="#toc_5">Rebase 合併分支</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">運作原理</h2>
+
+<pre><code class="language-zsh">$ git add README test.rb LICENSE
+# ↑ 會對每個檔計算校驗和（checksums）（SHA-1 hash）
+# ↑ 每個檔存成一個 blob object
+# ↑ adds that checksum to the staging area
+$ git commit -m &#39;initial commit of my project&#39;
+# ↑ 對每個子資料夾計算校驗和（checksums）
+# ↑ 每個子資料夾存成一個 tree object
+# ↑ 一個 commit object 包含指向 root tree object 的pointer 和其他 metadata。
+</code></pre>
+
+<p>上面的 commit 總共產生五個 objects：<br/>
+- <strong>blob</strong> for the contents of each of your three files<br/>
+- <strong>tree</strong> that lists the contents of the directory and specifies which file names are stored as which blobs<br/>
+- <strong>commit</strong> with the pointer to that root tree and all the commit metadata.<br/>
+<img src="https://git-scm.com/figures/18333fig0301-tn.png" alt="A commit and its tree"/></p>
+
+<blockquote>
+<p>Git用來計算查核碼的機制稱為SHA-1雜湊法。 它由40個十六進制的字母(0–9 and a–f)組成的字串組成，基於Git的檔案內容或者目錄結構計算。 查核碼看起來如下所示：<code>24b9da6552252987aa493b52f8696cd6d3b00373</code></p>
+
+<p>事實上Git以檔案內容的雜湊值定址出檔案在資料庫的位址，而不是以檔案的名稱定址。</p>
+
+<p>（來源：<a href="https://goo.gl/3s8wkm%EF%BC%89">https://goo.gl/3s8wkm）</a></p>
+</blockquote>
+
+<ul>
+<li>Git stores a commit object that contains a pointer to the snapshot of the content you staged.</li>
+<li>This object also contains the author’s name and email, the message that you typed, and pointers to its parent or parents.</li>
+</ul>
+
+<h2 id="toc_1">Branch 新增分支, Checkout 切換分支</h2>
+
+<pre><code class="language-zsh"># Creating new branch and switch to it:
+  $ git checkout -b iss53
+  
+# The command is the same as:
+  $ git branch iss53
+  $ git checkout iss53
+</code></pre>
+
+<h2 id="toc_2">Log 檢視紀錄</h2>
+
+<pre><code class="language-git">$ git log --oneline --decorate
+
+f30ab (HEAD -&gt; master, testing) add feature #32 - 
+ability to add new formats to the central interface
+
+34ac2 Fixed bug #1328 - stack overflow under certain conditions
+
+98ca9 The initial commit of my project
+</code></pre>
+
+<h2 id="toc_3">實例：新建與合併 Merge</h2>
+
+<p>情境：<a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E8%88%87%E5%90%88%E4%BD%B5">分支 - 分支的新建與合併</a></p>
+
+<ol>
+<li><p>網站開發主分支為 master</p></li>
+<li><p>創建一個新分支 iss53 進行滿足新需求的開發： <br/>
+<code>$ git checkout -b iss53</code></p></li>
+<li><p>臨時需要對 master 進行緊急修補</p></li>
+<li><p>若當前修改已經都 commit，先回到 master：<br/>
+<code>$ git checkout master</code></p></li>
+<li><p>從 master 建立緊急修補分支：<br/>
+<code>$ git checkout -b hotfix</code></p></li>
+<li><p>測試完成後，回到 master 進行合併：<br/>
+<code>$ git checkout master</code><br/>
+<code>$ git merge hotfix</code> (Fast-forward)</p></li>
+<li><p>刪除已經完成的 hotfix 分支：<br/>
+<code>$ git branch -d hotfix</code></p></li>
+<li><p>回到 iss53 繼續工作：<br/>
+<code>$ git branch -d hotfix</code></p></li>
+<li><p>iss53 工作完成後，回到 master 進行合併：<br/>
+<code>$ git merge iss53</code> (Merge made by the &#39;recursive&#39; strategy)</p></li>
+<li><p>刪除 iss53 分支：<br/>
+<code>$ git branch -d iss53</code></p></li>
+</ol>
+
+<p><img src="https://git-scm.com/figures/18333fig0317-tn.png" alt=""/></p>
+
+<h2 id="toc_4">Branch 檢視分支資訊相關指令</h2>
+
+<pre><code class="language-zsh">$ git branch # 列出分支清單
+$ git branch -v # 查看各個分支最後一個commit
+$ git branch --merged  # 查看併進目前分支的分支
+$ git branch --no-merged # 查看未併進目前分支的分支
+</code></pre>
+
+<h2 id="toc_5">Rebase 合併分支</h2>
+
+<p>$ git merge [traget_branch] # 將目標合併進當前所在的分支</p>
+
+<p>$ git rebase [target_branch] # 將現在分支的和目標分支的差異</p>
+
+<p><a href="https://blog.yorkxin.org/2011/07/29/git-rebase">https://blog.yorkxin.org/2011/07/29/git-rebase</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro Git 筆記 (2) 基本操作]]></title>
+    <link href="https://yucj.github.io/logMine/14743778829037.html"/>
+    <updated>2016-09-20T21:24:42+08:00</updated>
+    <id>https://yucj.github.io/logMine/14743778829037.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">查詢指令說明 help</a>
+</li>
+<li>
+<a href="#toc_1">提交更新 add, commit, push</a>
+</li>
+<li>
+<a href="#toc_2">查看修改內容 status, diff</a>
+</li>
+<li>
+<a href="#toc_3">刪除檔案 rm</a>
+</li>
+<li>
+<a href="#toc_4">移動檔案、重新命名 mv</a>
+</li>
+<li>
+<a href="#toc_5">查看修訂紀錄 log</a>
+</li>
+<li>
+<a href="#toc_6">快捷指令 aliases</a>
+</li>
+<li>
+<a href="#toc_7">遠端連線</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">查詢指令說明 help</h2>
+
+<p>以下三種皆可：</p>
+
+<pre><code class="language-zsh">git help &lt;verb&gt;
+git &lt;verb&gt; --help
+man git-&lt;verb&gt;
+</code></pre>
+
+<h2 id="toc_1">提交更新 add, commit, push</h2>
+
+<pre><code class="language-zsh">$ git add [filename]  # Add file to track or to staging area
+$ git commit -m &quot;message&quot;
+$ git push
+</code></pre>
+
+<pre><code class="language-zsh">$ git commit -a -m &quot;message&quot;  # Add all changed files and commit
+$ git push
+</code></pre>
+
+<h2 id="toc_2">查看修改內容 status, diff</h2>
+
+<pre><code class="language-zsh">$ git status
+</code></pre>
+
+<p>查看目前狀態</p>
+
+<p>A  &lt;- 第一次 commit 的檔案<br/>
+B  &lt;- 修改後 add to staging area 的檔案<br/>
+C  &lt;- 再進行修改的檔案</p>
+
+<pre><code class="language-zsh">$ git diff
+</code></pre>
+
+<p>Compares <strong>what is in your working directory (C)</strong> with <strong>what is in your staging area (B)</strong>.</p>
+
+<pre><code class="language-zsh">git diff --staged # Or git diff --cached
+</code></pre>
+
+<p>Compares <strong>your staged changes (B)</strong> with <strong>your last commit (A)</strong>.</p>
+
+<p><a href="http://stackoverflow.com/questions/2529441/how-to-read-the-output-from-git-diff">How to read the output from git diff?</a></p>
+
+<h2 id="toc_3">刪除檔案 rm</h2>
+
+<pre><code class="language-zsh">$ git rm  [filename]
+</code></pre>
+
+<p>會將檔案移出 staging area 並且刪除檔案</p>
+
+<pre><code class="language-zsh">$ git rm --cached [filename]
+</code></pre>
+
+<p>會將檔案移出 staging area 並不再被 Git 追蹤，但保留檔案在工作資料夾中</p>
+
+<pre><code class="language-zsh">rm [filename]
+</code></pre>
+
+<p>shell script 的刪除檔案</p>
+
+<h2 id="toc_4">移動檔案、重新命名 mv</h2>
+
+<pre><code class="language-zsh">$ git mv [oldfilename] [newfilename]
+</code></pre>
+
+<p>等同於：</p>
+
+<pre><code class="language-zsh">$ mv [oldfilename] [newfilename]
+$ git rm [oldfilename]
+$ git add [newfilename]
+</code></pre>
+
+<h2 id="toc_5">查看修訂紀錄 log</h2>
+
+<p><a href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">Viewing the Commit History</a>   (<a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%9F%BA%E7%A4%8E-%E6%AA%A2%E8%A6%96%E6%8F%90%E4%BA%A4%E7%9A%84%E6%AD%B7%E5%8F%B2%E8%A8%98%E9%8C%84">中文</a>)</p>
+
+<pre><code class="language-zsh">$ git log
+
+$ git log -p -2
+# 顯示最後兩個 commit 的差別
+
+$ git log --word-diff
+# 以 word level 顯示差異（預設為 line level）
+
+$ git log --word-diff -U1
+# 以 word level 顯示差異，並只顯示變動的那行
+
+$ git log --stat
+# 會統計每個 commit 的 file changed, insertion(+), deletion(-) 數量，並在最後印出摘要的訊息
+
+$ git log --pretty oneline
+# 每一個更新一行顯示
+
+$ git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
+# 自訂 log 的顯示格式
+
+$ git log --pretty=format:&quot;%h %s&quot; --graph
+# 以 ASCII 畫出分支的分歧及合併的歷史
+
+$ git log --oneline 
+# 僅顯示SHA1查核值的前幾位數，一commit一行
+# same as &quot;--pretty=oneline --abbrev-commit&quot;
+
+$ git log --since=2.weeks
+# 列出最近兩週的 commits (same as --after)
+
+$ git log --until=“2008-01-15”
+# 列出到 2008/01/15 為止的 commits (same as --before)
+
+</code></pre>
+
+<h2 id="toc_6">快捷指令 aliases</h2>
+
+<p>例子：</p>
+
+<pre><code class="language-zsh">$ git config --global alias.ci commit
+# then you can use:
+git ci -m &quot;message&quot;
+</code></pre>
+
+<pre><code class="language-zsh">$ git config --global alias.unstage &#39;reset HEAD --&#39;
+# then you can use:
+$ git unstage [filename]
+</code></pre>
+
+<pre><code class="language-zsh">$ git config --global alias.last &#39;log -1 HEAD&#39;
+# then you can use:
+$ git last
+</code></pre>
+
+<p>To run an external command, rather than a Git subcommand:</p>
+
+<pre><code class="language-zsh">$ git config --global alias.visual &#39;!gitk&#39;
+# then you can use:
+$ git visual
+</code></pre>
+
+<p>ref:<br/>
+<a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases</a></p>
+
+<h2 id="toc_7">遠端連線</h2>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro Git 筆記 (1) 安裝後基本設定]]></title>
+    <link href="https://yucj.github.io/logMine/14743778423838.html"/>
+    <updated>2016-09-20T21:24:02+08:00</updated>
+    <id>https://yucj.github.io/logMine/14743778423838.html</id>
+    <content type="html"><![CDATA[
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">區分各層級設定</a>
+</li>
+<li>
+<a href="#toc_1">檢查全域設定 global</a>
+</li>
+<li>
+<a href="#toc_2">設定使用者帳號</a>
+</li>
+<li>
+<a href="#toc_3">更換預設文字編輯器</a>
+</li>
+<li>
+<a href="#toc_4">參考資料</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">區分各層級設定</h2>
+
+<p>The <code>.git/config</code> file in each repository is used to store the configuration for that repository, and <code>$HOME/.gitconfig</code> is used to store a per-user configuration as fallback values for the .git/config file. The file <code>/etc/gitconfig</code> can be used to store a system-wide default configuration.</p>
+
+<p><code>/etc/gitconfig</code> file: Contains values for every user on the system and all their repositories. If you pass the option --system to git config, it reads and writes from this file specifically.</p>
+
+<p><code>~/.gitconfig</code> or <code>~/.config/git/config</code> file: Specific to your user. You can make Git read and write to this file specifically by passing the --global     option.</p>
+
+<p>檔案路徑通常是在 <code>$HOME/.gitconfig</code> 可用 <code>echo $HOME</code> 查詢路徑</p>
+
+<p>config file in the Git directory (that is, <code>.git/config</code>) of whatever repository you’re currently using: Specific to that single repository.</p>
+
+<h2 id="toc_1">檢查全域設定 global</h2>
+
+<pre><code>git config --list
+</code></pre>
+
+<h2 id="toc_2">設定使用者帳號</h2>
+
+<p>Example:</p>
+
+<pre><code>$ git config --global user.name &quot;John Doe&quot;
+$ git config --global user.email johndoe@example.com
+</code></pre>
+
+<h2 id="toc_3">更換預設文字編輯器</h2>
+
+<p>使用以下指令將 git 預設文字編輯器更換為atom：</p>
+
+<pre><code>git config --global core.editor &quot;atom --wait&quot;
+</code></pre>
+
+<p>Ref:<br/>
+<a href="https://help.github.com/articles/associating-text-editors-with-git/">https://help.github.com/articles/associating-text-editors-with-git/</a></p>
+
+<h2 id="toc_4">參考資料</h2>
+
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

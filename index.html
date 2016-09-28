@@ -1,0 +1,625 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="14803274002958.html">
+                
+                  <h1>Git筆記：實務協作的一些注意事項</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">一般協作開發操作流程簡介：</h2>
+
+<pre><code>情境：在 GitHub 上有一個別人的專案，要怎麼加入協作開發？
+</code></pre>
+
+<p><img src="media/14803274002958/frontend_note.001.png" alt="frontend_note.001"/></p>
+
+<h3 id="toc_1">步驟簡述：</h3>
+
+<h4 id="toc_2">一、複製專案下來本機電腦開始開發：</h4>
+
+<h6 id="toc_3">1. Fork</h6>
+
+<h6 id="toc_4">2. Git clone</h6>
+
+<h6 id="toc_5">3. Develop on my computer</h6>
+
+<ul>
+<li>記得檢查設定 remote 相關設定，讓 <code>git fetch</code> 和 <code>git push</code> 等指令指向正確的目標</li>
+</ul>
+
+<h6 id="toc_6">4. Git push</h6>
+
+<h6 id="toc_7">5. Open a pull request</h6>
+
+<h4 id="toc_8">二、開發中：</h4>
+
+<ul>
+<li>開發一個小階段就可以再 <code>git push</code> 到 GitHub 上，會自動更新到 PR 內容，在 PR 內進行 code review 和修改</li>
+<li>開發中有需要和別人新的開發成果整合時，可使用 <code>git fetch</code>。</li>
+<li>不要用 <code>git pull</code> 拉回遠端 <code>upstream</code> 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
+</ul>
+
+<h4 id="toc_9">三、開發完成後合併到原始專案：</h4>
+
+<ul>
+<li>開發完成後要整理 commit log ，並且抓回最新的程式碼作 merge 處理 conflict</li>
+</ul>
+
+<h5 id="toc_10">6. Git fetch</h5>
+
+<ul>
+<li>不要用 <code>git pull</code> 拉回遠端 upstream 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
+</ul>
+
+<h5 id="toc_11">7. Merge with <code>upstream</code>, combine commits</h5>
+
+<ul>
+<li>相關 <code>git rebase</code> 指令見下節</li>
+</ul>
+
+<h5 id="toc_12">8. Git push --force</h5>
+
+<h5 id="toc_13">9. merge &amp; close the pull request</h5>
+
+<h2 id="toc_14">用 <code>git rebase</code> 整理自己的 commit log</h2>
+
+<pre><code>git rebase -i e3rji30c
+</code></pre>
+
+<p>可參考資料：<br/>
+<a href="https://blog.yorkxin.org/2011/07/29/git-rebase">Git-rebase 小筆記 - Yu-Cheng Chuang’s Blog</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/11/28</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='git_note.html'>Git 筆記</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14796613356121.html">
+                
+                  <h1>0 ES2015 Syllabus</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">1. Declarations</a>
+<ul>
+<li>
+<a href="#toc_1">1-1 LET</a>
+</li>
+<li>
+<a href="#toc_2">1-2 CONST</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">2. Functions</a>
+<ul>
+<li>
+<a href="#toc_4">2-1 FUNCTIONS: ARGUMENTS &amp; PARAMETERS</a>
+</li>
+<li>
+<a href="#toc_5">2-2 ARROW FUNCTION</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">3. Objects, Strings, and Object.assign</a>
+<ul>
+<li>
+<a href="#toc_7">3-1 OBJECTS</a>
+</li>
+<li>
+<a href="#toc_8">3-3 OBJECT.ASSIGN</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">4. Arrays, Maps, and Sets</a>
+<ul>
+<li>
+<a href="#toc_10">4-4 ARRAYS</a>
+</li>
+<li>
+<a href="#toc_11">4-5 MAPS</a>
+</li>
+<li>
+<a href="#toc_12">4-6 SETS</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">5. Classes and Modules</a>
+<ul>
+<li>
+<a href="#toc_14">5-7 CLASSES</a>
+</li>
+<li>
+<a href="#toc_15">5-8 MODULES</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_16">6. Promises, Iterators, and Generators</a>
+<ul>
+<li>
+<a href="#toc_17">6-1. PROMISES</a>
+</li>
+<li>
+<a href="#toc_18">6-2 ITERATORS</a>
+</li>
+<li>
+<a href="#toc_19">6-3 GENERATORS</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="14796613356121.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2016/11/21</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ES2015.html'>ES2015</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14792994690791.html">
+                
+                  <h1>[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">情況：</a>
+</li>
+<li>
+<a href="#toc_1">解決方法一：更換 Git binary（失敗）</a>
+</li>
+<li>
+<a href="#toc_2">解決方法二：從 terminal 開 Tower（成功）</a>
+</li>
+</ul>
+
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="14792994690791.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2016/11/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='git_note.html'>Git 筆記</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14791371653052.html">
+                
+                  <h1>5-2 Iterator</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">怎麼讓 objects 變得 iterable</a>
+</li>
+<li>
+<a href="#toc_1">變成 iterable 可以幹嘛？</a>
+</li>
+</ul>
+
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="14791371653052.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2016/11/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ES2015.html'>ES2015</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="14790602904060.html">
+                
+                  <h1>5-1 Promise</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">方法一（ES5）：callback</a>
+</li>
+<li>
+<a href="#toc_1">方法二（ES2016）：Promise</a>
+</li>
+</ul>
+
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="14790602904060.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2016/11/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ES2015.html'>ES2015</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="all_1.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14803274002958.html">Git筆記：實務協作的一些注意事項</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14796613356121.html">0 ES2015 Syllabus</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14792994690791.html">[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14791371653052.html">5-2 Iterator</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14790602904060.html">5-1 Promise</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

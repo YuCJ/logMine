@@ -1,0 +1,457 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Pro Git 筆記 (3) Branch 分支 - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Pro Git 筆記 (3) Branch 分支</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/9/20</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='git_note.html'>Git 筆記</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">運作原理</a>
+</li>
+<li>
+<a href="#toc_1">Branch 新增分支, Checkout 切換分支</a>
+</li>
+<li>
+<a href="#toc_2">Log 檢視紀錄</a>
+</li>
+<li>
+<a href="#toc_3">實例：新建與合併 Merge</a>
+</li>
+<li>
+<a href="#toc_4">Branch 檢視分支資訊相關指令</a>
+</li>
+<li>
+<a href="#toc_5">Rebase 合併分支</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">運作原理</h2>
+
+<pre><code class="language-zsh">$ git add README test.rb LICENSE
+# ↑ 會對每個檔計算校驗和（checksums）（SHA-1 hash）
+# ↑ 每個檔存成一個 blob object
+# ↑ adds that checksum to the staging area
+$ git commit -m &#39;initial commit of my project&#39;
+# ↑ 對每個子資料夾計算校驗和（checksums）
+# ↑ 每個子資料夾存成一個 tree object
+# ↑ 一個 commit object 包含指向 root tree object 的pointer 和其他 metadata。
+</code></pre>
+
+<p>上面的 commit 總共產生五個 objects：<br/>
+- <strong>blob</strong> for the contents of each of your three files<br/>
+- <strong>tree</strong> that lists the contents of the directory and specifies which file names are stored as which blobs<br/>
+- <strong>commit</strong> with the pointer to that root tree and all the commit metadata.<br/>
+<img src="https://git-scm.com/figures/18333fig0301-tn.png" alt="A commit and its tree"/></p>
+
+<blockquote>
+<p>Git用來計算查核碼的機制稱為SHA-1雜湊法。 它由40個十六進制的字母(0–9 and a–f)組成的字串組成，基於Git的檔案內容或者目錄結構計算。 查核碼看起來如下所示：<code>24b9da6552252987aa493b52f8696cd6d3b00373</code></p>
+
+<p>事實上Git以檔案內容的雜湊值定址出檔案在資料庫的位址，而不是以檔案的名稱定址。</p>
+
+<p>（來源：<a href="https://goo.gl/3s8wkm%EF%BC%89">https://goo.gl/3s8wkm）</a></p>
+</blockquote>
+
+<ul>
+<li>Git stores a commit object that contains a pointer to the snapshot of the content you staged.</li>
+<li>This object also contains the author’s name and email, the message that you typed, and pointers to its parent or parents.</li>
+</ul>
+
+<h2 id="toc_1">Branch 新增分支, Checkout 切換分支</h2>
+
+<pre><code class="language-zsh"># Creating new branch and switch to it:
+  $ git checkout -b iss53
+  
+# The command is the same as:
+  $ git branch iss53
+  $ git checkout iss53
+</code></pre>
+
+<h2 id="toc_2">Log 檢視紀錄</h2>
+
+<pre><code class="language-git">$ git log --oneline --decorate
+
+f30ab (HEAD -&gt; master, testing) add feature #32 - 
+ability to add new formats to the central interface
+
+34ac2 Fixed bug #1328 - stack overflow under certain conditions
+
+98ca9 The initial commit of my project
+</code></pre>
+
+<h2 id="toc_3">實例：新建與合併 Merge</h2>
+
+<p>情境：<a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E8%88%87%E5%90%88%E4%BD%B5">分支 - 分支的新建與合併</a></p>
+
+<ol>
+<li><p>網站開發主分支為 master</p></li>
+<li><p>創建一個新分支 iss53 進行滿足新需求的開發： <br/>
+<code>$ git checkout -b iss53</code></p></li>
+<li><p>臨時需要對 master 進行緊急修補</p></li>
+<li><p>若當前修改已經都 commit，先回到 master：<br/>
+<code>$ git checkout master</code></p></li>
+<li><p>從 master 建立緊急修補分支：<br/>
+<code>$ git checkout -b hotfix</code></p></li>
+<li><p>測試完成後，回到 master 進行合併：<br/>
+<code>$ git checkout master</code><br/>
+<code>$ git merge hotfix</code> (Fast-forward)</p></li>
+<li><p>刪除已經完成的 hotfix 分支：<br/>
+<code>$ git branch -d hotfix</code></p></li>
+<li><p>回到 iss53 繼續工作：<br/>
+<code>$ git branch -d hotfix</code></p></li>
+<li><p>iss53 工作完成後，回到 master 進行合併：<br/>
+<code>$ git merge iss53</code> (Merge made by the &#39;recursive&#39; strategy)</p></li>
+<li><p>刪除 iss53 分支：<br/>
+<code>$ git branch -d iss53</code></p></li>
+</ol>
+
+<p><img src="https://git-scm.com/figures/18333fig0317-tn.png" alt=""/></p>
+
+<h2 id="toc_4">Branch 檢視分支資訊相關指令</h2>
+
+<pre><code class="language-zsh">$ git branch # 列出分支清單
+$ git branch -v # 查看各個分支最後一個commit
+$ git branch --merged  # 查看併進目前分支的分支
+$ git branch --no-merged # 查看未併進目前分支的分支
+</code></pre>
+
+<h2 id="toc_5">Rebase 合併分支</h2>
+
+<p>$ git merge [traget_branch] # 將目標合併進當前所在的分支</p>
+
+<p>$ git rebase [target_branch] # 將現在分支的和目標分支的差異</p>
+
+<p><a href="https://blog.yorkxin.org/2011/07/29/git-rebase">https://blog.yorkxin.org/2011/07/29/git-rebase</a></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14749728055067.html" 
+          title="Previous Post: Pro Git 筆記 (4) Branch 實務：遠端連線">&laquo; Pro Git 筆記 (4) Branch 實務：遠端連線</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14743778829037.html" 
+          title="Next Post: Pro Git 筆記 (2) 基本操作">Pro Git 筆記 (2) 基本操作 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14803274002958.html">Git筆記：實務協作的一些注意事項</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14796613356121.html">0 ES2015 Syllabus</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14792994690791.html">[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14791371653052.html">5-2 Iterator</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14790602904060.html">5-1 Promise</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

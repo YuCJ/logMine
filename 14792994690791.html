@@ -1,0 +1,400 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  [Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS） - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/11/16</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='git_note.html'>Git 筆記</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">情況：</a>
+</li>
+<li>
+<a href="#toc_1">解決方法一：更換 Git binary（失敗）</a>
+</li>
+<li>
+<a href="#toc_2">解決方法二：從 terminal 開 Tower（成功）</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">情況：</h2>
+
+<p>在 Tower 裡面提交 commit 時會跳出環境錯誤，無法執行 lint。</p>
+
+<p><img src="media/14792994690791/error.png" alt="erro"/></p>
+
+<p>在專案的 <code>package.json</code> 裡面 <code>lint</code> 的內容是：</p>
+
+<pre><code class="language-json">&quot;scripts&quot;: {
+    &quot;lint&quot;: &quot;eslint -c .eslintrc src server api spec&quot;
+}
+</code></pre>
+
+<p>在 command line 進行 commit，或是直接執行 eslint 都可以跑得起來。我猜可能是 PATH 之類的設定有問題吧但我跟 Unix 系統實在不熟完全不知道要檢查哪裡 QQ </p>
+
+<p>※ 註：其實直接執行 eslint 或跑 npm global 的 eslint，然後就找不到plugin... 要把指令加上路徑 <code>node_modules/.bin/</code> 也就是跑 <code>node_modules/.bin/eslint -c .eslintrc src server api spec</code> 指定跑 local 的 eslint 才可以 不知道怎麼讓 npm 預設去找local的 Orz</p>
+
+<h2 id="toc_1">解決方法一：更換 Git binary（失敗）</h2>
+
+<p>寫信去 Tower 官方，回覆是說：</p>
+
+<blockquote>
+<p>Please try changing the Git binary used by Tower. You can do so by opening Tower&#39;s preferences on the &quot;Git Config&quot; tab. There, you should try using the system binary <code>/usr/bin/git</code>.</p>
+</blockquote>
+
+<p>我才因此知道原來可以指定跑電腦裡那個 Git XD</p>
+
+<p>不過這沒有解決上面的問題，我原本就是用 mac 內建的 Git，就算換成用 homebrew 灌的 <code>&#39;usr/local/bin/git&#39;</code> 或 Tower 內建的 Git 都一樣 Orz</p>
+
+<h2 id="toc_2">解決方法二：從 terminal 開 Tower（成功）</h2>
+
+<p>在網路上搜尋錯誤訊息時找到這個討論串：</p>
+
+<p><a href="https://answers.atlassian.com/questions/140339/answers/32030983">SourceTree : Hook failing because paths don&#39;t seem to be set correctly</a></p>
+
+<p>SorceTree 是另一個在 MAC 上有 GUI 的 Git 軟體，看起來錯誤訊息也都一樣，所以就姑且抱著死馬當活馬醫的心態，在 iTerm2 上執行類似的指令：</p>
+
+<pre><code class="language-bash">open /Applications/Tower.app/Contents/MacOS/Tower
+</code></pre>
+
+<p>結果就可以正常的跑 lint 了哦哦哦！（雖然還是不知原理為何…）</p>
+
+<p>或是在 Tower 的 <code>Preference</code> -&gt; <code>Intergration</code> 裡面點選安裝 Tower command line utility，就可以從 command line 執行 ：</p>
+
+<pre><code class="language-bash">gittower &lt;git_repository_path&gt;
+</code></pre>
+
+<p>（ &lt;git_repository_path&gt; 是你的專案資料夾路徑）</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14796613356121.html" 
+          title="Previous Post: 0 ES2015 Syllabus">&laquo; 0 ES2015 Syllabus</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14791371653052.html" 
+          title="Next Post: 5-2 Iterator">5-2 Iterator &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14803274002958.html">Git筆記：實務協作的一些注意事項</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14796613356121.html">0 ES2015 Syllabus</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14792994690791.html">[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14791371653052.html">5-2 Iterator</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14790602904060.html">5-1 Promise</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

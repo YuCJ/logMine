@@ -1,0 +1,529 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Pro Git 筆記 (4) Branch 實務：遠端連線 - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Pro Git 筆記 (4) Branch 實務：遠端連線</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/9/27</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='git_note.html'>Git 筆記</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">遠端連線基礎指令</a>
+<ul>
+<li>
+<a href="#toc_1">Remote show 顯示遠端基本資訊</a>
+</li>
+<li>
+<a href="#toc_2">Ls-remote顯示所有遠端標記</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">分支相關指令</a>
+<ul>
+<li>
+<a href="#toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</a>
+</li>
+<li>
+<a href="#toc_5">Fetch 把遠端更新拉回本機端資料庫</a>
+<ul>
+<li>
+<a href="#toc_6">如果 reomte 有本機沒有的分支</a>
+</li>
+<li>
+<a href="#toc_7">推送本地新分支到遠端</a>
+</li>
+<li>
+<a href="#toc_8">刪除遠端分支：</a>
+</li>
+<li>
+<a href="#toc_9">儲存密碼至快取</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">遠端連線基礎指令</h2>
+
+<h3 id="toc_1">Remote show 顯示遠端基本資訊</h3>
+
+<pre><code>$ git remote show [remote_name]
+</code></pre>
+
+<pre><code class="language-zsh"> $ git remote show origin
+ 
+  remote origin
+  Fetch URL: https://github.com/falau/pogom.git
+  Push  URL: https://github.com/falau/pogom.git
+  HEAD branch: mewmewmew
+  Remote branches:
+    fb            tracked
+    master        tracked
+    mewmewmew     tracked
+    respawn_point tracked
+  Local branch configured for &#39;git pull&#39;:
+    mewmewmew merges with remote mewmewmew
+  Local ref configured for &#39;git push&#39;:
+    mewmewmew pushes to mewmewmew (fast-forwardable)
+</code></pre>
+
+<h3 id="toc_2">Ls-remote顯示所有遠端標記</h3>
+
+<pre><code>$ git ls-remote [remote_name]
+</code></pre>
+
+<pre><code class="language-zsh">$ git ls-remote origin
+8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        HEAD
+a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/heads/fb
+64cebfacddb3bb6564763ffa6341e1340df0c835        refs/heads/master
+8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        refs/heads/mewmewmew
+e3181f6b2c8b63e9679047010229c500bf165f65        refs/heads/respawn_point
+bb35f740f7d53cb5e522fb99dbea498dcd161f29        refs/pull/1/head
+f6c7f1f9791a76592a83a9e94b87e62ff5efa7ac        refs/pull/2/head
+0a262dd1267cea202fb4dda8121e2a8443424e41        refs/pull/3/head
+121dc5f48ba546e81a9e1615a91a08b6789f33e6        refs/pull/4/head
+6dfc441093810b1610b570667a4568a0e00340fd        refs/pull/5/head
+2dda89e00775e35bb37c0eb8f2848015da25989f        refs/pull/6/head
+043f5573d87c0cdecd80f4105e3c07ab952b49b6        refs/pull/7/head
+e3181f6b2c8b63e9679047010229c500bf165f65        refs/pull/8/head
+a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/pull/9/head
+</code></pre>
+
+<blockquote>
+<p><strong>(TIPS)</strong> 就像「master」對 Git 程式並沒特殊的意義，只是執行 <code>git init</code> 時的預設   branch 名稱，「origin」也沒有特殊意義，只是執行 <code>git clone</code> 的預設遠端名稱。若要指定名稱須加上參數： <code>git clone -o [remote name]</code>。</p>
+</blockquote>
+
+<h2 id="toc_3">分支相關指令</h2>
+
+<p>遠端伺服器可能也有人已經做了一些開發，兩邊的 mater branch 此時可能有不一樣的修改時：</p>
+
+<h3 id="toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</h3>
+
+<pre><code class="language-zsh">$ git branch -vv
+  iss53     7e424c3 [origin/iss53: ahead 2] forgot the brackets
+  master    1ae2a45 [origin/master] deploying index fix
+* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] this should do it
+  testing   5ea463a trying something new
+</code></pre>
+
+<p><strong><code>ahead 2</code></strong> we have two commits locally that are not pushed to the server.<br/>
+<strong><code>behind 1</code></strong> there is one commit on the server we haven’t merged in yet</p>
+
+<h3 id="toc_5">Fetch 把遠端更新拉回本機端資料庫</h3>
+
+<pre><code>$ git fetch [remote_name]
+</code></pre>
+
+<p>這個指令會做兩件事：</p>
+
+<ol>
+<li>把遠端有、本機沒有的 commits 拉回來本機</li>
+<li>把 [remote_name/branch_name] pointers 更新到最新的位置</li>
+</ol>
+
+<p>例如下圖：<br/>
+<img src="https://git-scm.com/figures/18333fig0324-tn.png" alt=""/></p>
+
+<blockquote>
+<p>值得注意的是，fetch 指令只會下載資料和 pointer，並不會主動新增本機沒有的分支，你仍然無法在本地編輯該遠端倉庫中的分支。</p>
+</blockquote>
+
+<h4 id="toc_6">如果 reomte 有本機沒有的分支</h4>
+
+<blockquote>
+<p>如果要把該遠端分支的內容合併到當前分支，可以運行 <code>git merge origin/master</code>。如果想要一份自己的新分支來開發，可以在遠端分支的基礎上分化出一個新的分支來：</p>
+</blockquote>
+
+<p>建立新分支：</p>
+
+<pre><code class="language-zsh">$ git checkout -b newbranch origin/master
+# 建立一個新分支 newbranch，內容與 origin/master 一致 
+
+$ git checkout --track origin/serverfix
+# 若名稱未與本地分支衝突就與上面相同效果
+
+$ git branch -u origin/serverfix
+
+# &lt;cf.&gt; 若要用已經有的分支追蹤遠端分支
+# 將當前分支設定為追蹤 origin/serverfix
+# 等同於：
+$ git branch -set-upstream-to origin/serverfix
+</code></pre>
+
+<blockquote>
+<p>從遠端分支 checkout 出來的本地分支，稱為<strong>追蹤分支（tracking branch）</strong>，被追蹤的分支則稱為<strong>上游分支（upstream branch）</strong>。追蹤分支是一種和某個遠端分支有直接聯繫的本地分支。在追蹤分支裡輸入 <code>git push</code>，Git 會自行推斷應該向哪個伺服器的哪個分支推送資料。同樣，在這些分支裡運行 <code>git pull</code> 會獲取遠端上游分支，並把它們的資料都 merge 到本地分支中來。</p>
+</blockquote>
+
+<pre><code class="language-zsh"># 從本地 tracking branch 執行：
+
+$ git pull
+
+# 大多數情況下等同於：
+$ git fetch [remote]
+$ git merge [remote]/[upstream branch]
+
+# 教學建議使用後者，會比較清楚自己 merge 了什麼
+</code></pre>
+
+<h4 id="toc_7">推送本地新分支到遠端</h4>
+
+<pre><code class="language-zsh">$ git push [remote] [local_brach_name]:[remote_branch_name]
+
+# Take my local branch and make it the remotes.
+</code></pre>
+
+<h4 id="toc_8">刪除遠端分支：</h4>
+
+<pre><code class="language-zsh">$ git push origin --delete serverfix
+
+
+# 舊版教學使用以下方法太不直觀：
+$ git push origin :serverfix
+To git@github.com:schacon/simplegit.git
+ - [deleted]         serverfix
+
+</code></pre>
+
+<h4 id="toc_9">儲存密碼至快取</h4>
+
+<blockquote>
+<p>If you’re using an HTTPS URL to push over, the Git server will ask you for your username and password for authentication. By default it will prompt you on the terminal for this information so the server can tell if you’re allowed to push.</p>
+
+<p>If you don’t want to type it every single time you push, you can set up a “credential cache”. The simplest is just to keep it in memory for a few minutes, which you can easily set up by running git config --global credential.helper cache.</p>
+
+<p>For more information on the various credential caching options available, see Credential Storage.</p>
+</blockquote>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14749897217192.html" 
+          title="Previous Post: Pro Git 筆記 (5) 各種情況的復原指令">&laquo; Pro Git 筆記 (5) 各種情況的復原指令</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14743779326332.html" 
+          title="Next Post: Pro Git 筆記 (3) Branch 分支">Pro Git 筆記 (3) Branch 分支 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14803274002958.html">Git筆記：實務協作的一些注意事項</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14796613356121.html">0 ES2015 Syllabus</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14792994690791.html">[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14791371653052.html">5-2 Iterator</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14790602904060.html">5-1 Promise</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
