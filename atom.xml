@@ -4,7 +4,7 @@
   <title><![CDATA[My Frontend Note]]></title>
   <link href="https://yucj.github.io/logMine/atom.xml" rel="self"/>
   <link href="https://yucj.github.io/logMine/"/>
-  <updated>2016-11-28T21:00:29+08:00</updated>
+  <updated>2016-11-28T21:03:06+08:00</updated>
   <id>https://yucj.github.io/logMine/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -86,9 +86,9 @@
   
   <entry>
     <title type="html"><![CDATA[0 ES2015 Syllabus]]></title>
-    <link href="https://yucj.github.io/logMine/14796613356121.html"/>
+    <link href="https://yucj.github.io/logMine/ES2015-Syllabus.html"/>
     <updated>2016-11-21T01:02:15+08:00</updated>
-    <id>https://yucj.github.io/logMine/14796613356121.html</id>
+    <id>https://yucj.github.io/logMine/ES2015-Syllabus.html</id>
     <content type="html"><![CDATA[
 <blockquote>
 <p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
