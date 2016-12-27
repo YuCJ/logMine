@@ -1,0 +1,565 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Level 2: 寫出效率較好的 JavaScript（JavaScript Best Practice @ Code School） - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+        
+            <li><a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html">實習筆記</a></li>
+        
+            <li><a href="Babel.html">Babel</a></li>
+        
+            <li><a href="Best%20Practices.html">Best Practices</a></li>
+        
+            <li><a href="Webpack.html">Webpack</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Level 2: 寫出效率較好的 JavaScript（JavaScript Best Practice @ Code School）</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/1/2</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='Best%20Practices.html'>Best Practices</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Loop optimization</a>
+<ul>
+<li>
+<a href="#toc_1">Cache the property to avoid repetitive access at depth:</a>
+</li>
+<li>
+<a href="#toc_2">Stick with <code>for-loops</code> instead of <code>for-in loops</code> when your goal is only to reach every index.</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">Script execution in HTML</a>
+</li>
+<li>
+<a href="#toc_4">Use a <code>prototype</code> for shared stuff for object constructor</a>
+</li>
+<li>
+<a href="#toc_5">Use document <code>fragment</code> to insert additions all at once</a>
+<ul>
+<li>
+<a href="#toc_6">Declare variables as few times as possible</a>
+</li>
+<li>
+<a href="#toc_7">Use <code>join()</code> method instead of for-loop to merge an array into one jumbo string</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">Test the speed of your code</a>
+<ul>
+<li>
+<a href="#toc_9">console.test()</a>
+</li>
+<li>
+<a href="#toc_10">class test</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Loop optimization</h2>
+
+<h3 id="toc_1">Cache the property to avoid repetitive access at depth:</h3>
+
+<pre><code class="language-js">treasureChest = {
+    necklaces: [&#39;ruby&#39;, &#39;pear&#39;, &#39;sapphire&#39;, &#39;diamond&#39;]
+}
+
+function returnLoop() {
+  var list = treasureChest.necklaces;
+  for(var i=0, x = treasureChest.necklaces.length; i&lt;x : i++) {
+    console.log(list[i])
+  }
+  // same as:
+  // var x = treasureChest.necklaces.length;
+  // for(var i=0; i&lt;x : i++) {
+  //    console.log(list[i])
+  // }
+}
+</code></pre>
+
+<h3 id="toc_2">Stick with <code>for-loops</code> instead of <code>for-in loops</code> when your goal is only to reach every index.</h3>
+
+<p>Methods we add to the prototype become “enumerable” just like indices</p>
+
+<h2 id="toc_3">Script execution in HTML</h2>
+
+<p><strong>Problems:</strong></p>
+
+<ul>
+<li>Loading huge script will block the page loading.</li>
+<li>Cannot manipulate DOM elements before they have been construct.</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+
+<ul>
+<li>Move <code>&lt;script&gt;</code> as low as possible.</li>
+<li>Add <code>async</code> attribute in <code>&lt;script&gt;</code> to prevent blocking.</li>
+</ul>
+
+<h2 id="toc_4">Use a <code>prototype</code> for shared stuff for object constructor</h2>
+
+<p>We don’t need to build all of these methods within every single object, which would use extra memory AND take longer to create.</p>
+
+<h2 id="toc_5">Use document <code>fragment</code> to insert additions all at once</h2>
+
+<p>Each new addition to the DOM causes document &quot;reflow&quot;</p>
+
+<p><strong>fragments</strong> are invisible containers that hold multiple DOM elements without being a node itself</p>
+
+<p>原始版，每次for-loop都reflow：</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;)
+var kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  var element = document.createElement(&quot;li&quot;)
+  element.appendChild(document.creatementTextNode(kotw[i])
+  list.appendChild(element)
+}
+</code></pre>
+
+<p>優化，只reflow一次：</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;)
+var kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+var fragment = document.createDocumentFragment() // &lt;=
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  var element = document.createElement(&quot;li&quot;)
+  element.appendChild(document.creatementTextNode(kotw[i])
+  fragment.appendChild(element) // &lt;=
+}
+list.appendChild(fragment)  // &lt;=
+</code></pre>
+
+<h3 id="toc_6">Declare variables as few times as possible</h3>
+
+<p>Each <code>var</code> keywords adds a look-up for the javascript parser that can be avoided with comma extensions.</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;),
+    kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],
+    fragment = document.createDocumentFragment(),
+    element  // &lt;=
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  element = document.createElement(&quot;li&quot;) //&lt;=
+  element.appendChild(document.creatementTextNode(kotw[i])
+  fragment.appendChild(element) 
+}
+list.appendChild(fragment)  
+</code></pre>
+
+<h3 id="toc_7">Use <code>join()</code> method instead of for-loop to merge an array into one jumbo string</h3>
+
+<p>is faster </p>
+
+<h2 id="toc_8">Test the speed of your code</h2>
+
+<h3 id="toc_9">console.test()</h3>
+
+<pre><code class="language-js">var newbs = [&quot;Tim&quot;, &quot;Tom&quot;, &quot;Sam&quot;]
+var knights = [ /*...tons of Knight objects...*/ ]
+console.time(&quot;Time for adding&quot; + newbs.length + &quot;Knights&quot;)
+for (var i = 0, x = newbs.length; i&lt;x; i++) {
+  var newGuy = new Knight(newbs[i])
+  knights.push(newGuy)
+}
+console.timeEnd(&quot;Time for adding&quot; + newbs.length + &quot;Knights&quot;)
+</code></pre>
+
+<h3 id="toc_10">class test</h3>
+
+<pre><code class="language-js">var SpeedTest = function(testImplement,testParams,repetitions) {
+  this.testImplement = testImplement;
+  this.testParams = testParams;
+  this.repetitions = repetitions || 10000;
+  this.average = 0;
+};
+
+SpeedTest.prototype = {
+  startTest: function() {
+    if (this.testImplement(this.testParams) === false) {
+      alert(&#39;Test failed with those parameters.&#39;);
+      return;
+    }
+    var beginTime, endTime, sumTimes = 0;
+    for (var i = 0, x = this.repetitions; i &lt; x; i++) {
+      beginTime = +new Date();
+      this.testImplement(this.testParams);
+      endTime = +new Date();
+      sumTimes += endTime - beginTime;
+    }
+    this.average = sumTimes / this.repetitions;
+    return console.log(&#39;Average execution across &#39; + this.repetitions + &#39;: &#39; + this.average);
+  }
+};
+
+var IP = [&#39;Nipping Global Variable&#39;, &#39;Sneaky Forin&#39;, &#39;Bulging Blocking Script&#39;],
+GH = [&#39;Switch Blocks&#39;, &#39;Pesky Gnat&#39;, &#39;Aiedra&#39;],
+inhabitants = [IP,GH];
+
+function populationGetter(popn) {
+  var list = &#39;&#39;;
+  for (var i = 0, x = popn.length; i &lt; x; i++) {
+    for (var j = 0; j &lt; popn[i].length; j++) {
+      list += (popn[i][j] + &#39;, &#39;);
+    }
+  }
+  return list;
+}
+
+populationGetter(inhabitants);
+var concatTest = new SpeedTest(populationGetter, inhabitants, 100000);
+concatTest.startTest();
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="Caution-in-Javascript.html" 
+          title="Previous Post: Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School）">&laquo; Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School）</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14827416854836.html" 
+          title="Next Post: [實習筆記] React & Redux 中前端怎麼跟 server 要資料？">[實習筆記] React & Redux 中前端怎麼跟 server 要資料？ &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+                 <div style="{width:90%; height:auto; margin: 5px auto 5px auto;}"><img src="http://i.imgur.com/iFetvNZ.jpg?1"></div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+        
+            <a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html"><strong>實習筆記</strong></a>
+        
+            <a href="Babel.html"><strong>Babel</strong></a>
+        
+            <a href="Best%20Practices.html"><strong>Best Practices</strong></a>
+        
+            <a href="Webpack.html"><strong>Webpack</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14988019613600.html">Webpack 2 & 3: Input(Entry) and Output</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987956627714.html">[NodeJS] Path, URL 路徑相關問題整理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987306644790.html">Webpack plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987255686752.html">Babel plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14971940142851.html">Webpack 2: deploy</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,540 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Level 4: Module in JavaScript（JavaScript Best Practice @ Code School） - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+        
+            <li><a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html">實習筆記</a></li>
+        
+            <li><a href="Babel.html">Babel</a></li>
+        
+            <li><a href="Best%20Practices.html">Best Practices</a></li>
+        
+            <li><a href="Webpack.html">Webpack</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Level 4: Module in JavaScript（JavaScript Best Practice @ Code School）</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/1/4</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='Best%20Practices.html'>Best Practices</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Simulate name space by JavaScript objects</a>
+</li>
+<li>
+<a href="#toc_1">Anynomous closures</a>
+</li>
+<li>
+<a href="#toc_2">Global import</a>
+</li>
+<li>
+<a href="#toc_3">Augmentation</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p>課程中教的主要是最原始的模組寫法，但其實透過擴充或 ES2015 已經有更方便的模組處理方式，不過為了拿徽章還是把他上完了。XD</p>
+
+<p>想瞭解 JavaScript 模組化新的實踐方式詳見以下連結：</p>
+
+<ul>
+<li><p>JavaScript 模块化七日谈<br/>
+<a href="https://huangxuan.me/2015/07/09/js-module-7day/">https://huangxuan.me/2015/07/09/js-module-7day/</a></p></li>
+<li><p>Module（ECMAScript 6 入门）<br/>
+<a href="http://es6.ruanyifeng.com/#docs/module">http://es6.ruanyifeng.com/#docs/module</a></p></li>
+<li><p>Module（Exploring ES6）<br/>
+<a href="http://exploringjs.com/es6/ch_modules.html">http://exploringjs.com/es6/ch_modules.html</a></p></li>
+</ul>
+
+<p>想瞭解原始寫法也可參考：</p>
+
+<ul>
+<li>深入了解 JavaScript 模組化模式
+<a href="http://easonlin.logdown.com/posts/74228-javascript-module-pattern-in-depth">http://easonlin.logdown.com/posts/74228-javascript-module-pattern-in-depth</a></li>
+</ul>
+
+<h2 id="toc_0">Simulate name space by JavaScript objects</h2>
+
+<blockquote>
+<p>An application that has multiple files which contain variables with the same name will experience a loss of data in the event of a(n) <strong>overwrite</strong>, which erases old data in favor of new (and perhaps wrong) data. This occurs specifically when these variables are declared <strong>globally</strong> in multiple files. This error may not be found until <strong>run-time</strong>.</p>
+</blockquote>
+
+<p><strong>Solution: simulate name space by JavaScript objects</strong></p>
+
+<p>global variables =&gt; object&#39;s properties<br/>
+global function =&gt; object&#39;s methods</p>
+
+<pre><code class="language-js">var CAVESOFCLARITY = {
+  stalactites: 4235,
+  stalagmites: 3924,
+  bats: 345,
+  treasureChests: 3,
+  openChest: function() {
+    this.treasureChests--;
+    alert(&#39;DA DADADA DAAAAAAA!&#39;);
+  }
+};
+</code></pre>
+
+<h2 id="toc_1">Anynomous closures</h2>
+
+<blockquote>
+<p>Use <strong>closure</strong> to cause some properties to be private, bound only to a surrounding function&#39;s local scope, and some properties to be public, accessible by all holders of the namespace.</p>
+
+<p><strong>Private</strong> properties are created in the local scope of the function expression (IIFE).</p>
+
+<p><strong>Public</strong> properties are built within the object which is then return to become the namespace.</p>
+
+<p>Access to private data is thus possible only because of closure within the larger module.</p>
+</blockquote>
+
+<pre><code class="language-js">var CAVESOFCLARITY = (function() {
+  var treasureChests = 3; //&lt;= private
+  var bats: 345; // &lt;= cannot retrieve it
+  return {
+    stalactites: 4235,
+    stalagmites: 3924,
+    openChest: function() {
+      treasureChests--;
+      alert(&#39;DA DADADA DAAAAAAA!&#39;);
+    }
+  };
+})();
+</code></pre>
+
+<p><strong>Caution</strong>: If the data is never referenced through the public method, we have no way to retrieve it.</p>
+
+<pre><code class="language-js">var CAVESOFCLARITY = (function() {
+  var treasureChests = 3; //&lt;= private
+  var bats: 345; // &lt;= private
+  return {
+    stalactites: 4235,
+    stalagmites: 3924,
+    openChest: function() {
+      treasureChests--;
+      alert(&#39;DA DADADA DAAAAAAA!&#39;);
+    },
+    getBats: function() {
+      return bats;
+    }  
+  };
+})();
+</code></pre>
+
+<h2 id="toc_2">Global import</h2>
+
+<p>直接引用 global 變數有兩個問題：</p>
+
+<ol>
+<li><p>When non-local var are referenced in a module, the entire length of the scope chain is checked.</p></li>
+<li><p>Lengthy namespaces mean that global variables have unclear scope, leading to code that is tough to manage.</p></li>
+</ol>
+
+<p>可能會很難找到這個變數哪裡來的，或是錯誤地假設這是一個區域變數而做操作影響到全域變數。</p>
+
+<p>Solution: Global Import</p>
+
+<blockquote>
+<p>Your <strong>import</strong> ensures clarity of scope within a module.</p>
+
+<p>By using a <strong>parameter</strong>, you protect the global data that might have been overwritten.</p>
+
+<p>All imported data becomes locally scoped to the anonymous function, to be used in closure.</p>
+
+<p>Thus, when compared with searching the entire scope chain, imports are both clearer and faster.</p>
+</blockquote>
+
+<p>Example:</p>
+
+<pre><code class="language-js">var LEXICALLAKE = (function(answer, foundShore) {
+
+  var depth = 400;
+  var fish = 1200;
+  var unknownSleepers = 3;
+    
+  return {
+    getFish: function() { return fish; },
+    getDepth: function() { return depth; },
+    getSleepers: function() { return unknownSleepers; },
+    awakenSleeper: function() {
+      alert(&#39;Far below, in the deep, something awakens. Row faster.&#39;);
+    },
+    summonBoat: function() {
+      if (answer === &#39;agnostic&#39;) {
+        alert(&#39;The boat fades into view.&#39;);
+      }
+      else {
+        alert(&#39;...the lake is silent.&#39;);
+      }
+    },
+    stopSleeper: function() {
+      if (foundShore === true){
+        alert(&#39;That which has awoken shall now return to slumber.&#39;);
+      } else {
+        alert(&#39;A Sleeper cometh. Abandon hope.&#39;);
+      }
+    }
+  };
+})(explorerAnswer, madeItAcross);
+</code></pre>
+
+<h2 id="toc_3">Augmentation</h2>
+
+<p>Augment:  Adding or changing properties in a module after the module has already been built</p>
+
+<blockquote>
+<p>In simple augmentation, the module file and the augmentation file <strong>do not share their private state</strong>.</p>
+
+<p>Augmented module properties may only access the private data from their file&#39;s closure.</p>
+
+<p>Private data from the original closure will not be lost, and will be accessible to all original properties that referenced it.</p>
+</blockquote>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14846441091612.html" 
+          title="Previous Post: Google Cloud Platform Introduction">&laquo; Google Cloud Platform Introduction</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="Caution-in-Javascript.html" 
+          title="Next Post: Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School）">Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School） &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+                 <div style="{width:90%; height:auto; margin: 5px auto 5px auto;}"><img src="http://i.imgur.com/iFetvNZ.jpg?1"></div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+        
+            <a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html"><strong>實習筆記</strong></a>
+        
+            <a href="Babel.html"><strong>Babel</strong></a>
+        
+            <a href="Best%20Practices.html"><strong>Best Practices</strong></a>
+        
+            <a href="Webpack.html"><strong>Webpack</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14988019613600.html">Webpack 2 & 3: Input(Entry) and Output</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987956627714.html">[NodeJS] Path, URL 路徑相關問題整理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987306644790.html">Webpack plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987255686752.html">Babel plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14971940142851.html">Webpack 2: deploy</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

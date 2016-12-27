@@ -1,0 +1,864 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  ES5 Constructor Functions v.s. ES6 Class - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+        
+            <li><a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html">實習筆記</a></li>
+        
+            <li><a href="Babel.html">Babel</a></li>
+        
+            <li><a href="Best%20Practices.html">Best Practices</a></li>
+        
+            <li><a href="Webpack.html">Webpack</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>ES5 Constructor Functions v.s. ES6 Class</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/3/16</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='javascript_note.html'>JS 筆記</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>本文為<a href="http://es6.ruanyifeng.com/#docs/class">阮一峰・ECMAScript 6 入門：Class</a>的筆記</p>
+</blockquote>
+
+<ul>
+<li>
+<a href="#toc_0">general</a>
+</li>
+<li>
+<a href="#toc_1">constructor</a>
+</li>
+<li>
+<a href="#toc_2">prototype</a>
+<ul>
+<li>
+<a href="#toc_3">Methods is saved in instance&#39;s <code>__proto__</code> not instance itself</a>
+</li>
+<li>
+<a href="#toc_4">enumerable</a>
+</li>
+<li>
+<a href="#toc_5">Mutate the <code>__proto__</code> via instance</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">the constructor function</a>
+<ul>
+<li>
+<a href="#toc_7">Class as expression</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">Private Methods</a>
+<ul>
+<li>
+<a href="#toc_9">Naming with prefix <code>_</code> for distinguish</a>
+</li>
+<li>
+<a href="#toc_10">Declare methods outside the block</a>
+</li>
+<li>
+<a href="#toc_11">Use Symbol as name of method</a>
+</li>
+<li>
+<a href="#toc_12">Maybe in ES7</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13"><code>this</code> in Methods</a>
+</li>
+<li>
+<a href="#toc_14">繼承</a>
+<ul>
+<li>
+<a href="#toc_15">super</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_16">static 靜態方法</a>
+</li>
+<li>
+<a href="#toc_17">不能獨立使用、必須繼承後才能使用的 class</a>
+</li>
+<li>
+<a href="#toc_18">待研究</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">general</h2>
+
+<ul>
+<li>Class不存在變量提升（hoist），這一點與ES5完全不同。</li>
+<li>類和模塊的內部，默認就是嚴格模式，所以不需要使用use strict指定運行模式。只要你的代碼寫在類或模塊之中，就只有嚴格模式可用。</li>
+<li>Class的 name屬性總是返回緊跟在class關鍵字後面的類名。</li>
+</ul>
+
+<h2 id="toc_1">constructor</h2>
+
+<ul>
+<li><p>透過 new 命令生成 instance object 時，是調用 <code>constructor</code> 方法。</p></li>
+<li><p>一個 class 必須有 <code>constructor</code> 方法，如果沒定義，一個空的 <code>constructor</code> 方法會被默認添加。</p></li>
+<li><p><code>constructor</code> 方法預設 return instance object（即 <code>this</code>），可以指定返回任意的 object。</p></li>
+<li><p>用 <code>class</code> 生成的構造函數，不使用 <code>new</code> 是沒法調用的，會報錯。這是它跟普通構造函數的一個主要區別，後者不用 <code>new</code> 也可以執行。</p></li>
+</ul>
+
+<pre><code class="language-js">/* ES5 */
+
+function Point(x, y) {
+  this.x = x
+  this.y = y
+}
+
+/* ES6 */
+
+class Point {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+    // return `this` by default
+  }
+}
+
+/* Create Instance */
+
+var point = new Point(3,2)
+point.x === 3 // true
+point.y === 2 // true
+</code></pre>
+
+<h2 id="toc_2">prototype</h2>
+
+<pre><code class="language-js">/* ES5 */
+
+Point.prototype.printLocation = function () {
+  console.log(&#39;The point is at (&#39;+this.x+&#39;,&#39;+this.y+&#39;).&#39;)
+}
+
+/* ES6 */
+
+class Point {
+  printLocation() {
+    console.log(`The point is at (${this.x},${this.y}).`)
+  }
+}
+
+/* Invoke Methods of Instance */
+
+var point = new Point(3,2)
+point.printLocation() // &quot;The point is at (3,2).&quot;
+
+/* Assign Methods to Class */
+
+Object.assign(Point.prototype, {
+  toString(){},
+  toValue(){}
+});
+</code></pre>
+
+<h3 id="toc_3">Methods is saved in instance&#39;s <code>__proto__</code> not instance itself</h3>
+
+<ul>
+<li>與ES5一樣，實例的屬性除非顯式定義在其本身（即定義在this對象上），否則都是定義在原型上（即定義在class上）。</li>
+</ul>
+
+<pre><code class="language-js">/* ES5 */
+
+var Point = function (x, y) {
+  // ...
+};
+
+Point.prototype.printLocation = function() {
+  // ...
+};
+
+var point = new Point(3,2)
+
+point.hasOwnProperty(&#39;printLocation&#39;) // false
+point.__proto__.hasOwnProperty(&#39;printLocation&#39;) // true
+
+/* ES6 */
+
+class Point {
+  constructor(x, y) {
+    // ...
+  }
+  printLocation() {
+    // ...
+  }
+}
+
+var point = new Point(3,2)
+
+point.hasOwnProperty(&#39;printLocation&#39;) // false
+point.__proto__.hasOwnProperty(&#39;printLocation&#39;) // true
+
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E7%B1%BB%E7%9A%84prototype%E5%B1%9E%E6%80%A7%E5%92%8C__proto__%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#类的prototype属性和__proto__属性</a></p>
+
+<ul>
+<li>大多數瀏覽器的ES5實現之中，每一個對象都有__proto__屬性，指向對應的構造函數的prototype屬性。Class作為構造函數的語法糖，同時有prototype屬性和__proto__屬性，因此同時存在兩條繼承鏈。</li>
+</ul>
+
+<p>（1）子類的__proto__屬性，表示構造函數的繼承，總是指向父類：作為一個對象，子類（B）的原型（__proto__屬性）是父類（A）</p>
+
+<p>（2）子類prototype屬性的__proto__屬性，表示方法的繼承，總是指向父類的prototype屬性。：作為一個構造函數，子類（B）的原型（prototype屬性）是父類的實例。</p>
+
+<h3 id="toc_4">enumerable</h3>
+
+<ul>
+<li>類的內部所有定義的方法，都是不可枚舉的（non-enumerable）。這一點與ES5的行為不一致。</li>
+</ul>
+
+<pre><code class="language-js">/* Methods added to prototype is enumerable in ES5  */
+
+var Point = function (x, y) {
+  // ...
+};
+
+Point.prototype.printLocation = function() {
+  // ...
+};
+
+var point = new Point(3,2)
+
+Object.keys(Point.prototype)
+// [&quot;printLocation&quot;]
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;printLocation&quot;]
+
+/* All Methods are Non-enumerable in ES6 Class */
+
+class Point {
+  constructor(x, y) {
+    // ...
+  }
+  printLocation() {
+    // ...
+  }
+}
+
+var point = new Point(3,2)
+
+Object.keys(Point.prototype)
+// []
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;printLocation&quot;]
+</code></pre>
+
+<h3 id="toc_5">Mutate the <code>__proto__</code> via instance</h3>
+
+<ul>
+<li>與ES5一樣，類的所有實例共享一個原型對象。</li>
+<li>使用實例的__proto__屬性改寫原型，必須相當謹慎，不推薦使用，因為這會改變Class的原始定義，影響到所有實例。</li>
+</ul>
+
+<pre><code class="language-js">var p1 = new Point(2,3);
+var p2 = new Point(3,2);
+
+p1.__proto__.printName = function () { return &#39;Oops&#39; };
+
+p1.printName() // &quot;Oops&quot;
+p2.printName() // &quot;Oops&quot;
+
+var p3 = new Point(4,2);
+p3.printName() // &quot;Oops&quot;
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E5%AE%9E%E4%BE%8B%E7%9A%84__proto__%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#实例的__proto__属性</a></p>
+
+<h2 id="toc_6">the constructor function</h2>
+
+<pre><code class="language-js">class Point {
+  // ...
+}
+
+typeof Point // &quot;function&quot;
+Point === Point.prototype.constructor // true
+
+var p = new Point(3,2)
+p.constructor === Point.prototype.constructor // true
+</code></pre>
+
+<h3 id="toc_7">Class as expression</h3>
+
+<ul>
+<li>與函數一樣，類也可以使用表達式的形式定義。</li>
+<li>下面代碼使用表達式定義了一個類。需要注意的是，這個類的名字是MyClass而不是Me，Me只在Class的內部代碼可用，指代當前類。</li>
+<li>採用Class表達式，可以寫出立即執行的Class。</li>
+</ul>
+
+<pre><code class="language-js">const MyClass = class Me {
+  getClassName() {
+    return Me.name;
+  }
+}
+
+let inst = new MyClass();
+inst.getClassName() // Me
+Me.name // ReferenceError: Me is not defined
+</code></pre>
+
+<h2 id="toc_8">Private Methods</h2>
+
+<ul>
+<li>私有方法是常見需求，但 ES6 不提供，只能通過變通方法模擬實現。</li>
+</ul>
+
+<h3 id="toc_9">Naming with prefix <code>_</code> for distinguish</h3>
+
+<ul>
+<li>_bar方法前面的下劃線，表示這是一個只限於內部使用的私有方法。但是，這種命名是不保險的，在類的外部，還是可以調用到這個方法。</li>
+</ul>
+
+<pre><code class="language-js">class Widget {
+
+  // 公有方法
+  foo (baz) {
+    this._bar(baz);
+  }
+
+  // 私有方法
+  _bar(baz) {
+    return this.snaf = baz;
+  }
+
+  // ...
+}
+</code></pre>
+
+<h3 id="toc_10">Declare methods outside the block</h3>
+
+<pre><code class="language-js">class Widget {
+  foo (baz) {
+    bar.call(this, baz);
+  }
+
+  // ...
+}
+
+function bar(baz) {
+  return this.snaf = baz;
+}
+</code></pre>
+
+<h3 id="toc_11">Use Symbol as name of method</h3>
+
+<ul>
+<li>還有一種方法是利用Symbol值的唯一性，將私有方法的名字命名為一個Symbol值。
+<a href="http://es6.ruanyifeng.com/#docs/class#%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95">http://es6.ruanyifeng.com/#docs/class#私有方法</a></li>
+</ul>
+
+<h3 id="toc_12">Maybe in ES7</h3>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E7%B1%BB%E7%9A%84%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#类的私有属性</a></p>
+
+<h2 id="toc_13"><code>this</code> in Methods</h2>
+
+<ul>
+<li>下面程式碼 <code>printName</code> 方法中的 <code>this</code> ，默認指向 <code>Person</code> 的 instance。但是，如果將這個方法提取出來單獨使用，<code>this</code> 會指向該方法運行時所在的環境，因為找不到 <code>print</code> 方法而導致報錯。</li>
+</ul>
+
+<pre><code class="language-js">class Person {
+  printName(name = &#39;dude&#39;) {
+    this.print(`Hello ${name}`)
+  }
+
+  print(text) {
+    console.log(text)
+  }
+}
+
+const person = new Person
+const printName = person.printName
+printName() // TypeError: Cannot read property &#39;print&#39; of undefined
+</code></pre>
+
+<p>解法一：在 <code>constructor</code> 方法中綁定 <code>this</code></p>
+
+<pre><code class="language-js">class Person {
+  constructor() {
+    this.printName = this.printName.bind(this);
+  }
+
+  // ...
+}
+</code></pre>
+
+<p>解法二：用箭頭函數</p>
+
+<pre><code class="language-js">class Person {
+  constructor() {
+    this.printName = (name = &#39;dude&#39;) =&gt; {
+      this.print(`Hello ${name}`);
+    };
+  }
+
+  // ...
+}
+</code></pre>
+
+<p>解法三：用 <code>Proxy</code>，獲取方法的時候，自動綁定 <code>this</code>。</p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#this%E7%9A%84%E6%8C%87%E5%90%91">http://es6.ruanyifeng.com/#docs/class#this的指向</a></p>
+
+<h2 id="toc_14">繼承</h2>
+
+<ul>
+<li><p>Class之間可以通過extends關鍵字實現繼承，這比ES5的通過修改原型鏈實現繼承，要清晰和方便很多。</p></li>
+<li><p>ES5的繼承，實質是先創造子類的實例對象this，然後再將父類的方法添加到this上面（Parent.apply(this)）。ES6的繼承機制完全不同，實質是先創造父類的實例對象this（所以必須先調用super方法），然後再用子類的構造函數修改this。</p></li>
+<li><p>子類必須在constructor方法中調用super方法，否則新建實例時會報錯。這是因為子類沒有自己的this對象，而是繼承父類的this對象，然後對其進行加工。如果不調用super方法，子類就得不到this對象。</p></li>
+<li><p>如果子類沒有定義constructor方法，這個方法會被默認添加，並在其中調用super方法。也就是說，不管有沒有顯式定義，任何一個子類都有在其中調用super方法的constructor方法。</p></li>
+<li><p>在子類的構造函數中，只有調用super之後，才可以使用this關鍵字，否則會報錯。這是因為子類實例的構建，是基於對父類實例加工，只有super方法才能返回父類實例。</p></li>
+</ul>
+
+<pre><code class="language-js">class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y); // 調用父類的constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + &#39; &#39; + super.toString(); // 調用父類的toString()
+  }
+}
+</code></pre>
+
+<h3 id="toc_15">super</h3>
+
+<ol>
+<li><p>作為函數調用：</p></li>
+</ol>
+
+<ul>
+<li><p>super雖然代表了父類A的構造函數，但是返回的是子類B的實例，即super內部的this指的是B，因此super()在這裡相當於A.prototype.constructor.call(this)。</p></li>
+<li><p>作為函數時，super()只能用在子類的構造函數之中，用在其他地方就會報錯。</p></li>
+</ul>
+
+<pre><code class="language-js">class A {}
+
+class B extends A {
+  constructor() {
+    super(); // A.prototype.constructor.call(this)
+  }
+}
+</code></pre>
+
+<ol>
+<li><p>作為物件使用</p></li>
+</ol>
+
+<ul>
+<li>super指向A.prototype，所以super.p()就相當於A.prototype.p()</li>
+<li>由於super指向父類的原型對象，所以定義在父類實例上的方法或屬性，是無法通過super調用的。</li>
+<li>ES6 規定，通過super調用父類的方法時，super會綁定子類的this。也就是說，實際上執行的是super.xxxx.call(this)也就是A.prototype.xxxx.call(this)。</li>
+<li>由於綁定子類的this，所以如果通過super對某個屬性賦值，這時super就是this，賦值的屬性會變成子類實例的屬性。</li>
+<li>super.x賦值為3，這時等同於對this.x賦值為3。而當讀取super.x的時候，讀的是A.prototype.x，所以返回undefined。</li>
+</ul>
+
+<pre><code class="language-js">class A {
+  constructor() {
+    this.x = 1;
+  }
+}
+
+class B extends A {
+  constructor() {
+    super();
+    this.x = 2;
+    super.x = 3;
+    console.log(super.x); // undefined
+    console.log(this.x); // 3
+  }
+}
+
+let b = new B();
+</code></pre>
+
+<h2 id="toc_16">static 靜態方法</h2>
+
+<ul>
+<li>可以在 class 上調用（<code>Point.method()</code>），不能在 instance 上調用（<code>point.method()</code>）</li>
+<li>父 class 的靜態方法可以被子 class 繼承，也可以在子 class 中的 super object 上調用</li>
+</ul>
+
+<h2 id="toc_17">不能獨立使用、必須繼承後才能使用的 class</h2>
+
+<pre><code class="language-js">class Shape {
+  constructor() {
+    if (new.target === Shape) {
+      throw new Error(&#39;本類不能實例化&#39;);
+    }
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(length, width) {
+    super();
+    // ...
+  }
+}
+
+var x = new Shape();  // 報錯
+var y = new Rectangle(3, 4);  // 正確
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#new-target%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#new-target属性</a></p>
+
+<h2 id="toc_18">待研究</h2>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E5%8E%9F%E7%94%9F%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%A7%E6%89%BF">http://es6.ruanyifeng.com/#docs/class#原生构造函数的继承</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Class%E7%9A%84%E5%8F%96%E5%80%BC%E5%87%BD%E6%95%B0%EF%BC%88getter%EF%BC%89%E5%92%8C%E5%AD%98%E5%80%BC%E5%87%BD%E6%95%B0%EF%BC%88setter%EF%BC%89">http://es6.ruanyifeng.com/#docs/class#Class的取值函数（getter）和存值函数（setter）</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Class-%E7%9A%84-Generator-%E6%96%B9%E6%B3%95">http://es6.ruanyifeng.com/#docs/class#Class-的-Generator-方法</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Mixin%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0">http://es6.ruanyifeng.com/#docs/class#Mixin模式的实现</a></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14913887647492.html" 
+          title="Previous Post: Tagged Template Literals (An ES6 Feature)">&laquo; Tagged Template Literals (An ES6 Feature)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14846441091612.html" 
+          title="Next Post: Google Cloud Platform Introduction">Google Cloud Platform Introduction &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+                 <div style="{width:90%; height:auto; margin: 5px auto 5px auto;}"><img src="http://i.imgur.com/iFetvNZ.jpg?1"></div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+        
+            <a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html"><strong>實習筆記</strong></a>
+        
+            <a href="Babel.html"><strong>Babel</strong></a>
+        
+            <a href="Best%20Practices.html"><strong>Best Practices</strong></a>
+        
+            <a href="Webpack.html"><strong>Webpack</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14988019613600.html">Webpack 2 & 3: Input(Entry) and Output</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987956627714.html">[NodeJS] Path, URL 路徑相關問題整理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987306644790.html">Webpack plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987255686752.html">Babel plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14971940142851.html">Webpack 2: deploy</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

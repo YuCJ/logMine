@@ -4,7 +4,7 @@
   <title><![CDATA[My Frontend Note]]></title>
   <link href="https://yucj.github.io/logMine/atom.xml" rel="self"/>
   <link href="https://yucj.github.io/logMine/"/>
-  <updated>2016-11-28T21:03:06+08:00</updated>
+  <updated>2017-07-03T13:58:16+08:00</updated>
   <id>https://yucj.github.io/logMine/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,682 +13,279 @@
   <generator uri="http://www.mweb.im/">MWeb</generator>
   
   <entry>
-    <title type="html"><![CDATA[Git筆記：實務協作的一些注意事項]]></title>
-    <link href="https://yucj.github.io/logMine/14803274002958.html"/>
-    <updated>2016-11-28T18:03:20+08:00</updated>
-    <id>https://yucj.github.io/logMine/14803274002958.html</id>
+    <title type="html"><![CDATA[Webpack 2 & 3: Input(Entry) and Output]]></title>
+    <link href="https://yucj.github.io/logMine/14988019613600.html"/>
+    <updated>2017-06-30T13:52:41+08:00</updated>
+    <id>https://yucj.github.io/logMine/14988019613600.html</id>
     <content type="html"><![CDATA[
-<h2 id="toc_0">一般協作開發操作流程簡介：</h2>
+<h2 id="toc_0">Input (Entry)</h2>
 
-<pre><code>情境：在 GitHub 上有一個別人的專案，要怎麼加入協作開發？
-</code></pre>
-
-<p><img src="media/14803274002958/frontend_note.001.png" alt="frontend_note.001"/></p>
-
-<h3 id="toc_1">步驟簡述：</h3>
-
-<h4 id="toc_2">一、複製專案下來本機電腦開始開發：</h4>
-
-<h6 id="toc_3">1. Fork</h6>
-
-<h6 id="toc_4">2. Git clone</h6>
-
-<h6 id="toc_5">3. Develop on my computer</h6>
+<p>Best setting:</p>
 
 <ul>
-<li>記得檢查設定 remote 相關設定，讓 <code>git fetch</code> 和 <code>git push</code> 等指令指向正確的目標</li>
+<li><code>context</code>: absolute path</li>
+<li><code>entry</code>: </li>
 </ul>
-
-<h6 id="toc_6">4. Git push</h6>
-
-<h6 id="toc_7">5. Open a pull request</h6>
-
-<h4 id="toc_8">二、開發中：</h4>
-
-<ul>
-<li>開發一個小階段就可以再 <code>git push</code> 到 GitHub 上，會自動更新到 PR 內容，在 PR 內進行 code review 和修改</li>
-<li>開發中有需要和別人新的開發成果整合時，可使用 <code>git fetch</code>。</li>
-<li>不要用 <code>git pull</code> 拉回遠端 <code>upstream</code> 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
-</ul>
-
-<h4 id="toc_9">三、開發完成後合併到原始專案：</h4>
-
-<ul>
-<li>開發完成後要整理 commit log ，並且抓回最新的程式碼作 merge 處理 conflict</li>
-</ul>
-
-<h5 id="toc_10">6. Git fetch</h5>
-
-<ul>
-<li>不要用 <code>git pull</code> 拉回遠端 upstream 的資料，它會做多餘的事情製造預料之外的麻煩，請用 <code>git fetch</code>。</li>
-</ul>
-
-<h5 id="toc_11">7. Merge with <code>upstream</code>, combine commits</h5>
-
-<ul>
-<li>相關 <code>git rebase</code> 指令見下節</li>
-</ul>
-
-<h5 id="toc_12">8. Git push --force</h5>
-
-<h5 id="toc_13">9. merge &amp; close the pull request</h5>
-
-<h2 id="toc_14">用 <code>git rebase</code> 整理自己的 commit log</h2>
-
-<pre><code>git rebase -i e3rji30c
-</code></pre>
-
-<p>可參考資料：<br/>
-<a href="https://blog.yorkxin.org/2011/07/29/git-rebase">Git-rebase 小筆記 - Yu-Cheng Chuang’s Blog</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[0 ES2015 Syllabus]]></title>
-    <link href="https://yucj.github.io/logMine/ES2015-Syllabus.html"/>
-    <updated>2016-11-21T01:02:15+08:00</updated>
-    <id>https://yucj.github.io/logMine/ES2015-Syllabus.html</id>
+    <title type="html"><![CDATA[[NodeJS] Path, URL 路徑相關問題整理]]></title>
+    <link href="https://yucj.github.io/logMine/14987956627714.html"/>
+    <updated>2017-06-30T12:07:42+08:00</updated>
+    <id>https://yucj.github.io/logMine/14987956627714.html</id>
     <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
 <ul>
 <li>
-<a href="#toc_0">1. Declarations</a>
+<a href="#toc_0">Node Path:</a>
 <ul>
 <li>
-<a href="#toc_1">1-1 LET</a>
+<a href="#toc_1">比較 <code>path.join</code> 和 <code>path.resolve</code></a>
+<ul>
+<li>
+<a href="#toc_2">Testing Code:</a>
 </li>
 <li>
-<a href="#toc_2">1-2 CONST</a>
+<a href="#toc_3">Testing Cases:</a>
+</li>
+<li>
+<a href="#toc_4">簡單說明：</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_3">2. Functions</a>
-<ul>
-<li>
-<a href="#toc_4">2-1 FUNCTIONS: ARGUMENTS &amp; PARAMETERS</a>
-</li>
-<li>
-<a href="#toc_5">2-2 ARROW FUNCTION</a>
+<a href="#toc_5">哪些是 absolute path？</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_6">3. Objects, Strings, and Object.assign</a>
-<ul>
-<li>
-<a href="#toc_7">3-1 OBJECTS</a>
-</li>
-<li>
-<a href="#toc_8">3-3 OBJECT.ASSIGN</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_9">4. Arrays, Maps, and Sets</a>
-<ul>
-<li>
-<a href="#toc_10">4-4 ARRAYS</a>
-</li>
-<li>
-<a href="#toc_11">4-5 MAPS</a>
-</li>
-<li>
-<a href="#toc_12">4-6 SETS</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_13">5. Classes and Modules</a>
-<ul>
-<li>
-<a href="#toc_14">5-7 CLASSES</a>
-</li>
-<li>
-<a href="#toc_15">5-8 MODULES</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_16">6. Promises, Iterators, and Generators</a>
-<ul>
-<li>
-<a href="#toc_17">6-1. PROMISES</a>
-</li>
-<li>
-<a href="#toc_18">6-2 ITERATORS</a>
-</li>
-<li>
-<a href="#toc_19">6-3 GENERATORS</a>
-</li>
-</ul>
+<a href="#toc_6">Node URL:</a>
 </li>
 </ul>
 
 
 <span id="more"></span><!-- more -->
 
-<h2 id="toc_0">1. Declarations</h2>
+<h2 id="toc_0">Node Path:</h2>
 
-<h3 id="toc_1">1-1 LET</h3>
+<p>On POSIX:</p>
 
-<p>DECLARATIONS WITH LET<br/>
- Using let<br/>
- Refactoring to let<br/>
- Moving Variable Declarations</p>
-
-<p>DECLARATIONS WITH LET IN FOR LOOPS<br/>
- Using let in for loops<br/>
- Vars and the for Loop<br/>
- Reassigning With let<br/>
- Redeclaring With let<br/>
- Redeclaring let Inside a Function</p>
-
-<h3 id="toc_2">1-2 CONST</h3>
-
-<p>DECLARATIONS WITH CONST<br/>
- Using const<br/>
- Refactoring Magic Number<br/>
- Fix const Error<br/>
- const and scope<br/>
- const vs. let</p>
-
-<h2 id="toc_3">2. Functions</h2>
-
-<h3 id="toc_4">2-1 FUNCTIONS: ARGUMENTS &amp; PARAMETERS</h3>
-
-<p>FUNCTIONS<br/>
- Function Defaults<br/>
- Fixing Undefined Arguments<br/>
- Basic Named Parameters<br/>
- Replacing Object With Named Parameters<br/>
- Calling a Function With Named Parameters<br/>
- Advanced Named Parameters</p>
-
-<p>REST PARAMETER, SPREAD OPERATOR, AND ARROW FUNCTIONS<br/>
- Rest Params, Spread Op, Arrow Function<br/>
- Refactoring to Rest Params<br/>
- The Spread Operator</p>
-
-<h3 id="toc_5">2-2 ARROW FUNCTION</h3>
-
-<p>Arrow Function Syntax<br/>
- Arrow Functions in Action</p>
-
-<h2 id="toc_6">3. Objects, Strings, and Object.assign</h2>
-
-<h3 id="toc_7">3-1 OBJECTS</h3>
-
-<p>OBJECTS AND STRINGS<br/>
- Objects and Strings<br/>
- Building Objects With the New Syntax<br/>
- Object Initializer Shorthand<br/>
- Object Destructuring<br/>
- Destructuring vs. Initializer<br/>
- Method Initializer Shorthand<br/>
- String Interpolation<br/>
- Template Strings</p>
-
-<h3 id="toc_8">3-3 OBJECT.ASSIGN</h3>
-
-<p>OBJECT.ASSIGN<br/>
- Object.assign<br/>
- Merging Properties<br/>
- Merging Options With Defaults<br/>
- Merge Output</p>
-
-<h2 id="toc_9">4. Arrays, Maps, and Sets</h2>
-
-<h3 id="toc_10">4-4 ARRAYS</h3>
-
-<p>ARRAYS<br/>
- Arrays<br/>
- Assigning With Array Destructuring<br/>
- Destructuring and Rest Parameters<br/>
- Destructuring From Return Values<br/>
- The for...of Loop<br/>
- Objects and for...of<br/>
- Array.find()</p>
-
-<h3 id="toc_11">4-5 MAPS</h3>
-
-<p>MAPS<br/>
- Maps<br/>
- The Map Data Structure<br/>
- Issues With Objects as Maps<br/>
- The Map Object<br/>
- Adding Entries to a Map Object<br/>
- Maps and Objects<br/>
- Objects Are Still Useful<br/>
- Iterating Maps With for...of<br/>
- WeakMaps</p>
-
-<h3 id="toc_12">4-6 SETS</h3>
-
-<p>SETS<br/>
- Sets<br/>
- Limitations With Array<br/>
- Using Sets<br/>
- Sets and for...of<br/>
- Sets and Destructuring<br/>
- WeakSets<br/>
- WeakSets in Action</p>
-
-<h2 id="toc_13">5. Classes and Modules</h2>
-
-<h3 id="toc_14">5-7 CLASSES</h3>
-
-<p>CLASSES<br/>
- Classes<br/>
- Initializing Classes<br/>
- Implementing a Method on a Class<br/>
- From Function to Class<br/>
- Subclassing<br/>
- Calling Methods From the Parent Class</p>
-
-<h3 id="toc_15">5-8 MODULES</h3>
-
-<p>MODULES - PART I</p>
-
-<p>Modules - Part I<br/>
- Benefit of JavaScript Modules<br/>
- Exporting Modules<br/>
- Importing Modules<br/>
- Named Exports<br/>
- Importing Named Exports</p>
-
-<p>MODULES - PART II<br/>
- Modules - Part II<br/>
- Exporting Constants<br/>
- Exporting Classes<br/>
- Loading Classes From Modules<br/>
- Export Subclasses</p>
-
-<h2 id="toc_16">6. Promises, Iterators, and Generators</h2>
-
-<h3 id="toc_17">6-1. PROMISES</h3>
-
-<p>PROMISES<br/>
- Promises<br/>
- The Lifecycle of a Promise<br/>
- Writing Promises<br/>
- Catching Errors From Promises</p>
-
-<h3 id="toc_18">6-2 ITERATORS</h3>
-
-<p>ITERATORS<br/>
- Iterators<br/>
- About Iterables<br/>
- Iterator Objects<br/>
- Writing a Custom Iterator Object</p>
-
-<h3 id="toc_19">6-3 GENERATORS</h3>
-
-<p>GENERATORS<br/>
- Generators<br/>
- Generator Functions<br/>
- Generators and for...of<br/>
- Advanced Generators<br/>
- Refactoring to Generator Functions</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Error] Git Precommit Lint Failed at Tower: "env: node: No such file or directory" （on Mac OS）]]></title>
-    <link href="https://yucj.github.io/logMine/14792994690791.html"/>
-    <updated>2016-11-16T20:31:09+08:00</updated>
-    <id>https://yucj.github.io/logMine/14792994690791.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">情況：</a>
-</li>
-<li>
-<a href="#toc_1">解決方法一：更換 Git binary（失敗）</a>
-</li>
-<li>
-<a href="#toc_2">解決方法二：從 terminal 開 Tower（成功）</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">情況：</h2>
-
-<p>在 Tower 裡面提交 commit 時會跳出環境錯誤，無法執行 lint。</p>
-
-<p><img src="media/14792994690791/error.png" alt="erro"/></p>
-
-<p>在專案的 <code>package.json</code> 裡面 <code>lint</code> 的內容是：</p>
-
-<pre><code class="language-json">&quot;scripts&quot;: {
-    &quot;lint&quot;: &quot;eslint -c .eslintrc src server api spec&quot;
-}
+<pre><code>┌─────────────────────┬────────────┐
+│          dir        │    base    │
+├──────┬              ├──────┬─────┤
+│ root │              │ name │ ext │
+&quot;  /    home/user/dir / file  .txt &quot;
+└──────┴──────────────┴──────┴─────┘
+(all spaces in the &quot;&quot; line should be ignored -- they are purely for formatting)
 </code></pre>
 
-<p>在 command line 進行 commit，或是直接執行 eslint 都可以跑得起來。我猜可能是 PATH 之類的設定有問題吧但我跟 Unix 系統實在不熟完全不知道要檢查哪裡 QQ </p>
-
-<p>※ 註：其實直接執行 eslint 或跑 npm global 的 eslint，然後就找不到plugin... 要把指令加上路徑 <code>node_modules/.bin/</code> 也就是跑 <code>node_modules/.bin/eslint -c .eslintrc src server api spec</code> 指定跑 local 的 eslint 才可以 不知道怎麼讓 npm 預設去找local的 Orz</p>
-
-<h2 id="toc_1">解決方法一：更換 Git binary（失敗）</h2>
-
-<p>寫信去 Tower 官方，回覆是說：</p>
-
-<blockquote>
-<p>Please try changing the Git binary used by Tower. You can do so by opening Tower&#39;s preferences on the &quot;Git Config&quot; tab. There, you should try using the system binary <code>/usr/bin/git</code>.</p>
-</blockquote>
-
-<p>我才因此知道原來可以指定跑電腦裡那個 Git XD</p>
-
-<p>不過這沒有解決上面的問題，我原本就是用 mac 內建的 Git，就算換成用 homebrew 灌的 <code>&#39;usr/local/bin/git&#39;</code> 或 Tower 內建的 Git 都一樣 Orz</p>
-
-<h2 id="toc_2">解決方法二：從 terminal 開 Tower（成功）</h2>
-
-<p>在網路上搜尋錯誤訊息時找到這個討論串：</p>
-
-<p><a href="https://answers.atlassian.com/questions/140339/answers/32030983">SourceTree : Hook failing because paths don&#39;t seem to be set correctly</a></p>
-
-<p>SorceTree 是另一個在 MAC 上有 GUI 的 Git 軟體，看起來錯誤訊息也都一樣，所以就姑且抱著死馬當活馬醫的心態，在 iTerm2 上執行類似的指令：</p>
-
-<pre><code class="language-bash">open /Applications/Tower.app/Contents/MacOS/Tower
+<pre><code class="language-javascript">path.parse(&#39;/home/user/dir/file.txt&#39;);
+// Returns:
+// { root: &#39;/&#39;,
+//   dir: &#39;/home/user/dir&#39;,
+//   base: &#39;file.txt&#39;,
+//   ext: &#39;.txt&#39;,
+//   name: &#39;file&#39; }
 </code></pre>
 
-<p>結果就可以正常的跑 lint 了哦哦哦！（雖然還是不知原理為何…）</p>
+<p>On Windows:</p>
 
-<p>或是在 Tower 的 <code>Preference</code> -&gt; <code>Intergration</code> 裡面點選安裝 Tower command line utility，就可以從 command line 執行 ：</p>
-
-<pre><code class="language-bash">gittower &lt;git_repository_path&gt;
+<pre><code>┌─────────────────────┬────────────┐
+│          dir        │    base    │
+├──────┬              ├──────┬─────┤
+│ root │              │ name │ ext │
+&quot; C:\      path\dir   \ file  .txt &quot;
+└──────┴──────────────┴──────┴─────┘
+(all spaces in the &quot;&quot; line should be ignored -- they are purely for formatting)
 </code></pre>
 
-<p>（ &lt;git_repository_path&gt; 是你的專案資料夾路徑）</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[5-2 Iterator]]></title>
-    <link href="https://yucj.github.io/logMine/14791371653052.html"/>
-    <updated>2016-11-14T23:26:05+08:00</updated>
-    <id>https://yucj.github.io/logMine/14791371653052.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">怎麼讓 objects 變得 iterable</a>
-</li>
-<li>
-<a href="#toc_1">變成 iterable 可以幹嘛？</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<p><strong>Iterables</strong> are <strong>objects</strong> that know how to return a special objects called an <strong>iterator</strong>.</p>
-
-<p><strong>Iterator</strong> is an object that knows how to access items from a collection one at a time, while keeping track of its current position within the sequence.</p>
-
-<p><strong>Iterables</strong> return an <strong>iterator</strong> object. This object </p>
-
-<p>重要</p>
-
-<h3 id="toc_0">怎麼讓 objects 變得 iterable</h3>
-
-<p>An iterator is an object with a <code>next</code> property, returned  by the result of calling the <code>Symbol.iterator</code> method</p>
-
-<p>An iterator is an object with a <code>next</code> property, returned by a function assigned to the <code>Symbol.iterator</code> property</p>
-
-<pre><code class="language-js">let post = {
-    title: &quot;New Features in JS&quot;,
-    replies: 19
-};
-
-post[Symbol.iterator] = function() {
-
-    let properties = Object.keys(this);
-    let count = 0;
-    let isDone = false;
-
-    let next = () =&gt; {
-        if(count&gt;= properties.length) {
-            isDone = true;
-        }
-        return { done: isDone, value: this[properties[count++]] }
-        // this -&gt; post object
-        // count++ -&gt; increments count after it&#39;s read
-    
-    return { next };  // &lt;= iterator object
-};
-
+<pre><code class="language-javascript">path.parse(&#39;C:\\path\\dir\\file.txt&#39;);
+// Returns:
+// { root: &#39;C:\\&#39;,
+//   dir: &#39;C:\\path\\dir&#39;,
+//   base: &#39;file.txt&#39;,
+//   ext: &#39;.txt&#39;,
+//   name: &#39;file&#39; }
 </code></pre>
 
-<h3 id="toc_1">變成 iterable 可以幹嘛？</h3>
+<p>Ref: <a href="https://nodejs.org/api/path.html#path_path_parse_path">https://nodejs.org/api/path.html#path_path_parse_path</a></p>
 
-<p><strong>for...of</strong></p>
+<h3 id="toc_1">比較 <code>path.join</code> 和 <code>path.resolve</code></h3>
 
-<pre><code class="language-js">for (let p of post) {
-    console.log(p);
-}
+<h4 id="toc_2">Testing Code:</h4>
 
-// &gt; &quot;New Features in JS&quot;
-// &gt; 19
+<pre><code class="language-javascript">const path = require(&#39;path&#39;);
+
+const PATHS = [ /* path strings */ ];
+const joined = path.join(...PATHS);
+const resolved = path.resolve(...PATHS);
+
+console.log(&#39;paths:&#39;, PATHS);
+console.log(&#39;path.join:&#39;, joined);
+console.log(&#39;path.resolve:&#39;, resolved);
 </code></pre>
 
-<p><strong>spread operator</strong></p>
+<h4 id="toc_3">Testing Cases:</h4>
 
-<pre><code class="language-js">let values = [...post];
-console.log(values);
-
-// &gt; [&#39;New Features in JS&#39;, 19]
+<pre><code>paths: [ &#39;a&#39;, &#39;/b&#39;, &#39;/c&#39;, &#39;..&#39;, &#39;d&#39; ]
+path.join: a/b/d
+path.resolve: /d
 </code></pre>
 
-<p><strong>destructuring</strong></p>
-
-<pre><code class="language-js">let [title, replies] = post;
-console.log(title);
-console.log(replies);
-
-// &gt; &#39;New Features in JS&#39;
-// &gt; 19
+<pre><code>paths: [ &#39;a&#39;, &#39;/b&#39;, &#39;/c&#39;, &#39;d&#39; ]
+path.join: a/b/c/d
+path.resolve: /c/d
 </code></pre>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[5-1 Promise]]></title>
-    <link href="https://yucj.github.io/logMine/14790602904060.html"/>
-    <updated>2016-11-14T02:04:50+08:00</updated>
-    <id>https://yucj.github.io/logMine/14790602904060.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
+<pre><code>paths: [ &#39;/a&#39;, &#39;/b&#39;, &#39;c&#39; ]
+path.join: /a/b/c
+path.resolve: /b/c
+</code></pre>
 
-<p><strong>本文目錄：</strong></p>
+<pre><code>paths: [ &#39;/a&#39;, &#39;./b&#39; ]
+path.join: /a/b
+path.resolve: /a/b
+</code></pre>
 
-<ul>
-<li>
-<a href="#toc_0">方法一（ES5）：callback</a>
-</li>
-<li>
-<a href="#toc_1">方法二（ES2016）：Promise</a>
-</li>
-</ul>
+<pre><code>paths: [ &#39;/a&#39;, &#39;/b&#39;, &#39;/c&#39;, &#39;.&#39;, &#39;d&#39; ]
+path.join: /a/b/c/d
+path.resolve: /c/d
+</code></pre>
 
+<pre><code>paths: [ &#39;/a&#39;, &#39;/b&#39;, &#39;/c/d/e&#39;, &#39;.&#39;, &#39;f&#39; ]
+path.join: /a/b/c/d/e/f
+path.resolve: /c/d/e/f
+</code></pre>
 
-<span id="more"></span><!-- more -->
+<pre><code>paths: [ &#39;/a&#39;, &#39;/b&#39;, &#39;/c/d/e&#39;, &#39;.&#39;, &#39;f/&#39; ]
+path.join: /a/b/c/d/e/f/
+path.resolve: /c/d/e/f
+</code></pre>
 
-<p>非同步處理</p>
+<pre><code>paths: [ &#39;.&#39; ]
+path.join: .
+path.resolve: /Users/username/Repos/es6-test
 
-<h3 id="toc_0">方法一（ES5）：callback</h3>
+__filename: /Users/username/Repos/es6-test/src/test.js
+__dirname: /Users/username/Repos/es6-test/src
+</code></pre>
 
-<p><img src="media/14790602904060/cps.png" alt="cps"/></p>
+<pre><code>paths: [ &#39;..&#39; ]
+path.join: ..
+path.resolve: /Users/mac2016cjyu/Repos
 
-<p>會有以下問題：</p>
+__filename: /Users/username/Repos/es6-test/src/test.js
+__dirname: /Users/username/Repos/es6-test/src
+</code></pre>
+
+<h4 id="toc_4">簡單說明：</h4>
+
+<p><code>path.join</code> 的運作邏輯像是：</p>
 
 <ol>
-<li>complicated nested code，難以讀懂</li>
-<li>每個callback function 都要處理錯誤</li>
+<li>把每一個 subsequent path 字串 join 起來成一個字串，字串間加上分隔符號 platform specific separator （&#39;/&#39; on POSIX）</li>
+<li><code>path.normalize</code> 處理 &#39;..&#39; 和 &#39;.&#39;</li>
 </ol>
 
-<h3 id="toc_1">方法二（ES2016）：Promise</h3>
+<p>Ref:<br/>
+<a href="https://nodejs.org/api/path.html#path_path_join_paths">https://nodejs.org/api/path.html#path_path_join_paths</a><br/>
+<a href="https://nodejs.org/api/path.html#path_path_normalize_path">https://nodejs.org/api/path.html#path_path_normalize_path</a></p>
 
-<p><img src="media/14790602904060/promise_object.png" alt="promise_object"/></p>
+<p><code>path.resolve</code> 的運作邏輯像是：</p>
 
-<p>Promise constructor function takes an anonymous function with 2 callback arguments known as <strong>handlers</strong></p>
+<p>回傳的字串是照順序把每一個 subsequent path 用 <code>cd [path]</code> 跑過後，最後所在位置的 absolute path</p>
 
-<pre><code class="language-js">function anAsyncFunction(arguments){
-    return new Promise(
-        function(resolve, reject) {
-            // ...
-            resolve(someValue);
-        
-            // ...
-            reject(someValue);
-        }
-    );
-};
+<p>Ref:<br/>
+<a href="https://nodejs.org/api/path.html#path_path_resolve_paths">https://nodejs.org/api/path.html#path_path_resolve_paths</a></p>
+
+<h3 id="toc_5">哪些是 absolute path？</h3>
+
+<p>On POSIX:</p>
+
+<pre><code class="language-javascript">path.isAbsolute(&#39;/foo/bar&#39;); // true
+path.isAbsolute(&#39;/baz/..&#39;);  // true
+path.isAbsolute(&#39;qux/&#39;);     // false
+path.isAbsolute(&#39;.&#39;);        // false
 </code></pre>
 
-<p></p>
+<p>On Windows:</p>
 
-<blockquote>
-<p>A promise represents a <strong>future value</strong>, such as the eventual result of an <strong>asynchronous</strong> operation.</p>
-
-<p>Whenever we return a new Promise object we are not returning a result, we ar returning a <strong>future value</strong>, such as the eventual result of an <strong>async operation</strong>. </p>
-
-<p>Use <code>then()</code> method to read results from the Promise once it&#39;s resolved.</p>
-
-<p>This method takes a function that will only be invoked once the Promise is <strong>resolved</strong>.</p>
-
-<p>then方法可以接受两个 callback function 作为参数。第一个 callback function 是 Promise object 的状态变为 Resolved 时调用，第二个 callback function 是 Promise object 的状态变为 Reject 时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受 Promise object 传出的值作为参数。</p>
-</blockquote>
-
-<p><img src="media/14790602904060/promise_then.png" alt="promise_then"/></p>
-
-<pre><code class="language-js">function anAsyncFunction(arguments) {
-    return new Promise( // =&gt; promise: pending state
-        function(resolve, reject) {
-            if (成功) {
-                resolve(result); // =&gt; promise: fulfilled state
-            } else {
-                reject(error); // =&gt; promise: rejected state
-            }
-        }
-    );
-};
-
-anAsyncFunction(arguments) // =&gt; return a Promise object
-    .then( // call back function as argument will be invoked when Promise object resolved
-        function(results){
-            return results.filter(
-                (result) =&gt; result.city === &quot;Orlando&quot;
-            );
-        };
-    )
-    .then(
-    )
+<pre><code class="language-javascript">path.isAbsolute(&#39;//server&#39;);    // true
+path.isAbsolute(&#39;\\\\server&#39;);  // true
+path.isAbsolute(&#39;C:/foo/..&#39;);   // true
+path.isAbsolute(&#39;C:\\foo\\..&#39;); // true
+path.isAbsolute(&#39;bar\\baz&#39;);    // false
+path.isAbsolute(&#39;bar/baz&#39;);     // false
+path.isAbsolute(&#39;.&#39;);           // false
 </code></pre>
 
-<p>We can pass value one by one</p>
+<p>Ref: <a href="https://nodejs.org/api/path.html#path_path_isabsolute_path">https://nodejs.org/api/path.html#path_path_isabsolute_path</a></p>
 
-<blockquote>
-<p>The value return by the first <code>then()</code> becomes the argument of the next one</p>
-</blockquote>
+<h2 id="toc_6">Node URL:</h2>
 
-<p><img src="media/14790602904060/promise_chaning_then.png" alt="promise_chaning_then"/></p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            href                                             │
+├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │        host         │           path            │ hash  │
+│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │   hostname   │ port │ pathname │     search     │       │
+│          │  │                     │              │      │          ├─┬──────────────┤       │
+│          │  │                     │              │      │          │ │    query     │       │
+&quot;  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;
+│          │  │          │          │   hostname   │ port │          │                │       │
+│          │  │          │          ├──────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │        host         │          │                │       │
+├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+│   origin    │                     │       origin        │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+│                                            href                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
 
-<p><img src="media/14790602904060/catching_reject.png" alt="catching_reject"/></p>
+<p>Ref: <a href="https://nodejs.org/api/url.html#url_url_strings_and_url_objects">https://nodejs.org/api/url.html#url_url_strings_and_url_objects</a></p>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[4-6 Set]]></title>
-    <link href="https://yucj.github.io/logMine/14790356005591.html"/>
-    <updated>2016-11-13T19:13:20+08:00</updated>
-    <id>https://yucj.github.io/logMine/14790356005591.html</id>
+    <title type="html"><![CDATA[Webpack plugins and loaders I used]]></title>
+    <link href="https://yucj.github.io/logMine/14987306644790.html"/>
+    <updated>2017-06-29T18:04:24+08:00</updated>
+    <id>https://yucj.github.io/logMine/14987306644790.html</id>
     <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
 <ul>
 <li>
-<a href="#toc_0"><code>Set</code> objects are iterable （可以用 <code>for...of</code>）</a>
+<a href="#toc_0">Concepts of plugins and loaders in Webpack</a>
 </li>
 <li>
-<a href="#toc_1">WeakSet</a>
+<a href="#toc_1">Plugins I used</a>
+<ul>
+<li>
+<a href="#toc_2"><code>ExtractTextPlugin</code></a>
+</li>
+<li>
+<a href="#toc_3"><code>HtmlWebpackPlugin</code></a>
+</li>
+<li>
+<a href="#toc_4"><code>CommonsChunkPlugin</code></a>
 </li>
 </ul>
-
-
-<span id="more"></span><!-- more -->
-
-<p>a type of object</p>
-
-<p>The <code>Set</code> object stores <strong>unique</strong> values of <strong>any type</strong>.</p>
-
-<p>重複add會被ignore</p>
-
-<h3 id="toc_0"><code>Set</code> objects are iterable （可以用 <code>for...of</code>）</h3>
-
-<h3 id="toc_1">WeakSet</h3>
-
-<p>只可以存 objects</p>
-
-<p>weakSet.prototype.add(obj)<br/>
-weakSet.prototype.has(obj)<br/>
-weakSet.prototype.delete(obj)</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[4-5 Map]]></title>
-    <link href="https://yucj.github.io/logMine/14789626942710.html"/>
-    <updated>2016-11-12T22:58:14+08:00</updated>
-    <id>https://yucj.github.io/logMine/14789626942710.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
+</li>
+<li>
+<a href="#toc_5">Loaders I used</a>
 <ul>
 <li>
-<a href="#toc_0">key 會自動轉為字串（只能用字串當 key）</a>
+<a href="#toc_6"><code>babel-loader</code></a>
 </li>
 <li>
-<a href="#toc_1">使用map的時機：</a>
+<a href="#toc_7"><code>emit-file-loader</code></a>
 </li>
 <li>
-<a href="#toc_2">maps are iterable （可以用 fro...of）</a>
+<a href="#toc_8"><code>style-loader</code>, <code>css-loader</code>, <code>postcss-loader</code>, <code>sass-loader</code></a>
 </li>
 <li>
-<a href="#toc_3">Weakmap</a>
-<ul>
-<li>
-<a href="#toc_4">All methods on a <code>WeakMap</code> required a key (object)</a>
+<a href="#toc_9"><code>url-loader</code></a>
 </li>
 </ul>
 </li>
@@ -697,1124 +294,2689 @@ weakSet.prototype.delete(obj)</p>
 
 <span id="more"></span><!-- more -->
 
-<p>使用 object 作為 map 的壞處：</p>
+<h2 id="toc_0">Concepts of plugins and loaders in Webpack</h2>
 
-<h3 id="toc_0">key 會自動轉為字串（只能用字串當 key）</h3>
+<p>Webpack 在 2.0 版後把撰寫 config 的邏輯重新順了一次，結構變得比一版對使用者友善很多，文件也由淺入深，推薦閱讀：<a href="https://webpack.js.org/concepts/">https://webpack.js.org/concepts/</a></p>
 
-<pre><code class="language-js">let user1 = { name: Sam }
-let user2 = { name: Tyler }
+<h2 id="toc_1">Plugins I used</h2>
 
-let totalReplies ={}
-totalReplies[user1] = 5
-totalReplies[user2] = 42
+<h3 id="toc_2"><code>ExtractTextPlugin</code></h3>
 
+<p>用處：跑 webpack 會把 CSS 抽出來存成獨立檔案（而不是寫在 <code>main.js</code> 裡面）。</p>
 
-</code></pre>
+<p><a href="https://github.com/webpack-contrib/extract-text-webpack-plugin">https://github.com/webpack-contrib/extract-text-webpack-plugin</a></p>
 
-<pre><code class="language-js">let user1 = { name: Sam }
-let user2 = { name: Tyler }
+<h3 id="toc_3"><code>HtmlWebpackPlugin</code></h3>
 
-let totalReplies = new Map();
-totalReplies.set( user1, 5 )
-totalReplies.set( user2, 42 )
+<p>用處：跑 webpack 時就自動產生 single page app (SPA) 的 entry <code>index.html</code>（可以套用 template），不用再為了載入 bundled js 和 css files 自己改 <code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>。</p>
 
-</code></pre>
+<p><a href="https://webpack.js.org/guides/output-management/#auto-generated-html">https://webpack.js.org/guides/output-management/#auto-generated-html</a></p>
 
-<p>設值： <code>object.set(key, value)</code> =&gt;<br/>
-取值： <code>object.get(key)</code> =&gt; return value</p>
+<h3 id="toc_4"><code>CommonsChunkPlugin</code></h3>
 
-<h3 id="toc_1">使用map的時機：</h3>
+<p>用處：Code splitting。當有 multiple entries 時，每個 entry 產生的 bundled chunk 如果有共同用到的 modules，<code>CommonsChunkPlugin</code> 可以讓這些 modules 只會存在一個 bundled chunk 裡面（而不是每個 chunk 都自己打包一份）。可以應用在 caching 上。</p>
 
-<ol>
-<li><p>Use maps when key are unknown until runtime</p>
+<p>Ref.</p>
 
-<p>Since keys like perPage and canSort are previously defined, we don&#39;t run the risk of accidentally overwriting values.</p>
+<p>Multiple entries:<br/>
+<a href="https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries">https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries</a><br/>
+<a href="https://webpack.js.org/concepts/manifest/">https://webpack.js.org/concepts/manifest/</a></p>
 
-<p><img src="media/14789626942710/when_to_use_maps.png" alt="when_to_use_maps"/></p></li>
-<li><p>when all keys are the same type and all values are the same type</p>
+<p>Caching:<br/>
+<a href="https://webpack.js.org/guides/caching/">https://webpack.js.org/guides/caching/</a></p>
 
-<p><img src="media/14789626942710/when_to_use_maps_2.png" alt="when_to_use_maps_2"/></p></li>
-</ol>
+<h2 id="toc_5">Loaders I used</h2>
 
-<h3 id="toc_2">maps are iterable （可以用 fro...of）</h3>
+<h3 id="toc_6"><code>babel-loader</code></h3>
 
-<p>each run of the loops returns a [key, value] pair for an entry in the map</p>
+<p>用處：可以用 babel 的各種 loaders 和 plugins 把 source code 的 js 檔轉譯成各個瀏覽器和 Node 都可以跑的代碼。</p>
 
-<p><img src="media/14789626942710/maps_iterable.png" alt="maps_iterable"/></p>
+<p>Ex: 除了路徑中有 <code>node_modules</code> 以外的所有 <code>.js</code> 和 <code>.jsx</code> 都會先過 <code>babel</code></p>
 
-<h3 id="toc_3">Weakmap</h3>
-
-<p>A type of <code>Map</code> where only objects can be passed as keys. Primitive data types (such as strings, numbers, booleans, etc) are not allowed.</p>
-
-<h4 id="toc_4">All methods on a <code>WeakMap</code> required a key (object)</h4>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[2-2 Arrow Function]]></title>
-    <link href="https://yucj.github.io/logMine/14780130314779.html"/>
-    <updated>2016-11-01T23:10:31+08:00</updated>
-    <id>https://yucj.github.io/logMine/14780130314779.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
-
-
-<span id="more"></span><!-- more -->
-
-<p>There are two benefits to arrow functions.</p>
-
-<p>First, they are less verbose than traditional function expressions:</p>
-
-<p>const arr = [1, 2, 3];<br/>
-const squares = arr.map(x =&gt; x * x);</p>
-
-<p>// Traditional function expression:<br/>
-const squares = arr.map(function (x) { return x * x });<br/>
-Second, their this is picked up from surroundings (lexical). Therefore, you don’t need bind() or that = this, anymore.</p>
-
-<p>function UiComponent() {<br/>
-    const button = document.getElementById(&#39;myButton&#39;);<br/>
-    button.addEventListener(&#39;click&#39;, () =&gt; {<br/>
-        console.log(&#39;CLICK&#39;);<br/>
-        this.handleClick(); // lexical <code>this</code><br/>
-    });<br/>
-}<br/>
-The following variables are all lexical inside arrow functions:</p>
-
-<p>arguments<br/>
-super<br/>
-this<br/>
-new.target</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[3-1 OBJECTS]]></title>
-    <link href="https://yucj.github.io/logMine/14780122908734.html"/>
-    <updated>2016-11-01T22:58:10+08:00</updated>
-    <id>https://yucj.github.io/logMine/14780122908734.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
-
-
-<span id="more"></span><!-- more -->
-
-<p>可以在以下這些情況使用解構賦值</p>
-
-<p>變數宣告時：</p>
-
-<pre><code class="language-js">const [x] = [&#39;a&#39;];
-let [x] = [&#39;a&#39;];
-var [x] = [&#39;a&#39;];
-</code></pre>
-
-<p>Assignments: </p>
-
-<pre><code class="language-js">[x, y, z] = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;];
-</code></pre>
-
-<p>Parameter definitions:</p>
-
-<pre><code class="language-js">function f([x]) { ··· }
-    f([&#39;a&#39;]);
-</code></pre>
-
-<p>In a for-of loop:</p>
-
-<pre><code class="language-js">const arr1 = [&#39;a&#39;, &#39;b&#39;];
-for (const [index, element] of arr1.entries()) {
-    console.log(index, element);
-}
-// Output:
-// 0 a
-// 1 b
-
-const arr2 = [
-    {name: &#39;Jane&#39;, age: 41},
-    {name: &#39;John&#39;, age: 40},
-];
-for (const {name, age} of arr2) {
-    console.log(name, age);
-}
-// Output:
-// Jane 41
-// John 40
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[2-1 Functions: Arguments & Parameters]]></title>
-    <link href="https://yucj.github.io/logMine/14772335435907.html"/>
-    <updated>2016-10-23T22:39:03+08:00</updated>
-    <id>https://yucj.github.io/logMine/14772335435907.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>本文為 <strong><a href="https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come">ES2015: The Shape of JavaScript to Come</a></strong>（CodeSchool）線上課程筆記</p>
-</blockquote>
-
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">預設引數 Default Parameters</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">預設引數 Default Parameters</h2>
-
-<p><strong>預設引數</strong></p>
-
-<ul>
-<li>Default Parameters</li>
-</ul>
-
-<p><strong>物件引數</strong></p>
-
-<ul>
-<li>Name Parameters</li>
-</ul>
-
-<p><strong>length不一定的陣列引數</strong></p>
-
-<ul>
-<li><p>Rest Parameter -&gt; Function Definition</p>
-
-<pre><code class="language-js">
-    function xxx (...paraList){
-
-    }
-
-</code></pre></li>
-<li><p>Spread Operator -&gt; Function invocation</p>
-
-<pre><code class="language-javascript">
-    var paraList = [para1, para2, ...];
-
-    xxx(...paraList);
-
-    // the same as xxx(para1,para2,...)
-
-</code></pre></li>
-<li><p>spep  </p></li>
-</ul>
-
-<ol>
-<li><p>列表1 </p>
-
-<pre><code class="language-js">var paraList = [para1, para2];
-xxx(...paraList);
-// Same as xxx(para1,para2,...)
-</code></pre></li>
-<li><p>列表2</p></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[定義一個函式：宣告、運算式、有時還有建構器]]></title>
-    <link href="https://yucj.github.io/logMine/14758453690233.html"/>
-    <updated>2016-10-07T21:02:49+08:00</updated>
-    <id>https://yucj.github.io/logMine/14758453690233.html</id>
-    <content type="html"><![CDATA[
-<p>在 Javascript 中，定義一個函式（產生一個函式物件）有三種方法：</p>
-
-<p><strong>(1) 函式宣告（function declarations）<br/>
-(2) 函式運算式（function expression）<br/>
-(3) 函式建構式（the function constructor）</strong></p>
-
-<p>以下是一些這三種方法的比較和特殊性（以較常用的函式宣告和函式建構式為主）：</p>
-
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">一、比較各種情況的 function.name</a>
-</li>
-<li>
-<a href="#toc_1">二、原來是函式運算式啊，我還以為是函式宣告呢</a>
-<ul>
-<li>
-<a href="#toc_2">待解問題:</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_3">偵測函式是否存在</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">一、比較各種情況的 function.name</h2>
-
-<p>The function.name property returns the name of the function.</p>
-
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/name">MDN: Function.name</a></p>
-
-<pre><code class="language-js">// 函式宣告：
-function f1 (){}
-console.log(f1.name); // f1.name = f1
-
-// 匿名函式運算式（在ES2015是空字串）
-var f2 = function (){}; // f2.name = f2
-console.log(f2.name);
-
-// 具名函式運算式
-var f3 = function aname(){}; // f3.name = aname
-console.log(f3.name);
-
-// 將函式宣告建立的函式 f1 指派給另一變數 f4
-f4= f1;  // f4.name =f1
-console.log(f4.name);
-
-// 將具名函式運算式作為參數傳入
-(function another(f){
-  console.log(f.name);
-  var f5 = f; // f5.name = aname
-  console.log(f5.name);
-}(f3))
-</code></pre>
-
-<p><strong>函式名稱只能在該函式內部取用，在外部是抓不到的</strong>（通常用來進行 self-recursion）：</p>
-
-<blockquote>
-<p>The function name can be used only within the function&#39;s body. Attempting to use it outside the function&#39;s body results in an error (or undefined if the function name was previously declared via a var statement). [<sup>function_compare]</sup></p>
-</blockquote>
-
-<pre><code class="language-js">var f3 = function aname(){
-    console.log(aname.name); // aname.name = aname
-}; 
-f3(); // ReferenceError: aname is not defined
-</code></pre>
-
-<p><strong>函式宣告進行時會將建立的函式指派到一個同名變數</strong>，所以不會有這個問題：</p>
-
-<blockquote>
-<p>A function declaration also creates a variable with the same name as the function name. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
-</blockquote>
-
-<p>用建構器 new 建立的函式沒有函式名稱：</p>
-
-<blockquote>
-<p>A function defined by &#39;new Function&#39; does not have a function name. However, in the SpiderMonkey JavaScript engine, the serialized form of the function shows as if it has the name &quot;anonymous&quot;. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
-</blockquote>
-
-<h2 id="toc_1">二、原來是函式運算式啊，我還以為是函式宣告呢</h2>
-
-<p>某些函式實字樣子長得跟函式述句乍看之下一模一樣，但其實當它是<strong>跟其他運算式牽扯上關係（變為整個運算式的一部份）</strong>，或是<strong>在巢狀區塊內（not a sorce element）</strong>時，會被 Javascript 引擎判定函式運算式。</p>
-
-<blockquote>
-<p>A function declaration is very easily (and often unintentionally) turned into a function expression. A function declaration ceases to be one when it either:</p>
-
-<ol>
-<li>becomes part of an expression</li>
-<li>is no longer a &quot;source element&quot; of a function or the script itself.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></li>
-</ol>
-</blockquote>
-
-<p>什麼是 source element？</p>
-
-<blockquote>
-<p>A &quot;source element&quot; is a non-nested statement in the script or a function body. <sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
-</blockquote>
-
-<pre><code class="language-js">var x = 0;               // source element
-if (x == 0) {            // source element
-   x = 10;               // not a source element
-   function boo() {}     // not a source element
-}
-function foo() {         // source element
-   var y = 20;           // source element
-   function bar() {}     // source element
-   while (y == 10) {     // source element
-      function blah() {} // not a source element
-      y++;               // not a source element
-   }
-}
-</code></pre>
-
-<p>以下是各種情境的示例：</p>
-
-<pre><code class="language-js">// function declaration
-function foo() {}
-
-// function expression
-(function bar() {})
-
-// function expression
-x = function hello() {}
-
-
-if (x) {
-   // function expression
-   function world() {}
-}
-
-
-// function declaration
-function a() {
-   // function declaration
-   function b() {}
-   if (0) {
-      // function expression
-      function c() {}
-   }
-}
-</code></pre>
-
-<p>函式宣告變成函式運算式，我目前想到有兩個重要的影響：</p>
-
-<ol>
-<li>函式運算式不會拉升（hoisting），所以程式碼要在宣告後才能 call 該函式。</li>
-<li>函式運算式不會自動建立同名變數，若未指派給其他變數，其 scope 在該函式內。</li>
-</ol>
-
-<p>另外有一個相關的東西是「即刻調用的函式運算式」（IIFE），在一般情況取用需要強制轉為運算式。(Speaking Javascript p.213)</p>
-
-<h3 id="toc_2">待解問題:</h3>
-
-<p>什麼是 non-nested statement? 測試如果 if 判斷通過，程式就可以正常執行，但如果判斷不通過，結果如下：</p>
-
-<pre><code class="language-js">// function declaration
-function a() {
-   // function declaration
-   function b() {}
-   if (false) {
-      // function expression
-      function c() {}
-   }
-  console.log(a); // 成功輸出 funciton a(){ ... }
-  console.log(b); // 成功輸出 function b(){}
-  console.log(c); // undefined
-  c(); // ReferenceError: c is not a function
-}
-a();
-</code></pre>
-
-<p>但不管有沒有通過都 JSHint 都會跳出 <strong>&quot;Function declaration should not be placed in blocks.&quot;</strong></p>
-
-<pre><code class="language-js">var c = console;
-
-function originFunc(arg1,arg2){
-  return &quot;this is the result text of function: &quot;+arg1+&quot;&amp;&quot;+arg2;
-}
-
-c.log(originFunc); //function literal
-c.log(typeof(originFunc)); //&quot;funciton&quot;
-c.log(originFunc.name); //originFunc
-c.log(originFunc(&quot;pp&quot;,&quot;tt&quot;)); //content of return
-
-
-var copy1 = originFunc;
-
-c.log(copy1); //function literal
-c.log(typeof(copy1)); //&quot;funciton&quot;
-c.log(copy1.name); //originFunc
-c.log(copy1(&quot;xx&quot;,&quot;zz&quot;)); //content of return
-
-
-var copyResult  = originFunc();
-c.log(copyResult); //content of return
-c.log(typeof(copyResult)); //&quot;string&quot;
-
-</code></pre>
-
-<h2 id="toc_3">偵測函式是否存在</h2>
-
-<blockquote>
-<p>You can determine whether a function exists by using the typeof operator. In the following example, a test is performed to determine if the window object has a property called noFunc that is a function. If so, it is used; otherwise some other action is taken.</p>
-</blockquote>
-
-<pre><code class="language-js">if (&#39;function&#39; == typeof window.noFunc) {
-   // use noFunc()
- } else {
-   // do something else
+<pre><code class="language-js"> {
+   test: /\.jsx?$/,
+   exclude: /node_modules/,
+   use: &#39;babel-loader&#39;
  }
 </code></pre>
 
-<blockquote>
-<p>Note that in the if test, a reference to noFunc is used—there are no brackets &quot;()&quot; after the function name so the actual function is not called.</p>
-</blockquote>
+<h3 id="toc_7"><code>emit-file-loader</code></h3>
 
-<div class="footnotes">
-<hr/>
-<ol>
+<p>用處：不曉得，在 <code>next.js</code> 的範例裡面看到的。</p>
 
-<li id="fn1">
-<p>資料來源：<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#Function_constructor_vs._function_declaration_vs._function_expression">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#Function_constructor_vs._function_declaration_vs._function_expression</a>&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
-</li>
+<p><a href="https://github.com/zeit/next.js/issues/288">https://github.com/zeit/next.js/issues/288</a></p>
 
-</ol>
-</div>
+<h3 id="toc_8"><code>style-loader</code>, <code>css-loader</code>, <code>postcss-loader</code>, <code>sass-loader</code></h3>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pro Git 筆記 (5) 各種情況的復原指令]]></title>
-    <link href="https://yucj.github.io/logMine/14749897217192.html"/>
-    <updated>2016-09-27T23:22:01+08:00</updated>
-    <id>https://yucj.github.io/logMine/14749897217192.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
+<p>用處：</p>
 
 <ul>
-<li>
-<a href="#toc_0">Commit --amend 用新的 commit 快照取代前一個</a>
-</li>
-<li>
-<a href="#toc_1">Reset HEAD</a>
-</li>
-<li>
-<a href="#toc_2">Checkout --[file_name]</a>
-</li>
+<li><code>style-loader</code>: Takes CSS codes and injects them to DOM through JS</li>
+<li><code>css-loader</code>: Loads CSS file with resolved imports and returns CSS code</li>
+<li><code>postcss-loader</code>: Loads and transforms a CSS/SSS file using PostCSS</li>
+<li><code>sass-loader</code>: Loads and compiles a SASS/SCSS file to css</li>
 </ul>
 
+<p><code>.scss</code> files:</p>
 
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">Commit --amend 用新的 commit 快照取代前一個</h2>
-
-<p>我的commit漏掉檔案了！message寫錯了！</p>
-
-<pre><code class="language-zsh">$ git commit -m &#39;initial commit&#39;
-$ git add [forgotten_file]
-$ git commit --amend
+<pre><code class="language-js"> {
+   test: /\.(scss|sass)$/,
+   loader: ExtractTextPlugin.extract({
+     fallback: &#39;style-loader&#39;,
+     use: [ {
+       loader: &#39;css-loader&#39;,
+       options: {
+         importLoaders: 2,
+         modules: true,
+         sourceMap: true,
+         localIdentName: &#39;[name]__[local]___[hash:base64:5]&#39;
+       }
+     }, {
+       loader: &#39;postcss-loader&#39;,
+       options: {
+         plugins: function (loader) {
+           return [ autoprefixer({ browsers: [ &#39;&gt; 1%&#39; ] }) ]
+         }
+       }}, &#39;sass-loader&#39;]
+   })
+ }
 </code></pre>
 
-<p>新的 commit 會用新的 staging area snapshot 取代前一個 commit</p>
+<p><code>.css</code> files:</p>
 
-<h2 id="toc_1">Reset HEAD</h2>
-
-<p>Add 錯檔案到 staging area 了！怎麼刪掉？</p>
-
-<pre><code class="language-zsh">$ git reset HEAD [worng_file]
+<pre><code class="language-js"> {
+   test: /\.css$/,
+   loader: ExtractTextPlugin.extract({
+     fallback: &#39;style-loader&#39;,
+     use: [{
+       loader: &#39;css-loader&#39;,
+       options: {
+         importLoaders: 1
+       }
+     }, {
+       loader: &#39;postcss-loader&#39;,
+       options: {
+         plugins: function (loader) {
+           return [ autoprefixer({ browsers: [ &#39;&gt; 1%&#39; ] }) ]
+         }
+       }
+     }]
+   })
+ }
 </code></pre>
 
-<p>Merge 後想要取消合併，怎麼辦？</p>
-
-<pre><code class="language-zsh">$ git reset --hard HEAD~
-</code></pre>
-
-<p>參考：<a href="https://goo.gl/y9DG3m">https://goo.gl/y9DG3m</a></p>
-
-<h2 id="toc_2">Checkout --[file_name]</h2>
-
-<p>修改搞砸了... 要把檔案復原到前一個 commit 的狀態</p>
-
-<pre><code class="language-zsh">$ git checkout -- [file_name]
-</code></pre>
-
-<p><strong>注意：被放棄的修改將無法復原</strong></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pro Git 筆記 (4) Branch 實務：遠端連線]]></title>
-    <link href="https://yucj.github.io/logMine/14749728055067.html"/>
-    <updated>2016-09-27T18:40:05+08:00</updated>
-    <id>https://yucj.github.io/logMine/14749728055067.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">遠端連線基礎指令</a>
-<ul>
-<li>
-<a href="#toc_1">Remote show 顯示遠端基本資訊</a>
-</li>
-<li>
-<a href="#toc_2">Ls-remote顯示所有遠端標記</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_3">分支相關指令</a>
-<ul>
-<li>
-<a href="#toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</a>
-</li>
-<li>
-<a href="#toc_5">Fetch 把遠端更新拉回本機端資料庫</a>
-<ul>
-<li>
-<a href="#toc_6">如果 reomte 有本機沒有的分支</a>
-</li>
-<li>
-<a href="#toc_7">推送本地新分支到遠端</a>
-</li>
-<li>
-<a href="#toc_8">刪除遠端分支：</a>
-</li>
-<li>
-<a href="#toc_9">儲存密碼至快取</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">遠端連線基礎指令</h2>
-
-<h3 id="toc_1">Remote show 顯示遠端基本資訊</h3>
-
-<pre><code>$ git remote show [remote_name]
-</code></pre>
-
-<pre><code class="language-zsh"> $ git remote show origin
- 
-  remote origin
-  Fetch URL: https://github.com/falau/pogom.git
-  Push  URL: https://github.com/falau/pogom.git
-  HEAD branch: mewmewmew
-  Remote branches:
-    fb            tracked
-    master        tracked
-    mewmewmew     tracked
-    respawn_point tracked
-  Local branch configured for &#39;git pull&#39;:
-    mewmewmew merges with remote mewmewmew
-  Local ref configured for &#39;git push&#39;:
-    mewmewmew pushes to mewmewmew (fast-forwardable)
-</code></pre>
-
-<h3 id="toc_2">Ls-remote顯示所有遠端標記</h3>
-
-<pre><code>$ git ls-remote [remote_name]
-</code></pre>
-
-<pre><code class="language-zsh">$ git ls-remote origin
-8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        HEAD
-a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/heads/fb
-64cebfacddb3bb6564763ffa6341e1340df0c835        refs/heads/master
-8df44c42fd56f56d66dee2653abc3ca2b52bdd7b        refs/heads/mewmewmew
-e3181f6b2c8b63e9679047010229c500bf165f65        refs/heads/respawn_point
-bb35f740f7d53cb5e522fb99dbea498dcd161f29        refs/pull/1/head
-f6c7f1f9791a76592a83a9e94b87e62ff5efa7ac        refs/pull/2/head
-0a262dd1267cea202fb4dda8121e2a8443424e41        refs/pull/3/head
-121dc5f48ba546e81a9e1615a91a08b6789f33e6        refs/pull/4/head
-6dfc441093810b1610b570667a4568a0e00340fd        refs/pull/5/head
-2dda89e00775e35bb37c0eb8f2848015da25989f        refs/pull/6/head
-043f5573d87c0cdecd80f4105e3c07ab952b49b6        refs/pull/7/head
-e3181f6b2c8b63e9679047010229c500bf165f65        refs/pull/8/head
-a4ea1ee464102f190ccfc12a91f65fe565b8a4c4        refs/pull/9/head
-</code></pre>
-
-<blockquote>
-<p><strong>(TIPS)</strong> 就像「master」對 Git 程式並沒特殊的意義，只是執行 <code>git init</code> 時的預設   branch 名稱，「origin」也沒有特殊意義，只是執行 <code>git clone</code> 的預設遠端名稱。若要指定名稱須加上參數： <code>git clone -o [remote name]</code>。</p>
-</blockquote>
-
-<h2 id="toc_3">分支相關指令</h2>
-
-<p>遠端伺服器可能也有人已經做了一些開發，兩邊的 mater branch 此時可能有不一樣的修改時：</p>
-
-<h3 id="toc_4">Branch -vv 查看遠端本地與遠端分支的追蹤狀態</h3>
-
-<pre><code class="language-zsh">$ git branch -vv
-  iss53     7e424c3 [origin/iss53: ahead 2] forgot the brackets
-  master    1ae2a45 [origin/master] deploying index fix
-* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] this should do it
-  testing   5ea463a trying something new
-</code></pre>
-
-<p><strong><code>ahead 2</code></strong> we have two commits locally that are not pushed to the server.<br/>
-<strong><code>behind 1</code></strong> there is one commit on the server we haven’t merged in yet</p>
-
-<h3 id="toc_5">Fetch 把遠端更新拉回本機端資料庫</h3>
-
-<pre><code>$ git fetch [remote_name]
-</code></pre>
-
-<p>這個指令會做兩件事：</p>
-
-<ol>
-<li>把遠端有、本機沒有的 commits 拉回來本機</li>
-<li>把 [remote_name/branch_name] pointers 更新到最新的位置</li>
-</ol>
-
-<p>例如下圖：<br/>
-<img src="https://git-scm.com/figures/18333fig0324-tn.png" alt=""/></p>
-
-<blockquote>
-<p>值得注意的是，fetch 指令只會下載資料和 pointer，並不會主動新增本機沒有的分支，你仍然無法在本地編輯該遠端倉庫中的分支。</p>
-</blockquote>
-
-<h4 id="toc_6">如果 reomte 有本機沒有的分支</h4>
-
-<blockquote>
-<p>如果要把該遠端分支的內容合併到當前分支，可以運行 <code>git merge origin/master</code>。如果想要一份自己的新分支來開發，可以在遠端分支的基礎上分化出一個新的分支來：</p>
-</blockquote>
-
-<p>建立新分支：</p>
-
-<pre><code class="language-zsh">$ git checkout -b newbranch origin/master
-# 建立一個新分支 newbranch，內容與 origin/master 一致 
-
-$ git checkout --track origin/serverfix
-# 若名稱未與本地分支衝突就與上面相同效果
-
-$ git branch -u origin/serverfix
-
-# &lt;cf.&gt; 若要用已經有的分支追蹤遠端分支
-# 將當前分支設定為追蹤 origin/serverfix
-# 等同於：
-$ git branch -set-upstream-to origin/serverfix
-</code></pre>
-
-<blockquote>
-<p>從遠端分支 checkout 出來的本地分支，稱為<strong>追蹤分支（tracking branch）</strong>，被追蹤的分支則稱為<strong>上游分支（upstream branch）</strong>。追蹤分支是一種和某個遠端分支有直接聯繫的本地分支。在追蹤分支裡輸入 <code>git push</code>，Git 會自行推斷應該向哪個伺服器的哪個分支推送資料。同樣，在這些分支裡運行 <code>git pull</code> 會獲取遠端上游分支，並把它們的資料都 merge 到本地分支中來。</p>
-</blockquote>
-
-<pre><code class="language-zsh"># 從本地 tracking branch 執行：
-
-$ git pull
-
-# 大多數情況下等同於：
-$ git fetch [remote]
-$ git merge [remote]/[upstream branch]
-
-# 教學建議使用後者，會比較清楚自己 merge 了什麼
-</code></pre>
-
-<h4 id="toc_7">推送本地新分支到遠端</h4>
-
-<pre><code class="language-zsh">$ git push [remote] [local_brach_name]:[remote_branch_name]
-
-# Take my local branch and make it the remotes.
-</code></pre>
-
-<h4 id="toc_8">刪除遠端分支：</h4>
-
-<pre><code class="language-zsh">$ git push origin --delete serverfix
-
-
-# 舊版教學使用以下方法太不直觀：
-$ git push origin :serverfix
-To git@github.com:schacon/simplegit.git
- - [deleted]         serverfix
-
-</code></pre>
-
-<h4 id="toc_9">儲存密碼至快取</h4>
-
-<blockquote>
-<p>If you’re using an HTTPS URL to push over, the Git server will ask you for your username and password for authentication. By default it will prompt you on the terminal for this information so the server can tell if you’re allowed to push.</p>
-
-<p>If you don’t want to type it every single time you push, you can set up a “credential cache”. The simplest is just to keep it in memory for a few minutes, which you can easily set up by running git config --global credential.helper cache.</p>
-
-<p>For more information on the various credential caching options available, see Credential Storage.</p>
-</blockquote>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pro Git 筆記 (3) Branch 分支]]></title>
-    <link href="https://yucj.github.io/logMine/14743779326332.html"/>
-    <updated>2016-09-20T21:25:32+08:00</updated>
-    <id>https://yucj.github.io/logMine/14743779326332.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">運作原理</a>
-</li>
-<li>
-<a href="#toc_1">Branch 新增分支, Checkout 切換分支</a>
-</li>
-<li>
-<a href="#toc_2">Log 檢視紀錄</a>
-</li>
-<li>
-<a href="#toc_3">實例：新建與合併 Merge</a>
-</li>
-<li>
-<a href="#toc_4">Branch 檢視分支資訊相關指令</a>
-</li>
-<li>
-<a href="#toc_5">Rebase 合併分支</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">運作原理</h2>
-
-<pre><code class="language-zsh">$ git add README test.rb LICENSE
-# ↑ 會對每個檔計算校驗和（checksums）（SHA-1 hash）
-# ↑ 每個檔存成一個 blob object
-# ↑ adds that checksum to the staging area
-$ git commit -m &#39;initial commit of my project&#39;
-# ↑ 對每個子資料夾計算校驗和（checksums）
-# ↑ 每個子資料夾存成一個 tree object
-# ↑ 一個 commit object 包含指向 root tree object 的pointer 和其他 metadata。
-</code></pre>
-
-<p>上面的 commit 總共產生五個 objects：<br/>
-- <strong>blob</strong> for the contents of each of your three files<br/>
-- <strong>tree</strong> that lists the contents of the directory and specifies which file names are stored as which blobs<br/>
-- <strong>commit</strong> with the pointer to that root tree and all the commit metadata.<br/>
-<img src="https://git-scm.com/figures/18333fig0301-tn.png" alt="A commit and its tree"/></p>
-
-<blockquote>
-<p>Git用來計算查核碼的機制稱為SHA-1雜湊法。 它由40個十六進制的字母(0–9 and a–f)組成的字串組成，基於Git的檔案內容或者目錄結構計算。 查核碼看起來如下所示：<code>24b9da6552252987aa493b52f8696cd6d3b00373</code></p>
-
-<p>事實上Git以檔案內容的雜湊值定址出檔案在資料庫的位址，而不是以檔案的名稱定址。</p>
-
-<p>（來源：<a href="https://goo.gl/3s8wkm%EF%BC%89">https://goo.gl/3s8wkm）</a></p>
-</blockquote>
-
-<ul>
-<li>Git stores a commit object that contains a pointer to the snapshot of the content you staged.</li>
-<li>This object also contains the author’s name and email, the message that you typed, and pointers to its parent or parents.</li>
-</ul>
-
-<h2 id="toc_1">Branch 新增分支, Checkout 切換分支</h2>
-
-<pre><code class="language-zsh"># Creating new branch and switch to it:
-  $ git checkout -b iss53
-  
-# The command is the same as:
-  $ git branch iss53
-  $ git checkout iss53
-</code></pre>
-
-<h2 id="toc_2">Log 檢視紀錄</h2>
-
-<pre><code class="language-git">$ git log --oneline --decorate
-
-f30ab (HEAD -&gt; master, testing) add feature #32 - 
-ability to add new formats to the central interface
-
-34ac2 Fixed bug #1328 - stack overflow under certain conditions
-
-98ca9 The initial commit of my project
-</code></pre>
-
-<h2 id="toc_3">實例：新建與合併 Merge</h2>
-
-<p>情境：<a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E8%88%87%E5%90%88%E4%BD%B5">分支 - 分支的新建與合併</a></p>
-
-<ol>
-<li><p>網站開發主分支為 master</p></li>
-<li><p>創建一個新分支 iss53 進行滿足新需求的開發： <br/>
-<code>$ git checkout -b iss53</code></p></li>
-<li><p>臨時需要對 master 進行緊急修補</p></li>
-<li><p>若當前修改已經都 commit，先回到 master：<br/>
-<code>$ git checkout master</code></p></li>
-<li><p>從 master 建立緊急修補分支：<br/>
-<code>$ git checkout -b hotfix</code></p></li>
-<li><p>測試完成後，回到 master 進行合併：<br/>
-<code>$ git checkout master</code><br/>
-<code>$ git merge hotfix</code> (Fast-forward)</p></li>
-<li><p>刪除已經完成的 hotfix 分支：<br/>
-<code>$ git branch -d hotfix</code></p></li>
-<li><p>回到 iss53 繼續工作：<br/>
-<code>$ git branch -d hotfix</code></p></li>
-<li><p>iss53 工作完成後，回到 master 進行合併：<br/>
-<code>$ git merge iss53</code> (Merge made by the &#39;recursive&#39; strategy)</p></li>
-<li><p>刪除 iss53 分支：<br/>
-<code>$ git branch -d iss53</code></p></li>
-</ol>
-
-<p><img src="https://git-scm.com/figures/18333fig0317-tn.png" alt=""/></p>
-
-<h2 id="toc_4">Branch 檢視分支資訊相關指令</h2>
-
-<pre><code class="language-zsh">$ git branch # 列出分支清單
-$ git branch -v # 查看各個分支最後一個commit
-$ git branch --merged  # 查看併進目前分支的分支
-$ git branch --no-merged # 查看未併進目前分支的分支
-</code></pre>
-
-<h2 id="toc_5">Rebase 合併分支</h2>
-
-<p>$ git merge [traget_branch] # 將目標合併進當前所在的分支</p>
-
-<p>$ git rebase [target_branch] # 將現在分支的和目標分支的差異</p>
-
-<p><a href="https://blog.yorkxin.org/2011/07/29/git-rebase">https://blog.yorkxin.org/2011/07/29/git-rebase</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pro Git 筆記 (2) 基本操作]]></title>
-    <link href="https://yucj.github.io/logMine/14743778829037.html"/>
-    <updated>2016-09-20T21:24:42+08:00</updated>
-    <id>https://yucj.github.io/logMine/14743778829037.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">查詢指令說明 help</a>
-</li>
-<li>
-<a href="#toc_1">提交更新 add, commit, push</a>
-</li>
-<li>
-<a href="#toc_2">查看修改內容 status, diff</a>
-</li>
-<li>
-<a href="#toc_3">刪除檔案 rm</a>
-</li>
-<li>
-<a href="#toc_4">移動檔案、重新命名 mv</a>
-</li>
-<li>
-<a href="#toc_5">查看修訂紀錄 log</a>
-</li>
-<li>
-<a href="#toc_6">快捷指令 aliases</a>
-</li>
-<li>
-<a href="#toc_7">遠端連線</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">查詢指令說明 help</h2>
-
-<p>以下三種皆可：</p>
-
-<pre><code class="language-zsh">git help &lt;verb&gt;
-git &lt;verb&gt; --help
-man git-&lt;verb&gt;
-</code></pre>
-
-<h2 id="toc_1">提交更新 add, commit, push</h2>
-
-<pre><code class="language-zsh">$ git add [filename]  # Add file to track or to staging area
-$ git commit -m &quot;message&quot;
-$ git push
-</code></pre>
-
-<pre><code class="language-zsh">$ git commit -a -m &quot;message&quot;  # Add all changed files and commit
-$ git push
-</code></pre>
-
-<h2 id="toc_2">查看修改內容 status, diff</h2>
-
-<pre><code class="language-zsh">$ git status
-</code></pre>
-
-<p>查看目前狀態</p>
-
-<p>A  &lt;- 第一次 commit 的檔案<br/>
-B  &lt;- 修改後 add to staging area 的檔案<br/>
-C  &lt;- 再進行修改的檔案</p>
-
-<pre><code class="language-zsh">$ git diff
-</code></pre>
-
-<p>Compares <strong>what is in your working directory (C)</strong> with <strong>what is in your staging area (B)</strong>.</p>
-
-<pre><code class="language-zsh">git diff --staged # Or git diff --cached
-</code></pre>
-
-<p>Compares <strong>your staged changes (B)</strong> with <strong>your last commit (A)</strong>.</p>
-
-<p><a href="http://stackoverflow.com/questions/2529441/how-to-read-the-output-from-git-diff">How to read the output from git diff?</a></p>
-
-<h2 id="toc_3">刪除檔案 rm</h2>
-
-<pre><code class="language-zsh">$ git rm  [filename]
-</code></pre>
-
-<p>會將檔案移出 staging area 並且刪除檔案</p>
-
-<pre><code class="language-zsh">$ git rm --cached [filename]
-</code></pre>
-
-<p>會將檔案移出 staging area 並不再被 Git 追蹤，但保留檔案在工作資料夾中</p>
-
-<pre><code class="language-zsh">rm [filename]
-</code></pre>
-
-<p>shell script 的刪除檔案</p>
-
-<h2 id="toc_4">移動檔案、重新命名 mv</h2>
-
-<pre><code class="language-zsh">$ git mv [oldfilename] [newfilename]
-</code></pre>
-
-<p>等同於：</p>
-
-<pre><code class="language-zsh">$ mv [oldfilename] [newfilename]
-$ git rm [oldfilename]
-$ git add [newfilename]
-</code></pre>
-
-<h2 id="toc_5">查看修訂紀錄 log</h2>
-
-<p><a href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">Viewing the Commit History</a>   (<a href="https://git-scm.com/book/zh-tw/v1/Git-%E5%9F%BA%E7%A4%8E-%E6%AA%A2%E8%A6%96%E6%8F%90%E4%BA%A4%E7%9A%84%E6%AD%B7%E5%8F%B2%E8%A8%98%E9%8C%84">中文</a>)</p>
-
-<pre><code class="language-zsh">$ git log
-
-$ git log -p -2
-# 顯示最後兩個 commit 的差別
-
-$ git log --word-diff
-# 以 word level 顯示差異（預設為 line level）
-
-$ git log --word-diff -U1
-# 以 word level 顯示差異，並只顯示變動的那行
-
-$ git log --stat
-# 會統計每個 commit 的 file changed, insertion(+), deletion(-) 數量，並在最後印出摘要的訊息
-
-$ git log --pretty oneline
-# 每一個更新一行顯示
-
-$ git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
-# 自訂 log 的顯示格式
-
-$ git log --pretty=format:&quot;%h %s&quot; --graph
-# 以 ASCII 畫出分支的分歧及合併的歷史
-
-$ git log --oneline 
-# 僅顯示SHA1查核值的前幾位數，一commit一行
-# same as &quot;--pretty=oneline --abbrev-commit&quot;
-
-$ git log --since=2.weeks
-# 列出最近兩週的 commits (same as --after)
-
-$ git log --until=“2008-01-15”
-# 列出到 2008/01/15 為止的 commits (same as --before)
-
-</code></pre>
-
-<h2 id="toc_6">快捷指令 aliases</h2>
-
-<p>例子：</p>
-
-<pre><code class="language-zsh">$ git config --global alias.ci commit
-# then you can use:
-git ci -m &quot;message&quot;
-</code></pre>
-
-<pre><code class="language-zsh">$ git config --global alias.unstage &#39;reset HEAD --&#39;
-# then you can use:
-$ git unstage [filename]
-</code></pre>
-
-<pre><code class="language-zsh">$ git config --global alias.last &#39;log -1 HEAD&#39;
-# then you can use:
-$ git last
-</code></pre>
-
-<p>To run an external command, rather than a Git subcommand:</p>
-
-<pre><code class="language-zsh">$ git config --global alias.visual &#39;!gitk&#39;
-# then you can use:
-$ git visual
-</code></pre>
-
-<p>ref:<br/>
-<a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases</a></p>
-
-<h2 id="toc_7">遠端連線</h2>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pro Git 筆記 (1) 安裝後基本設定]]></title>
-    <link href="https://yucj.github.io/logMine/14743778423838.html"/>
-    <updated>2016-09-20T21:24:02+08:00</updated>
-    <id>https://yucj.github.io/logMine/14743778423838.html</id>
-    <content type="html"><![CDATA[
-<p><strong>本文目錄：</strong></p>
-
-<ul>
-<li>
-<a href="#toc_0">區分各層級設定</a>
-</li>
-<li>
-<a href="#toc_1">檢查全域設定 global</a>
-</li>
-<li>
-<a href="#toc_2">設定使用者帳號</a>
-</li>
-<li>
-<a href="#toc_3">更換預設文字編輯器</a>
-</li>
-<li>
-<a href="#toc_4">參考資料</a>
-</li>
-</ul>
-
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_0">區分各層級設定</h2>
-
-<p>The <code>.git/config</code> file in each repository is used to store the configuration for that repository, and <code>$HOME/.gitconfig</code> is used to store a per-user configuration as fallback values for the .git/config file. The file <code>/etc/gitconfig</code> can be used to store a system-wide default configuration.</p>
-
-<p><code>/etc/gitconfig</code> file: Contains values for every user on the system and all their repositories. If you pass the option --system to git config, it reads and writes from this file specifically.</p>
-
-<p><code>~/.gitconfig</code> or <code>~/.config/git/config</code> file: Specific to your user. You can make Git read and write to this file specifically by passing the --global     option.</p>
-
-<p>檔案路徑通常是在 <code>$HOME/.gitconfig</code> 可用 <code>echo $HOME</code> 查詢路徑</p>
-
-<p>config file in the Git directory (that is, <code>.git/config</code>) of whatever repository you’re currently using: Specific to that single repository.</p>
-
-<h2 id="toc_1">檢查全域設定 global</h2>
-
-<pre><code>git config --list
-</code></pre>
-
-<h2 id="toc_2">設定使用者帳號</h2>
-
-<p>Example:</p>
-
-<pre><code>$ git config --global user.name &quot;John Doe&quot;
-$ git config --global user.email johndoe@example.com
-</code></pre>
-
-<h2 id="toc_3">更換預設文字編輯器</h2>
-
-<p>使用以下指令將 git 預設文字編輯器更換為atom：</p>
-
-<pre><code>git config --global core.editor &quot;atom --wait&quot;
+<p>結合 <a href="https://github.com/isaacs/node-glob"><code>glob</code></a> 的用法：</p>
+
+<pre><code class="language-js"> {
+   test: /\.s(a|c)ss$/,
+   use: [&#39;babel-loader&#39;, &#39;raw-loader&#39;, &#39;postcss-loader&#39;,
+     { loader: &#39;sass-loader&#39;,
+       options: {
+         includePaths: [&#39;styles&#39;, &#39;node_modules/@material/*&#39;]
+           .map((d) =&gt; path.join(__dirname, d)) // 每個 path -&gt; absolute path
+           .map((g) =&gt; glob.sync(g)) // 用 glob 找符合的檔案 -&gt; paths array
+           .reduce((a, c) =&gt; a.concat(c), []) // 把每個 paths array 合成一個 array
+       }
+     }
+   ]
+ }
 </code></pre>
 
 <p>Ref:<br/>
-<a href="https://help.github.com/articles/associating-text-editors-with-git/">https://help.github.com/articles/associating-text-editors-with-git/</a></p>
+<a href="https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet">https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet</a></p>
 
-<h2 id="toc_4">參考資料</h2>
+<h3 id="toc_9"><code>url-loader</code></h3>
 
-<p><a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup</a></p>
+<p><a href="https://webpack.js.org/loaders/url-loader/">https://webpack.js.org/loaders/url-loader/</a></p>
+
+<p>用處：檔案 size<br/>
+-&gt; 若小於 limit：轉成 <code>base64</code> dataURL string 直接寫進 JS file <br/>
+-&gt; 若大於 limit：把檔案送到 output directory，return the public url string (as what <code>file-loader</code> do)</p>
+
+<pre><code class="language-js"> {
+   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+   use: [{
+     loader: &#39;url-loader&#39;,
+     options: {
+       limit: 10000, // bytes
+       mimetype: &#39;image/svg+xml&#39;
+     }
+   }]
+ }
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Babel plugins and loaders I used]]></title>
+    <link href="https://yucj.github.io/logMine/14987255686752.html"/>
+    <updated>2017-06-29T16:39:28+08:00</updated>
+    <id>https://yucj.github.io/logMine/14987255686752.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>
+<a href="#toc_0">Plugins</a>
+<ul>
+<li>
+<a href="#toc_1"><code>module-resolver</code></a>
+</li>
+<li>
+<a href="#toc_2"><code>wrap-in-js</code></a>
+</li>
+<li>
+<a href="#toc_3"><code>inline-react-svg</code></a>
+</li>
+<li>
+<a href="#toc_4"><code>babel-plugin-webpack-loaders</code></a>
+</li>
+<li>
+<a href="#toc_5"><code>react-hot-loader/babel</code></a>
+</li>
+<li>
+<a href="#toc_6"><code>styled-components</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">Loaders</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Plugins</h2>
+
+<h3 id="toc_1"><code>module-resolver</code></h3>
+
+<p>用處：簡化 module 的 import path</p>
+
+<p>From:</p>
+
+<pre><code class="language-js">import styles from &#39;../../styles/xxxx.scss&#39;
+</code></pre>
+
+<p>To: </p>
+
+<pre><code class="language-js">import styles from &#39;styles/xxxx.scss&#39;
+</code></pre>
+
+<p><a href="https://github.com/tleunen/babel-plugin-module-resolver">https://github.com/tleunen/babel-plugin-module-resolver</a></p>
+
+<p><strong>Compare with <code>enhanced-resolve</code> (used in Webpack)</strong>:<br/>
+<a href="https://webpack.js.org/concepts/module-resolution/">https://webpack.js.org/concepts/module-resolution/</a></p>
+
+<h3 id="toc_2"><code>wrap-in-js</code></h3>
+
+<p>用處：Transforming any file to a module exporting the file content as string</p>
+
+<p><a href="https://github.com/davibe/babel-plugin-wrap-in-js">https://github.com/davibe/babel-plugin-wrap-in-js</a></p>
+
+<p><code>Next.js</code> 在 Webpack 用 <code>babel-loader</code> 處理 css -&gt; js：</p>
+
+<blockquote>
+<p>The strategy here is to transpile the stylesheet file to a css-in-js file so that it can be loaded and hot reloaded both on the server and the client. For this purpose I created a babel loader plugin called <code>babel-loader-wrap-in-js</code>. </p>
+
+<p><a href="https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet">https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet</a></p>
+</blockquote>
+
+<p>而不是用 <code>style-loader</code> 或 <code>ExtractTextPlugin</code> 處理 css -&gt; js：</p>
+
+<blockquote>
+<p>Warning: Adding loaders to support new file types (css, less, svg, etc.) is <strong>not</strong> recommended because only the client code gets bundled via webpack and thus it won&#39;t work on the initial server rendering. Babel plugins are a good alternative because they&#39;re applied consistently between server/client rendering (e.g. <code>babel-plugin-inline-react-svg</code>).</p>
+
+<p><a href="https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet">https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet</a></p>
+</blockquote>
+
+<h3 id="toc_3"><code>inline-react-svg</code></h3>
+
+<p>用處：同上，<code>Next.js</code> 用 <code>babel-loader</code> 處理 <code>.svg</code></p>
+
+<p>Transforms imports to SVG files into React Components, and optimizes the SVGs with SVGO.</p>
+
+<p><a href="https://github.com/kesne/babel-plugin-inline-react-svg">https://github.com/kesne/babel-plugin-inline-react-svg</a></p>
+
+<h3 id="toc_4"><code>babel-plugin-webpack-loaders</code></h3>
+
+<p>在 babel 裡對每個檔案跑 webpack</p>
+
+<p>可以支援 webpack2 但是 loaders 和 plugins 的版本要安裝對，語法要寫對。而且要小心有用 <code>npm link</code> 或 <code>yarn link</code> 的話有沒有抓錯 webpack（路徑問題）。在這邊撞牆好久 Orz</p>
+
+<p>Use loaders with webpack: file-loader, url-loader, css-loader, style-loader, sass-loader, postcss-loader.</p>
+
+<p><a href="https://github.com/istarkov/babel-plugin-webpack-loaders">https://github.com/istarkov/babel-plugin-webpack-loaders</a></p>
+
+<p>使用範例：<a href="https://github.com/twreporter/twreporter-react-components"><code>twreporter-react-components</code></a></p>
+
+<h3 id="toc_5"><code>react-hot-loader/babel</code></h3>
+
+<h3 id="toc_6"><code>styled-components</code></h3>
+
+<pre><code class="language-json">{
+  &quot;plugins&quot;: [
+    [&quot;styled-components&quot;, {
+      &quot;ssr&quot;: true, // When enable server side rendering, avoid checksum mismatches
+      &quot;displayName&quot;: true, // For better debugging
+      &quot;preprocess&quot;: false, // experimental
+      &quot;minify&quot;: false
+    }]
+  ]
+}
+</code></pre>
+
+<p><a href="https://github.com/styled-components/babel-plugin-styled-components">https://github.com/styled-components/babel-plugin-styled-components</a></p>
+
+<h2 id="toc_7">Loaders</h2>
+
+<pre><code class="language-json">{
+  &quot;presets&quot;: [&quot;es2015&quot;, &quot;react&quot;, &quot;stage-0&quot;]
+}
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: deploy]]></title>
+    <link href="https://yucj.github.io/logMine/14971940142851.html"/>
+    <updated>2017-06-11T23:13:34+08:00</updated>
+    <id>https://yucj.github.io/logMine/14971940142851.html</id>
+    <content type="html"><![CDATA[
+<ol>
+<li><code>NODE_ENV</code> = production</li>
+<li><code>webpack -p</code> =&gt; minimise</li>
+</ol>
+
+<ul>
+<li>
+<a href="#toc_0">Static sites</a>
+<ul>
+<li>
+<a href="#toc_1">Surge</a>
+</li>
+<li>
+<a href="#toc_2">GitHub</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">Dynamic</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">Static sites</h2>
+
+<h3 id="toc_1">Surge</h3>
+
+<p><a href="http://surge.sh/">http://surge.sh/</a></p>
+
+<h3 id="toc_2">GitHub</h3>
+
+<p><code>git remote add origin &lt;github repo path&gt;</code></p>
+
+<p><code>git checkout -b gh-pages</code></p>
+
+<p><code>git subtree push --prefix dist origin gh-pages</code></p>
+
+<p><code>package.json</code></p>
+
+<pre><code class="language-json">&quot;deploy&quot; : &quot;npm run build &amp;&amp; git subtree push --prefix dist origin gh-pages&quot;
+</code></pre>
+
+<h2 id="toc_3">Dynamic</h2>
+
+<p>middleware -&gt; part of Express not node or webpack</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: code splitting with react-route]]></title>
+    <link href="https://yucj.github.io/logMine/14971917009883.html"/>
+    <updated>2017-06-11T22:35:00+08:00</updated>
+    <id>https://yucj.github.io/logMine/14971917009883.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>
+<a href="#toc_0">BEFORE</a>
+</li>
+<li>
+<a href="#toc_1">AFTER</a>
+</li>
+</ul>
+
+
+<p>jsx routes -&gt; plain routes object</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">BEFORE</h2>
+
+<p><code>router.js</code></p>
+
+<pre><code class="language-js">// ...
+
+const Routes = () =&gt; {
+  return (
+    &lt;Router history={hashHistory}&gt;
+      &lt;Route path=&quot;/&quot; component={Home}&gt;
+        &lt;IndexRoute component={ArtistMain} /&gt;
+        &lt;Route path=&quot;artists/new&quot; component={ArtistCreate} /&gt;
+        &lt;Route path=&quot;artists/:id&quot; component={ArtistDetail} /&gt;
+        &lt;Route path=&quot;artists/:id/edit&quot; component={ArtistEdit} /&gt;
+      &lt;/Route&gt;
+    &lt;/Router&gt;
+    &lt;Router history={hashHistory} routes={componentRoutes} /&gt;
+  );
+
+export default Routes;
+</code></pre>
+
+<h2 id="toc_1">AFTER</h2>
+
+<p><code>router.js</code></p>
+
+<pre><code class="language-js">import { IndexRoute, Route, Router, hashHistory } from &#39;react-router&#39;;
+
+import ArtistMain from &#39;./components/artists/ArtistMain&#39;;
+import Home from &#39;./components/Home&#39;;
+import React from &#39;react&#39;;
+
+const componentRoutes = {
+  component: Home,
+  path: &#39;/&#39;,
+  indexRoute: { component: ArtistMain },
+  childRoutes: [
+    {
+      path:&#39;artists/new&#39;,
+      getComponent(location, cb) {
+        System.import(&#39;./components/artists/ArtistCreate&#39;)
+          .then(module =&gt; cb(null, module.default))
+      }
+    },
+    {
+      path:&#39;artists/:id&#39;,
+      getComponent(location, cb) {
+        System.import(&#39;./components/artists/ArtistDetail&#39;)
+          .then(module =&gt; cb(null, module.default))
+      }
+    },
+    {
+      path:&#39;artists/:id/edit&#39;,
+      getComponent(location, cb) {
+        System.import(&#39;./components/artists/ArtistEdit&#39;)
+          .then(module =&gt; cb(null, module.default))
+      }
+    }
+  ]
+}
+
+const Routes = () =&gt; {
+  return (
+    &lt;Router history={hashHistory} routes={componentRoutes} /&gt;
+  );
+};
+
+export default Routes;
+</code></pre>
+
+<p><code>react-router</code> expacts us to call <code>cb</code>(callback function) after the component module is loaded.</p>
+
+<p><code>cb(error, component)</code></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: webpack-dev-server]]></title>
+    <link href="https://yucj.github.io/logMine/14971910863091.html"/>
+    <updated>2017-06-11T22:24:46+08:00</updated>
+    <id>https://yucj.github.io/logMine/14971910863091.html</id>
+    <content type="html"><![CDATA[
+<p><code>npm i --save-dev webpack-dev-server</code></p>
+
+<p>用處：</p>
+
+<ul>
+<li>live-reload</li>
+<li>只會 update 更動的部分，不用重新 build 整個 repo</li>
+<li>不會監看 webpack.config.js</li>
+<li>不會 build 到 <code>/dist</code> ，事實上 nothing save in hard drive，都在 memory</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: code splitting]]></title>
+    <link href="https://yucj.github.io/logMine/14971027924883.html"/>
+    <updated>2017-06-10T21:53:12+08:00</updated>
+    <id>https://yucj.github.io/logMine/14971027924883.html</id>
+    <content type="html"><![CDATA[
+<p>目標：reduce the size of output <code>bundle.js</code> (3.28MB)</p>
+
+<ul>
+<li>
+<a href="#toc_0">解法：分出 <code>vendor.js</code></a>
+</li>
+<li>
+<a href="#toc_1"><code>&lt;script&gt;</code> in <code>index.html</code></a>
+</li>
+<li>
+<a href="#toc_2">檔案內容明明有更新卻被 cache？</a>
+</li>
+<li>
+<a href="#toc_3">清理沒用到的 output</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">解法：分出 <code>vendor.js</code></h2>
+
+<p>原理：把一些不常更新的 packages 打包到另一個 <code>vendor.js</code> 裡面，讓瀏覽器可以 cache 它，使用者就不需要每次都重新下載一份</p>
+
+<p><code>wepack.config.js</code></p>
+
+<pre><code class="language-js">var webpack = require(&#39;webpack&#39;);
+var path = require(&#39;path&#39;);
+
+const VENDOR_LIBS = [
+  &#39;react&#39;, &#39;lodash&#39;, &#39;redux&#39;, &#39;react-redux&#39;, &#39;react-dom&#39; // ... in package.json
+]; // names of library
+
+module.exports = {
+  entry: {
+    bundle: &#39;.src/index.js&#39;, // output bundle.js start from index.js
+    vendor: VENDOR_LIBS
+  },
+  output: {
+    path: path.join(__dirname, &#39;dist&#39;),
+    filename: &#39;[name].js&#39; // bundle.js, vendor.js (name = key of `entry` properties)
+  },
+  module: {
+    rules: [
+      {
+        use: &#39;babel-loader&#39;,
+        test: /\.js$/,
+        exclude: /node_modules/,
+      },
+      {
+        use: [&#39;style-loader&#39;, &#39;css-loader&#39;],
+        test: /\.css$/
+      }
+    ]
+  }
+};
+</code></pre>
+
+<p><strong>結果：</strong></p>
+
+<p><code>bundle.js</code> -&gt; 3.28MB (沒變！？)<br/>
+<code>vendor.js</code> -&gt; 2.88MB</p>
+
+<p><strong>WHY????</strong></p>
+
+<p><img src="media/14971027924883/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-11%20%E4%B8%8B%E5%8D%884.19.19.png" alt="bundle and vendor"/></p>
+
+<p>Webpack 會把不同的 entry 看成是各自獨立的一包，所以照上面的設定 packages 會被打包兩次</p>
+
+<p><ref.></p>
+
+<blockquote>
+<p>At face value this tells webpack to create dependency graphs starting at both <code>app.js</code> and <code>vendors.js</code>. These graphs are completely separate and independent of each other (there will be a webpack bootstrap in each bundle).</p>
+
+<p><a href="https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries">https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries</a></p>
+</blockquote>
+
+<p><strong>解決方法：<code>CommonsChunkPlugin</code></strong></p>
+
+<p><code>webpack.config.js</code></p>
+
+<pre><code class="language-js">pluins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: &#39;vendor&#39;
+    })
+  ]
+</code></pre>
+
+<p><strong>結果：</strong></p>
+
+<p><code>bundle.js</code> -&gt; 401kb<br/>
+<code>vendor.js</code> -&gt; 2.89MB</p>
+
+<blockquote>
+<p>[TODO]: Consider removing this scenario in favor of the DllPlugin, which provides a better vendor-splitting.</p>
+
+<p><a href="https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries">https://webpack.js.org/concepts/entry-points/#separate-app-and-vendor-entries</a></p>
+</blockquote>
+
+<h2 id="toc_1"><code>&lt;script&gt;</code> in <code>index.html</code></h2>
+
+<pre><code class="language-js">  plugins: [
+    new HtmlWebpackPlugin({
+      template: &#39;src/index.html&#39;
+    })
+  ]
+</code></pre>
+
+<h2 id="toc_2">檔案內容明明有更新卻被 cache？</h2>
+
+<p>瀏覽器：認檔名 -&gt; 檔名相同，header 沒過期就用快取的檔案</p>
+
+<p>Solution: 加上 hash 到檔名</p>
+
+<pre><code class="language-js">module.exports = {
+  entry: {
+    // ...
+  },
+  output: {
+    path: path.join(__dirname, &#39;dist&#39;),
+    filename: &#39;[name].[chunkhash].js&#39; // [name] = key of `entry` properties), [chunkhash] hash of chunk
+  },
+  module: {
+    // ...
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [&#39;vendor&#39;, &#39;manifest&#39;]
+    })
+    // ...
+  ]
+};
+</code></pre>
+
+<h2 id="toc_3">清理沒用到的 output</h2>
+
+<p><code>npm i --save-dev rimraf</code> (跨平台rm command)</p>
+
+<p><code>package.json</code></p>
+
+<pre><code class="language-json">{
+    // ...
+    &quot;scripts&quot;: {
+        &quot;clean&quot;: &quot;rimraf dist&quot;,
+        &quot;build&quot;: &quot;npm run clean &amp;&amp; webpack&quot;
+    }
+    // ...
+}
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: image]]></title>
+    <link href="https://yucj.github.io/logMine/14968407714208.html"/>
+    <updated>2017-06-07T21:06:11+08:00</updated>
+    <id>https://yucj.github.io/logMine/14968407714208.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>
+<a href="#toc_0">loaders</a>
+</li>
+<li>
+<a href="#toc_1">config</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">loaders</h2>
+
+<p><code>image-webpack-loader</code></p>
+
+<p>compress the images</p>
+
+<p><code>url-loader</code></p>
+
+<p>depend on the size of image (file size such as 10kb)<br/>
+decide how to import:</p>
+
+<ol>
+<li>small than limit: dev image -&gt; base64 string in <code>bundle.js</code></li>
+<li>large than limit: dev image -&gt; copy to output folder</li>
+</ol>
+
+<p><img src="media/14968407714208/2017-06-07-01.png" alt="images-webpack"/></p>
+
+<h2 id="toc_1">config</h2>
+
+<p><code>webpack.config</code></p>
+
+<pre><code class="language-javascript">const config = {
+    module: {
+        entry: &#39;./src/index.js&#39;,
+        output: {
+           path: path.resolve(__dirname, &#39;build&#39;),
+           filename: &#39;bundle.js&#39;,
+        },
+        rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: [
+                    {
+                        loader: &#39;url-loader&#39;,
+                        options: { limit: 40000 }  // 40000bytes
+                    },
+                    &#39;image-webpack-loader&#39;
+                ]
+        ]
+    }
+}
+</code></pre>
+
+<p><code>image_viewer.js</code></p>
+
+<pre><code class="language-js">import big from &#39;../assets/big.jpg&#39;; // big &lt;- path string
+import small from &#39;../assets/small.jpg&#39;; // small &lt;- base64 string
+const smallImage = document.createElement(&#39;img&#39;);
+smallImage.src = small
+
+const bigImage = document.createElement(&#39;img&#39;);
+smallImage.src = big // wrong path to js modules directory if not set publicPath
+</code></pre>
+
+<p><code>./assets/big.jpg</code> -&gt; <code>./bulid/j3r0j3rj0rjr.jpg</code><br/>
+<code>./assets/small.jpg</code>r -&gt; base64 string in <code>./build/bundle.js</code></p>
+
+<span id="more"></span><!-- more -->
+
+<p><strong>Don&#39;t forget to set <code>publicPath</code>:</strong></p>
+
+<pre><code class="language-javascript">const config = {
+    module: {
+        entry: &#39;./src/index.js&#39;,
+        output: {
+            path: path.resolve(__dirname, &#39;build&#39;),
+            filename: &#39;bundle.js&#39;,
+            publicPath: &#39;build/&#39; // url-loader will prepend the string to the filename of imported image then pass it to import statement
+        },
+        rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: [
+                    {
+                        loader: &#39;url-loader&#39;,
+                        options: { limit: 40000 }  // 40000bytes
+                    },
+                    &#39;image-webpack-loader&#39;
+                ]
+            }
+        ]
+    }
+}
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: CSS]]></title>
+    <link href="https://yucj.github.io/logMine/14968407584559.html"/>
+    <updated>2017-06-07T21:05:58+08:00</updated>
+    <id>https://yucj.github.io/logMine/14968407584559.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>
+<a href="#toc_0">method 1: inject into html style</a>
+<ul>
+<li>
+<a href="#toc_1">modules</a>
+</li>
+<li>
+<a href="#toc_2">codes</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">method 2: export to separate file</a>
+<ul>
+<li>
+<a href="#toc_4">modules</a>
+</li>
+<li>
+<a href="#toc_5">codes</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">method 1: inject into html style</h2>
+
+<h3 id="toc_1">modules</h3>
+
+<p><code>css-loader</code></p>
+
+<p>knows how to deal with css imports<br/>
+(how to import and parse css files)</p>
+
+<p><code>style-loader</code></p>
+
+<p>take css imports and adds them to the HTML document<br/>
+inject into <code>&lt;style /&gt;</code></p>
+
+<h3 id="toc_2">codes</h3>
+
+<p><code>image_view.js</code></p>
+
+<pre><code class="language-js">import &#39;../styles/styles/image_viewer.css
+</code></pre>
+
+<p><code>webpack.config</code></p>
+
+<pre><code class="language-js">const config = {
+    module: {
+        rules: [
+            {
+                use: [&#39;style-loader&#39;, &#39;css-loader&#39;],
+                test: /\.css$/
+        ]
+    }
+}
+</code></pre>
+
+<p>原理：</p>
+
+<p>webpack find css imported in <code>index.js</code> -&gt;<br/>
+take css content as string in <code>bundle.js</code> -&gt;<br/>
+inject it to DOM through <code>bundle.js</code></p>
+
+<p>缺點：</p>
+
+<p>css不能平行載入，比較慢</p>
+
+<h2 id="toc_3">method 2: export to separate file</h2>
+
+<h3 id="toc_4">modules</h3>
+
+<p><code>extract-text-webpack-plugin</code></p>
+
+<p><strong>&lt; cf. &gt;</strong></p>
+
+<ul>
+<li>loader: preprocess before a file is included into Webpack bundle</li>
+<li>plugin: work a little bit somewhat outside of the Webpack pipeline, have ability to keep files from ending up inside the <code>bundle.js</code></li>
+</ul>
+
+<h3 id="toc_5">codes</h3>
+
+<p><code>webpack.config</code></p>
+
+<pre><code class="language-js">const ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;)
+
+const config = {
+    module: {
+       // ...
+        rules: [
+            // ...
+            {
+                loader: ExtractTextPlugin.extract({
+                    loader: &#39;css-loader&#39;
+                }),
+                test: /\.css$/
+            }
+        ]
+    }
+    
+    plugins: [
+        new ExtractTextPlugin(&#39;style.css&#39;)
+    ]
+}
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webpack 2: Intro]]></title>
+    <link href="https://yucj.github.io/logMine/14965811614777.html"/>
+    <updated>2017-06-04T20:59:21+08:00</updated>
+    <id>https://yucj.github.io/logMine/14965811614777.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>
+<a href="#toc_0">Webpack install and config</a>
+<ul>
+<li>
+<a href="#toc_1">config</a>
+</li>
+<li>
+<a href="#toc_2">install</a>
+</li>
+<li>
+<a href="#toc_3">Why bundle.js fat?</a>
+</li>
+<li>
+<a href="#toc_4">index.html</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">module loaders</a>
+<ul>
+<li>
+<a href="#toc_6">babel</a>
+</li>
+<li>
+<a href="#toc_7">loders config</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Webpack install and config</h2>
+
+<h3 id="toc_1">config</h3>
+
+<p><code>webpack.config.js</code></p>
+
+<pre><code class="language-js">const path = require(&#39;path&#39;); // helper from NodeJS
+
+const config = {
+    entry: &#39;./src/index.js&#39;, // relative path
+    output: {
+        path: path.resolve(__dirname, &#39;build&#39;); // absolute path &#39;$PWD/bulid&#39;
+        filename: &#39;bundle.js&#39;
+    }
+};
+
+module.exports = config;
+</code></pre>
+
+<h3 id="toc_2">install</h3>
+
+<p>Install locally:</p>
+
+<pre><code class="language-bash">npm install webpack --save-dev
+</code></pre>
+
+<p>Run webpack in <code>node_modules</code> for certain project:</p>
+
+<p><code>package.json</code></p>
+
+<pre><code class="language-json">{
+    &quot;script&quot;: {
+        &quot;build&quot;: &quot;webpack&quot;
+    }
+}
+</code></pre>
+
+<h3 id="toc_3">Why bundle.js fat?</h3>
+
+<p>運作原理見 bookmark </p>
+
+<h3 id="toc_4">index.html</h3>
+
+<p>single page app only need single html file</p>
+
+<h2 id="toc_5">module loaders</h2>
+
+<p>pre processing on file before they are added to bundle.js</p>
+
+<h3 id="toc_6">babel</h3>
+
+<p><code>babel-loder</code> A compatibility layer tells babel how to work with build systems(such as webpack)</p>
+
+<p><code>babel-core</code> core</p>
+
+<p><code>babel-preset-env</code> Libraries(recipes) tell <code>bable-core</code> transform codes in some fashions.</p>
+
+<h3 id="toc_7">loders config</h3>
+
+<p><code>package.json</code></p>
+
+<pre><code class="language-js">const path = require(&#39;path&#39;);
+
+const config = {
+    entry: &#39;./src/index.js&#39;,
+    output: {
+        path: path.resolve(__dirname, &#39;build&#39;),
+        filename: &#39;bundle.js&#39;
+    },
+    module: {
+        rules: [
+            {
+                use: &#39;babel-loader&#39;,
+                test: \/.js$/
+            }
+        ]
+    }
+};
+
+module.exports = config;
+</code></pre>
+
+<p><code>.babelrc</code></p>
+
+<pre><code class="language-js">{
+    &quot;presets&quot;: [&quot;babe-preset-env&quot;]
+}
+</code></pre>
+
+<p>fake img src:<br/>
+<a href="http://lorempixel.com/400/400">http://lorempixel.com/400/400</a></p>
+
+<p>note:</p>
+
+<pre><code class="language-js">import &#39;./image_view&#39;; // execute codes in `image_view.js` directly
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Event.currentTarget and Event.target]]></title>
+    <link href="https://yucj.github.io/logMine/14932160992551.html"/>
+    <updated>2017-04-26T22:14:59+08:00</updated>
+    <id>https://yucj.github.io/logMine/14932160992551.html</id>
+    <content type="html"><![CDATA[
+<pre><code class="language-javascript">_handleBtnClicked(event) {
+    event.preventDefault()
+    console.log(&#39;currentTarget&#39;, event.currentTarget)
+    console.log(&#39;target&#39;, event.target)
+    const progressType = `type${event.currentTarget.dataset.typeid}`
+    this.props.switchDisplayed(progressType)
+  }
+
+&lt;Button
+   key={value.ID}
+   name={value.ID}
+   data-typeid={value.ID}
+   checked={value.displayed}
+   onClick={this._handleBtnClicked}
+&gt;
+   {value.title}
+   &lt;div&gt;{ICONS[`type${value.ID}`]}&lt;/div&gt;
+&lt;/Button&gt;
+</code></pre>
+
+<p>svg 底下超多層<br/>
+用event.target是抓到實際click到的DOM<br/>
+用event.currentTarget是抓到設監聽器的DOM</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tagged Template Literals (An ES6 Feature)]]></title>
+    <link href="https://yucj.github.io/logMine/14913887647492.html"/>
+    <updated>2017-04-05T18:39:24+08:00</updated>
+    <id>https://yucj.github.io/logMine/14913887647492.html</id>
+    <content type="html"><![CDATA[
+<p><a href="http://mxstbr.blog/2016/11/styled-components-magic-explained/">The magic behind styled-components</a><br/>
+<a href="https://github.com/styled-components/styled-components/blob/master/docs/tagged-template-literals.md">ES6 Tagged Template Literals</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ES5 Constructor Functions v.s. ES6 Class]]></title>
+    <link href="https://yucj.github.io/logMine/javascript-ES6-class.html"/>
+    <updated>2017-03-16T20:09:45+08:00</updated>
+    <id>https://yucj.github.io/logMine/javascript-ES6-class.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為<a href="http://es6.ruanyifeng.com/#docs/class">阮一峰・ECMAScript 6 入門：Class</a>的筆記</p>
+</blockquote>
+
+<ul>
+<li>
+<a href="#toc_0">general</a>
+</li>
+<li>
+<a href="#toc_1">constructor</a>
+</li>
+<li>
+<a href="#toc_2">prototype</a>
+<ul>
+<li>
+<a href="#toc_3">Methods is saved in instance&#39;s <code>__proto__</code> not instance itself</a>
+</li>
+<li>
+<a href="#toc_4">enumerable</a>
+</li>
+<li>
+<a href="#toc_5">Mutate the <code>__proto__</code> via instance</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">the constructor function</a>
+<ul>
+<li>
+<a href="#toc_7">Class as expression</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">Private Methods</a>
+<ul>
+<li>
+<a href="#toc_9">Naming with prefix <code>_</code> for distinguish</a>
+</li>
+<li>
+<a href="#toc_10">Declare methods outside the block</a>
+</li>
+<li>
+<a href="#toc_11">Use Symbol as name of method</a>
+</li>
+<li>
+<a href="#toc_12">Maybe in ES7</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13"><code>this</code> in Methods</a>
+</li>
+<li>
+<a href="#toc_14">繼承</a>
+<ul>
+<li>
+<a href="#toc_15">super</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_16">static 靜態方法</a>
+</li>
+<li>
+<a href="#toc_17">不能獨立使用、必須繼承後才能使用的 class</a>
+</li>
+<li>
+<a href="#toc_18">待研究</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">general</h2>
+
+<ul>
+<li>Class不存在變量提升（hoist），這一點與ES5完全不同。</li>
+<li>類和模塊的內部，默認就是嚴格模式，所以不需要使用use strict指定運行模式。只要你的代碼寫在類或模塊之中，就只有嚴格模式可用。</li>
+<li>Class的 name屬性總是返回緊跟在class關鍵字後面的類名。</li>
+</ul>
+
+<h2 id="toc_1">constructor</h2>
+
+<ul>
+<li><p>透過 new 命令生成 instance object 時，是調用 <code>constructor</code> 方法。</p></li>
+<li><p>一個 class 必須有 <code>constructor</code> 方法，如果沒定義，一個空的 <code>constructor</code> 方法會被默認添加。</p></li>
+<li><p><code>constructor</code> 方法預設 return instance object（即 <code>this</code>），可以指定返回任意的 object。</p></li>
+<li><p>用 <code>class</code> 生成的構造函數，不使用 <code>new</code> 是沒法調用的，會報錯。這是它跟普通構造函數的一個主要區別，後者不用 <code>new</code> 也可以執行。</p></li>
+</ul>
+
+<pre><code class="language-js">/* ES5 */
+
+function Point(x, y) {
+  this.x = x
+  this.y = y
+}
+
+/* ES6 */
+
+class Point {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+    // return `this` by default
+  }
+}
+
+/* Create Instance */
+
+var point = new Point(3,2)
+point.x === 3 // true
+point.y === 2 // true
+</code></pre>
+
+<h2 id="toc_2">prototype</h2>
+
+<pre><code class="language-js">/* ES5 */
+
+Point.prototype.printLocation = function () {
+  console.log(&#39;The point is at (&#39;+this.x+&#39;,&#39;+this.y+&#39;).&#39;)
+}
+
+/* ES6 */
+
+class Point {
+  printLocation() {
+    console.log(`The point is at (${this.x},${this.y}).`)
+  }
+}
+
+/* Invoke Methods of Instance */
+
+var point = new Point(3,2)
+point.printLocation() // &quot;The point is at (3,2).&quot;
+
+/* Assign Methods to Class */
+
+Object.assign(Point.prototype, {
+  toString(){},
+  toValue(){}
+});
+</code></pre>
+
+<h3 id="toc_3">Methods is saved in instance&#39;s <code>__proto__</code> not instance itself</h3>
+
+<ul>
+<li>與ES5一樣，實例的屬性除非顯式定義在其本身（即定義在this對象上），否則都是定義在原型上（即定義在class上）。</li>
+</ul>
+
+<pre><code class="language-js">/* ES5 */
+
+var Point = function (x, y) {
+  // ...
+};
+
+Point.prototype.printLocation = function() {
+  // ...
+};
+
+var point = new Point(3,2)
+
+point.hasOwnProperty(&#39;printLocation&#39;) // false
+point.__proto__.hasOwnProperty(&#39;printLocation&#39;) // true
+
+/* ES6 */
+
+class Point {
+  constructor(x, y) {
+    // ...
+  }
+  printLocation() {
+    // ...
+  }
+}
+
+var point = new Point(3,2)
+
+point.hasOwnProperty(&#39;printLocation&#39;) // false
+point.__proto__.hasOwnProperty(&#39;printLocation&#39;) // true
+
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E7%B1%BB%E7%9A%84prototype%E5%B1%9E%E6%80%A7%E5%92%8C__proto__%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#类的prototype属性和__proto__属性</a></p>
+
+<ul>
+<li>大多數瀏覽器的ES5實現之中，每一個對象都有__proto__屬性，指向對應的構造函數的prototype屬性。Class作為構造函數的語法糖，同時有prototype屬性和__proto__屬性，因此同時存在兩條繼承鏈。</li>
+</ul>
+
+<p>（1）子類的__proto__屬性，表示構造函數的繼承，總是指向父類：作為一個對象，子類（B）的原型（__proto__屬性）是父類（A）</p>
+
+<p>（2）子類prototype屬性的__proto__屬性，表示方法的繼承，總是指向父類的prototype屬性。：作為一個構造函數，子類（B）的原型（prototype屬性）是父類的實例。</p>
+
+<h3 id="toc_4">enumerable</h3>
+
+<ul>
+<li>類的內部所有定義的方法，都是不可枚舉的（non-enumerable）。這一點與ES5的行為不一致。</li>
+</ul>
+
+<pre><code class="language-js">/* Methods added to prototype is enumerable in ES5  */
+
+var Point = function (x, y) {
+  // ...
+};
+
+Point.prototype.printLocation = function() {
+  // ...
+};
+
+var point = new Point(3,2)
+
+Object.keys(Point.prototype)
+// [&quot;printLocation&quot;]
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;printLocation&quot;]
+
+/* All Methods are Non-enumerable in ES6 Class */
+
+class Point {
+  constructor(x, y) {
+    // ...
+  }
+  printLocation() {
+    // ...
+  }
+}
+
+var point = new Point(3,2)
+
+Object.keys(Point.prototype)
+// []
+Object.getOwnPropertyNames(Point.prototype)
+// [&quot;constructor&quot;,&quot;printLocation&quot;]
+</code></pre>
+
+<h3 id="toc_5">Mutate the <code>__proto__</code> via instance</h3>
+
+<ul>
+<li>與ES5一樣，類的所有實例共享一個原型對象。</li>
+<li>使用實例的__proto__屬性改寫原型，必須相當謹慎，不推薦使用，因為這會改變Class的原始定義，影響到所有實例。</li>
+</ul>
+
+<pre><code class="language-js">var p1 = new Point(2,3);
+var p2 = new Point(3,2);
+
+p1.__proto__.printName = function () { return &#39;Oops&#39; };
+
+p1.printName() // &quot;Oops&quot;
+p2.printName() // &quot;Oops&quot;
+
+var p3 = new Point(4,2);
+p3.printName() // &quot;Oops&quot;
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E5%AE%9E%E4%BE%8B%E7%9A%84__proto__%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#实例的__proto__属性</a></p>
+
+<h2 id="toc_6">the constructor function</h2>
+
+<pre><code class="language-js">class Point {
+  // ...
+}
+
+typeof Point // &quot;function&quot;
+Point === Point.prototype.constructor // true
+
+var p = new Point(3,2)
+p.constructor === Point.prototype.constructor // true
+</code></pre>
+
+<h3 id="toc_7">Class as expression</h3>
+
+<ul>
+<li>與函數一樣，類也可以使用表達式的形式定義。</li>
+<li>下面代碼使用表達式定義了一個類。需要注意的是，這個類的名字是MyClass而不是Me，Me只在Class的內部代碼可用，指代當前類。</li>
+<li>採用Class表達式，可以寫出立即執行的Class。</li>
+</ul>
+
+<pre><code class="language-js">const MyClass = class Me {
+  getClassName() {
+    return Me.name;
+  }
+}
+
+let inst = new MyClass();
+inst.getClassName() // Me
+Me.name // ReferenceError: Me is not defined
+</code></pre>
+
+<h2 id="toc_8">Private Methods</h2>
+
+<ul>
+<li>私有方法是常見需求，但 ES6 不提供，只能通過變通方法模擬實現。</li>
+</ul>
+
+<h3 id="toc_9">Naming with prefix <code>_</code> for distinguish</h3>
+
+<ul>
+<li>_bar方法前面的下劃線，表示這是一個只限於內部使用的私有方法。但是，這種命名是不保險的，在類的外部，還是可以調用到這個方法。</li>
+</ul>
+
+<pre><code class="language-js">class Widget {
+
+  // 公有方法
+  foo (baz) {
+    this._bar(baz);
+  }
+
+  // 私有方法
+  _bar(baz) {
+    return this.snaf = baz;
+  }
+
+  // ...
+}
+</code></pre>
+
+<h3 id="toc_10">Declare methods outside the block</h3>
+
+<pre><code class="language-js">class Widget {
+  foo (baz) {
+    bar.call(this, baz);
+  }
+
+  // ...
+}
+
+function bar(baz) {
+  return this.snaf = baz;
+}
+</code></pre>
+
+<h3 id="toc_11">Use Symbol as name of method</h3>
+
+<ul>
+<li>還有一種方法是利用Symbol值的唯一性，將私有方法的名字命名為一個Symbol值。
+<a href="http://es6.ruanyifeng.com/#docs/class#%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95">http://es6.ruanyifeng.com/#docs/class#私有方法</a></li>
+</ul>
+
+<h3 id="toc_12">Maybe in ES7</h3>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E7%B1%BB%E7%9A%84%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#类的私有属性</a></p>
+
+<h2 id="toc_13"><code>this</code> in Methods</h2>
+
+<ul>
+<li>下面程式碼 <code>printName</code> 方法中的 <code>this</code> ，默認指向 <code>Person</code> 的 instance。但是，如果將這個方法提取出來單獨使用，<code>this</code> 會指向該方法運行時所在的環境，因為找不到 <code>print</code> 方法而導致報錯。</li>
+</ul>
+
+<pre><code class="language-js">class Person {
+  printName(name = &#39;dude&#39;) {
+    this.print(`Hello ${name}`)
+  }
+
+  print(text) {
+    console.log(text)
+  }
+}
+
+const person = new Person
+const printName = person.printName
+printName() // TypeError: Cannot read property &#39;print&#39; of undefined
+</code></pre>
+
+<p>解法一：在 <code>constructor</code> 方法中綁定 <code>this</code></p>
+
+<pre><code class="language-js">class Person {
+  constructor() {
+    this.printName = this.printName.bind(this);
+  }
+
+  // ...
+}
+</code></pre>
+
+<p>解法二：用箭頭函數</p>
+
+<pre><code class="language-js">class Person {
+  constructor() {
+    this.printName = (name = &#39;dude&#39;) =&gt; {
+      this.print(`Hello ${name}`);
+    };
+  }
+
+  // ...
+}
+</code></pre>
+
+<p>解法三：用 <code>Proxy</code>，獲取方法的時候，自動綁定 <code>this</code>。</p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#this%E7%9A%84%E6%8C%87%E5%90%91">http://es6.ruanyifeng.com/#docs/class#this的指向</a></p>
+
+<h2 id="toc_14">繼承</h2>
+
+<ul>
+<li><p>Class之間可以通過extends關鍵字實現繼承，這比ES5的通過修改原型鏈實現繼承，要清晰和方便很多。</p></li>
+<li><p>ES5的繼承，實質是先創造子類的實例對象this，然後再將父類的方法添加到this上面（Parent.apply(this)）。ES6的繼承機制完全不同，實質是先創造父類的實例對象this（所以必須先調用super方法），然後再用子類的構造函數修改this。</p></li>
+<li><p>子類必須在constructor方法中調用super方法，否則新建實例時會報錯。這是因為子類沒有自己的this對象，而是繼承父類的this對象，然後對其進行加工。如果不調用super方法，子類就得不到this對象。</p></li>
+<li><p>如果子類沒有定義constructor方法，這個方法會被默認添加，並在其中調用super方法。也就是說，不管有沒有顯式定義，任何一個子類都有在其中調用super方法的constructor方法。</p></li>
+<li><p>在子類的構造函數中，只有調用super之後，才可以使用this關鍵字，否則會報錯。這是因為子類實例的構建，是基於對父類實例加工，只有super方法才能返回父類實例。</p></li>
+</ul>
+
+<pre><code class="language-js">class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y); // 調用父類的constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + &#39; &#39; + super.toString(); // 調用父類的toString()
+  }
+}
+</code></pre>
+
+<h3 id="toc_15">super</h3>
+
+<ol>
+<li><p>作為函數調用：</p></li>
+</ol>
+
+<ul>
+<li><p>super雖然代表了父類A的構造函數，但是返回的是子類B的實例，即super內部的this指的是B，因此super()在這裡相當於A.prototype.constructor.call(this)。</p></li>
+<li><p>作為函數時，super()只能用在子類的構造函數之中，用在其他地方就會報錯。</p></li>
+</ul>
+
+<pre><code class="language-js">class A {}
+
+class B extends A {
+  constructor() {
+    super(); // A.prototype.constructor.call(this)
+  }
+}
+</code></pre>
+
+<ol>
+<li><p>作為物件使用</p></li>
+</ol>
+
+<ul>
+<li>super指向A.prototype，所以super.p()就相當於A.prototype.p()</li>
+<li>由於super指向父類的原型對象，所以定義在父類實例上的方法或屬性，是無法通過super調用的。</li>
+<li>ES6 規定，通過super調用父類的方法時，super會綁定子類的this。也就是說，實際上執行的是super.xxxx.call(this)也就是A.prototype.xxxx.call(this)。</li>
+<li>由於綁定子類的this，所以如果通過super對某個屬性賦值，這時super就是this，賦值的屬性會變成子類實例的屬性。</li>
+<li>super.x賦值為3，這時等同於對this.x賦值為3。而當讀取super.x的時候，讀的是A.prototype.x，所以返回undefined。</li>
+</ul>
+
+<pre><code class="language-js">class A {
+  constructor() {
+    this.x = 1;
+  }
+}
+
+class B extends A {
+  constructor() {
+    super();
+    this.x = 2;
+    super.x = 3;
+    console.log(super.x); // undefined
+    console.log(this.x); // 3
+  }
+}
+
+let b = new B();
+</code></pre>
+
+<h2 id="toc_16">static 靜態方法</h2>
+
+<ul>
+<li>可以在 class 上調用（<code>Point.method()</code>），不能在 instance 上調用（<code>point.method()</code>）</li>
+<li>父 class 的靜態方法可以被子 class 繼承，也可以在子 class 中的 super object 上調用</li>
+</ul>
+
+<h2 id="toc_17">不能獨立使用、必須繼承後才能使用的 class</h2>
+
+<pre><code class="language-js">class Shape {
+  constructor() {
+    if (new.target === Shape) {
+      throw new Error(&#39;本類不能實例化&#39;);
+    }
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(length, width) {
+    super();
+    // ...
+  }
+}
+
+var x = new Shape();  // 報錯
+var y = new Rectangle(3, 4);  // 正確
+</code></pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#new-target%E5%B1%9E%E6%80%A7">http://es6.ruanyifeng.com/#docs/class#new-target属性</a></p>
+
+<h2 id="toc_18">待研究</h2>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#%E5%8E%9F%E7%94%9F%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%A7%E6%89%BF">http://es6.ruanyifeng.com/#docs/class#原生构造函数的继承</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Class%E7%9A%84%E5%8F%96%E5%80%BC%E5%87%BD%E6%95%B0%EF%BC%88getter%EF%BC%89%E5%92%8C%E5%AD%98%E5%80%BC%E5%87%BD%E6%95%B0%EF%BC%88setter%EF%BC%89">http://es6.ruanyifeng.com/#docs/class#Class的取值函数（getter）和存值函数（setter）</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Class-%E7%9A%84-Generator-%E6%96%B9%E6%B3%95">http://es6.ruanyifeng.com/#docs/class#Class-的-Generator-方法</a></p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/class#Mixin%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0">http://es6.ruanyifeng.com/#docs/class#Mixin模式的实现</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google Cloud Platform Introduction]]></title>
+    <link href="https://yucj.github.io/logMine/14846441091612.html"/>
+    <updated>2017-01-17T17:08:29+08:00</updated>
+    <id>https://yucj.github.io/logMine/14846441091612.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">Interacting with Google Cloud Platform:</h2>
+
+<p>三種方法：</p>
+
+<ul>
+<li><p><strong>Cloud Console (web)</strong></p></li>
+<li><p><strong>Cloud SDK/Cloud Shell (cli)</strong><br/>
+Comment line inter face （可以在 web 和 app 上的 cloud shell 使用）:<br/>
+<a href="https://codelabs.developers.google.com/">https://codelabs.developers.google.com/</a><br/>
+<a href="https://hub.docker.com/r/google/cloud-sdk/">https://hub.docker.com/r/google/cloud-sdk/</a></p></li>
+<li><p><strong>REST based API</strong><br/>
+相關工具：<br/>
+APIs Explorer：<br/>
+可以查 google 的各種 api<br/>
+<a href="https://developers.google.com/apis-explorer">https://developers.google.com/apis-explorer</a><br/>
+OAuth 2.0 Playground：<br/>
+可以做 google 服務的認證 token<br/>
+<a href="https://developers.google.com/oauthplayground/">https://developers.google.com/oauthplayground/</a></p></li>
+</ul>
+
+<h2 id="toc_1">Google App Engine</h2>
+
+<p>有分成 standard 和 flexible</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Level 4: Module in JavaScript（JavaScript Best Practice @ Code School）]]></title>
+    <link href="https://yucj.github.io/logMine/14835419695141.html"/>
+    <updated>2017-01-04T22:59:29+08:00</updated>
+    <id>https://yucj.github.io/logMine/14835419695141.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Simulate name space by JavaScript objects</a>
+</li>
+<li>
+<a href="#toc_1">Anynomous closures</a>
+</li>
+<li>
+<a href="#toc_2">Global import</a>
+</li>
+<li>
+<a href="#toc_3">Augmentation</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<p>課程中教的主要是最原始的模組寫法，但其實透過擴充或 ES2015 已經有更方便的模組處理方式，不過為了拿徽章還是把他上完了。XD</p>
+
+<p>想瞭解 JavaScript 模組化新的實踐方式詳見以下連結：</p>
+
+<ul>
+<li><p>JavaScript 模块化七日谈<br/>
+<a href="https://huangxuan.me/2015/07/09/js-module-7day/">https://huangxuan.me/2015/07/09/js-module-7day/</a></p></li>
+<li><p>Module（ECMAScript 6 入门）<br/>
+<a href="http://es6.ruanyifeng.com/#docs/module">http://es6.ruanyifeng.com/#docs/module</a></p></li>
+<li><p>Module（Exploring ES6）<br/>
+<a href="http://exploringjs.com/es6/ch_modules.html">http://exploringjs.com/es6/ch_modules.html</a></p></li>
+</ul>
+
+<p>想瞭解原始寫法也可參考：</p>
+
+<ul>
+<li>深入了解 JavaScript 模組化模式
+<a href="http://easonlin.logdown.com/posts/74228-javascript-module-pattern-in-depth">http://easonlin.logdown.com/posts/74228-javascript-module-pattern-in-depth</a></li>
+</ul>
+
+<h2 id="toc_0">Simulate name space by JavaScript objects</h2>
+
+<blockquote>
+<p>An application that has multiple files which contain variables with the same name will experience a loss of data in the event of a(n) <strong>overwrite</strong>, which erases old data in favor of new (and perhaps wrong) data. This occurs specifically when these variables are declared <strong>globally</strong> in multiple files. This error may not be found until <strong>run-time</strong>.</p>
+</blockquote>
+
+<p><strong>Solution: simulate name space by JavaScript objects</strong></p>
+
+<p>global variables =&gt; object&#39;s properties<br/>
+global function =&gt; object&#39;s methods</p>
+
+<pre><code class="language-js">var CAVESOFCLARITY = {
+  stalactites: 4235,
+  stalagmites: 3924,
+  bats: 345,
+  treasureChests: 3,
+  openChest: function() {
+    this.treasureChests--;
+    alert(&#39;DA DADADA DAAAAAAA!&#39;);
+  }
+};
+</code></pre>
+
+<h2 id="toc_1">Anynomous closures</h2>
+
+<blockquote>
+<p>Use <strong>closure</strong> to cause some properties to be private, bound only to a surrounding function&#39;s local scope, and some properties to be public, accessible by all holders of the namespace.</p>
+
+<p><strong>Private</strong> properties are created in the local scope of the function expression (IIFE).</p>
+
+<p><strong>Public</strong> properties are built within the object which is then return to become the namespace.</p>
+
+<p>Access to private data is thus possible only because of closure within the larger module.</p>
+</blockquote>
+
+<pre><code class="language-js">var CAVESOFCLARITY = (function() {
+  var treasureChests = 3; //&lt;= private
+  var bats: 345; // &lt;= cannot retrieve it
+  return {
+    stalactites: 4235,
+    stalagmites: 3924,
+    openChest: function() {
+      treasureChests--;
+      alert(&#39;DA DADADA DAAAAAAA!&#39;);
+    }
+  };
+})();
+</code></pre>
+
+<p><strong>Caution</strong>: If the data is never referenced through the public method, we have no way to retrieve it.</p>
+
+<pre><code class="language-js">var CAVESOFCLARITY = (function() {
+  var treasureChests = 3; //&lt;= private
+  var bats: 345; // &lt;= private
+  return {
+    stalactites: 4235,
+    stalagmites: 3924,
+    openChest: function() {
+      treasureChests--;
+      alert(&#39;DA DADADA DAAAAAAA!&#39;);
+    },
+    getBats: function() {
+      return bats;
+    }  
+  };
+})();
+</code></pre>
+
+<h2 id="toc_2">Global import</h2>
+
+<p>直接引用 global 變數有兩個問題：</p>
+
+<ol>
+<li><p>When non-local var are referenced in a module, the entire length of the scope chain is checked.</p></li>
+<li><p>Lengthy namespaces mean that global variables have unclear scope, leading to code that is tough to manage.</p></li>
+</ol>
+
+<p>可能會很難找到這個變數哪裡來的，或是錯誤地假設這是一個區域變數而做操作影響到全域變數。</p>
+
+<p>Solution: Global Import</p>
+
+<blockquote>
+<p>Your <strong>import</strong> ensures clarity of scope within a module.</p>
+
+<p>By using a <strong>parameter</strong>, you protect the global data that might have been overwritten.</p>
+
+<p>All imported data becomes locally scoped to the anonymous function, to be used in closure.</p>
+
+<p>Thus, when compared with searching the entire scope chain, imports are both clearer and faster.</p>
+</blockquote>
+
+<p>Example:</p>
+
+<pre><code class="language-js">var LEXICALLAKE = (function(answer, foundShore) {
+
+  var depth = 400;
+  var fish = 1200;
+  var unknownSleepers = 3;
+    
+  return {
+    getFish: function() { return fish; },
+    getDepth: function() { return depth; },
+    getSleepers: function() { return unknownSleepers; },
+    awakenSleeper: function() {
+      alert(&#39;Far below, in the deep, something awakens. Row faster.&#39;);
+    },
+    summonBoat: function() {
+      if (answer === &#39;agnostic&#39;) {
+        alert(&#39;The boat fades into view.&#39;);
+      }
+      else {
+        alert(&#39;...the lake is silent.&#39;);
+      }
+    },
+    stopSleeper: function() {
+      if (foundShore === true){
+        alert(&#39;That which has awoken shall now return to slumber.&#39;);
+      } else {
+        alert(&#39;A Sleeper cometh. Abandon hope.&#39;);
+      }
+    }
+  };
+})(explorerAnswer, madeItAcross);
+</code></pre>
+
+<h2 id="toc_3">Augmentation</h2>
+
+<p>Augment:  Adding or changing properties in a module after the module has already been built</p>
+
+<blockquote>
+<p>In simple augmentation, the module file and the augmentation file <strong>do not share their private state</strong>.</p>
+
+<p>Augmented module properties may only access the private data from their file&#39;s closure.</p>
+
+<p>Private data from the original closure will not be lost, and will be accessible to all original properties that referenced it.</p>
+</blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School）]]></title>
+    <link href="https://yucj.github.io/logMine/Caution-in-Javascript.html"/>
+    <updated>2017-01-02T15:46:57+08:00</updated>
+    <id>https://yucj.github.io/logMine/Caution-in-Javascript.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Comparasions</a>
+</li>
+<li>
+<a href="#toc_1">Handling exceptions (run-time errors)</a>
+</li>
+<li>
+<a href="#toc_2">Avoid sucky things in JavaScript</a>
+<ul>
+<li>
+<a href="#toc_3">Use variable instead of <code>with</code></a>
+</li>
+<li>
+<a href="#toc_4">Use other things instead of <code>eval</code></a>
+</li>
+<li>
+<a href="#toc_5">Bracket your code</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">Number</a>
+<ul>
+<li>
+<a href="#toc_7">Floating point arithmetic</a>
+<ul>
+<li>
+<a href="#toc_8">Solution: <code>toFix()</code> &amp; <code>parseFloat()</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">Testing for number presence before operations</a>
+<ul>
+<li>
+<a href="#toc_10">Use <code>NaN</code> (not a number) for testing? Something weird.</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">If we want to check if a given value is a number, we need a double check:</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Comparasions</h2>
+
+<ul>
+<li>Use <code>===</code> instead of <code>==</code></li>
+<li><code>instanceof</code></li>
+</ul>
+
+<h2 id="toc_1">Handling exceptions (run-time errors)</h2>
+
+<ul>
+<li><strong>Syntax error</strong>: Easy to check before compiling</li>
+<li><strong>Run-time error</strong>: Need to prepare handling function</li>
+</ul>
+
+<pre><code class="language-js">try {
+    /* ...trying somthing... */
+    if (someVar === undefined) {
+        throw new ReferenceError()
+    }
+    if ((someVar instanceof Array) === false){
+        throw new TypeError()
+    }
+    if (/* ...custom error occur... */) {
+       throw new Error(&#39;Error message&#39;)
+    }
+} catch(error) {
+    /* ...handling run-time error... */
+    if (error instanceof ReferenceError) {
+        /* ...handling reference error... */
+    }
+    if (error instanceof TypeError) {
+        /* ...handling type error... */
+    }
+} finally {
+    /* Doing things whether try is success or failed */
+}
+</code></pre>
+
+<p>Feeding Birds Example:</p>
+
+<pre><code class="language-js">// Pack of goods
+var pack = {
+  foodPouch: [&#39;carrot&#39;, &#39;mystery meat&#39;, &#39;apple&#39;, 42],
+  addFood: function(foodItem) {
+    this.foodPouch = this.foodPouch || [];
+    this.foodPouch.push(foodItem);
+  },
+  feedBird: function(bird) {
+    var food = bird.birdFood,
+        foodIndex = this.foodPouch.indexOf(food);
+    // If the exact food we want is not in the array,
+    // check if the type of food is there.
+    if (foodIndex === -1) {
+      throw new ReferenceError(&#39;Bird food given is not available.&#39;);      
+    }
+    bird.fed = true;
+  }
+};
+
+// Parent Bird Class
+function Bird() {}
+
+// SyntaxBird Inherits From Parent Bird
+function SyntaxBird() {}
+SyntaxBird.prototype = Object.create(Bird.prototype);
+
+var LoopLover = function(birdFood) {
+  this.birdFood = birdFood;
+  this.fed = false;
+};
+LoopLover.prototype = Object.create(SyntaxBird.prototype);
+
+// DatatypeBird Inherits From Parent Bird
+function DatatypeBird() {}
+DatatypeBird.prototype = Object.create(Bird.prototype);
+
+var NumberNommer = function(birdFood){
+  this.birdFood = birdFood;
+};
+NumberNommer.prototype = Object.create(DatatypeBird.prototype);
+
+// bird variables below inherit from above prototype chain
+var numba = new NumberNommer(&#39;42&#39;);
+var loopy = new LoopLover(&#39;loops&#39;);
+var tryCatcher = new LoopLover(&#39;la-de&#39;);
+
+// array of all the inhabitants
+var duneInhabitants = [numba, loopy, tryCatcher];
+
+// loop through duneInhabitants and if Bird call feedBird()
+for (var i = 0; i &lt; duneInhabitants.length; i++) {
+  try {
+    pack.feedBird(duneInhabitants[i]);
+  } catch(error) {
+    console.log(duneInhabitants[i]+&quot; was not fed.&quot;);
+  }
+}
+</code></pre>
+
+<h2 id="toc_2">Avoid sucky things in JavaScript</h2>
+
+<h3 id="toc_3">Use variable instead of <code>with</code></h3>
+
+<pre><code class="language-js">with(object){
+    /* Doing things within object */
+}
+</code></pre>
+
+<p>Limit <strong>redundancy</strong> BUT make us unsure about <strong>scope</strong>:</p>
+
+<ul>
+<li> Declaring a function in the <code>with(){}</code> will not make it a method (as we expect). It will become a global function.</li>
+<li>For using <code>with(){}</code> to avoid typing deep access repeatedly, it&#39;s hard to recognize variables in <code>with(){}</code> are property or global variable.</li>
+</ul>
+
+<p>So, =&gt; <strong>Use variables to cache values of an object.</strong></p>
+
+<h3 id="toc_4">Use other things instead of <code>eval</code></h3>
+
+<ul>
+<li>Risk of injection</li>
+<li>Cause unpredictable syntax error</li>
+</ul>
+
+<p>Substitutes: Array, Object, <code>JSON.parse()</code>...</p>
+
+<h3 id="toc_5">Bracket your code</h3>
+
+<p>or the compiler may make mistake when a block contains multiple lines.</p>
+
+<h2 id="toc_6">Number</h2>
+
+<h3 id="toc_7">Floating point arithmetic</h3>
+
+<p>Javascript use binary floating point values to handle all of its decimal based operations</p>
+
+<p>See:</p>
+
+<p>What Every JavaScript Developer Should Know About Floating Point Numbers</p>
+
+<h4 id="toc_8">Solution: <code>toFix()</code> &amp; <code>parseFloat()</code></h4>
+
+<pre><code class="language-js">var num = 0.1 + 0.2;
+console.log(num.toFix(1));
+&gt; &quot;0.3&quot; // a string
+
+console.log( parseFloat(num.toFix(1)) );
+&gt; 0.3   // a number
+</code></pre>
+
+<p>A <code>parseFloat()</code> looks for the termination of numbers after a decimal:</p>
+
+<pre><code class="language-js">parseFloat(&quot;3.28084&quot;)
+&gt; 3.28084
+
+parseFloat(&quot;3.28084 meters in a foot&quot;)
+&gt; 3.28084
+</code></pre>
+
+<p>A <code>parseInt()</code> will trim off any decimal point without rounding:</p>
+
+<pre><code class="language-js">parseInt(&quot;88&quot;)
+&gt; 88
+
+parseInt(&quot;88 keys on a piano&quot;)
+&gt; 88
+
+parseInt(&quot;9.85&quot;)
+&gt; 9  // not 10
+
+parseInt(&quot;There are 88 keys on a piano&quot;)
+&gt; NaN
+</code></pre>
+
+<p><code>parseInt()</code> can accept octal, hexadecimal, and decimal values:</p>
+
+<pre><code class="language-js">var userAge = &quot;021&quot;;
+
+//ES5
+parseInt(userAge); //=&gt; 21
+
+//older systems
+parseInt(userAge); //=&gt; 17
+</code></pre>
+
+<p>So use the second parameter <strong>radix value</strong> (2 to 36):</p>
+
+<pre><code class="language-js">var userAge = &quot;021&quot;;
+
+// all environments
+parseInt(userAge, 10); //=&gt; 21
+</code></pre>
+
+<h3 id="toc_9">Testing for number presence before operations</h3>
+
+<h4 id="toc_10">Use <code>NaN</code> (not a number) for testing? Something weird.</h4>
+
+<pre><code class="language-js">typeof NaN;
+&gt; &quot;number&quot;  // WTF?
+
+NaN === NaN
+&gt; false     // Huh?
+
+isNaN(&quot;42&quot;)
+&gt; false      // &quot;42&quot; is a string, not a number, but not NaN....#^I$*
+</code></pre>
+
+<p>For why <code>NaN === NaN</code> returns <code>false</code> and else, see IEEE-754 standard:</p>
+
+<blockquote>
+<p>Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.</p>
+
+<p>(Clause 5.11, paragraph 2 of the IEEE-754-2008)<br/>
+<a href="http://stackoverflow.com/questions/1565164/what-is-the-rationale-for-all-comparisons-returning-false-for-ieee754-nan-values">http://stackoverflow.com/questions/1565164/what-is-the-rationale-for-all-comparisons-returning-false-for-ieee754-nan-values</a></p>
+</blockquote>
+
+<h2 id="toc_11">If we want to check if a given value is a number, we need a double check:</h2>
+
+<pre><code class="language-js">function isThisActuallyANumberDontLie( data ) {
+    return ( typeof data === &quot;number&quot; &amp;&amp; !isNaN(data) );
+
+isThisActuallyANumberDontLie(640);
+&gt; true
+
+isThisActuallyANumberDontLie(&quot;640&quot;);
+&gt; false
+
+isThisActuallyANumberDontLie(NaN);
+&gt; false
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Level 2: 寫出效率較好的 JavaScript（JavaScript Best Practice @ Code School）]]></title>
+    <link href="https://yucj.github.io/logMine/Improve-Performance-in-JavaScript.html"/>
+    <updated>2017-01-02T13:52:19+08:00</updated>
+    <id>https://yucj.github.io/logMine/Improve-Performance-in-JavaScript.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Loop optimization</a>
+<ul>
+<li>
+<a href="#toc_1">Cache the property to avoid repetitive access at depth:</a>
+</li>
+<li>
+<a href="#toc_2">Stick with <code>for-loops</code> instead of <code>for-in loops</code> when your goal is only to reach every index.</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">Script execution in HTML</a>
+</li>
+<li>
+<a href="#toc_4">Use a <code>prototype</code> for shared stuff for object constructor</a>
+</li>
+<li>
+<a href="#toc_5">Use document <code>fragment</code> to insert additions all at once</a>
+<ul>
+<li>
+<a href="#toc_6">Declare variables as few times as possible</a>
+</li>
+<li>
+<a href="#toc_7">Use <code>join()</code> method instead of for-loop to merge an array into one jumbo string</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">Test the speed of your code</a>
+<ul>
+<li>
+<a href="#toc_9">console.test()</a>
+</li>
+<li>
+<a href="#toc_10">class test</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Loop optimization</h2>
+
+<h3 id="toc_1">Cache the property to avoid repetitive access at depth:</h3>
+
+<pre><code class="language-js">treasureChest = {
+    necklaces: [&#39;ruby&#39;, &#39;pear&#39;, &#39;sapphire&#39;, &#39;diamond&#39;]
+}
+
+function returnLoop() {
+  var list = treasureChest.necklaces;
+  for(var i=0, x = treasureChest.necklaces.length; i&lt;x : i++) {
+    console.log(list[i])
+  }
+  // same as:
+  // var x = treasureChest.necklaces.length;
+  // for(var i=0; i&lt;x : i++) {
+  //    console.log(list[i])
+  // }
+}
+</code></pre>
+
+<h3 id="toc_2">Stick with <code>for-loops</code> instead of <code>for-in loops</code> when your goal is only to reach every index.</h3>
+
+<p>Methods we add to the prototype become “enumerable” just like indices</p>
+
+<h2 id="toc_3">Script execution in HTML</h2>
+
+<p><strong>Problems:</strong></p>
+
+<ul>
+<li>Loading huge script will block the page loading.</li>
+<li>Cannot manipulate DOM elements before they have been construct.</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+
+<ul>
+<li>Move <code>&lt;script&gt;</code> as low as possible.</li>
+<li>Add <code>async</code> attribute in <code>&lt;script&gt;</code> to prevent blocking.</li>
+</ul>
+
+<h2 id="toc_4">Use a <code>prototype</code> for shared stuff for object constructor</h2>
+
+<p>We don’t need to build all of these methods within every single object, which would use extra memory AND take longer to create.</p>
+
+<h2 id="toc_5">Use document <code>fragment</code> to insert additions all at once</h2>
+
+<p>Each new addition to the DOM causes document &quot;reflow&quot;</p>
+
+<p><strong>fragments</strong> are invisible containers that hold multiple DOM elements without being a node itself</p>
+
+<p>原始版，每次for-loop都reflow：</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;)
+var kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  var element = document.createElement(&quot;li&quot;)
+  element.appendChild(document.creatementTextNode(kotw[i])
+  list.appendChild(element)
+}
+</code></pre>
+
+<p>優化，只reflow一次：</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;)
+var kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+var fragment = document.createDocumentFragment() // &lt;=
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  var element = document.createElement(&quot;li&quot;)
+  element.appendChild(document.creatementTextNode(kotw[i])
+  fragment.appendChild(element) // &lt;=
+}
+list.appendChild(fragment)  // &lt;=
+</code></pre>
+
+<h3 id="toc_6">Declare variables as few times as possible</h3>
+
+<p>Each <code>var</code> keywords adds a look-up for the javascript parser that can be avoided with comma extensions.</p>
+
+<pre><code class="language-js">var list = document.getElementById(&quot;kotwList&quot;),
+    kotw = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],
+    fragment = document.createDocumentFragment(),
+    element  // &lt;=
+for (var i = 0, x = kotw.length; i&lt;x ; i++) {
+  element = document.createElement(&quot;li&quot;) //&lt;=
+  element.appendChild(document.creatementTextNode(kotw[i])
+  fragment.appendChild(element) 
+}
+list.appendChild(fragment)  
+</code></pre>
+
+<h3 id="toc_7">Use <code>join()</code> method instead of for-loop to merge an array into one jumbo string</h3>
+
+<p>is faster </p>
+
+<h2 id="toc_8">Test the speed of your code</h2>
+
+<h3 id="toc_9">console.test()</h3>
+
+<pre><code class="language-js">var newbs = [&quot;Tim&quot;, &quot;Tom&quot;, &quot;Sam&quot;]
+var knights = [ /*...tons of Knight objects...*/ ]
+console.time(&quot;Time for adding&quot; + newbs.length + &quot;Knights&quot;)
+for (var i = 0, x = newbs.length; i&lt;x; i++) {
+  var newGuy = new Knight(newbs[i])
+  knights.push(newGuy)
+}
+console.timeEnd(&quot;Time for adding&quot; + newbs.length + &quot;Knights&quot;)
+</code></pre>
+
+<h3 id="toc_10">class test</h3>
+
+<pre><code class="language-js">var SpeedTest = function(testImplement,testParams,repetitions) {
+  this.testImplement = testImplement;
+  this.testParams = testParams;
+  this.repetitions = repetitions || 10000;
+  this.average = 0;
+};
+
+SpeedTest.prototype = {
+  startTest: function() {
+    if (this.testImplement(this.testParams) === false) {
+      alert(&#39;Test failed with those parameters.&#39;);
+      return;
+    }
+    var beginTime, endTime, sumTimes = 0;
+    for (var i = 0, x = this.repetitions; i &lt; x; i++) {
+      beginTime = +new Date();
+      this.testImplement(this.testParams);
+      endTime = +new Date();
+      sumTimes += endTime - beginTime;
+    }
+    this.average = sumTimes / this.repetitions;
+    return console.log(&#39;Average execution across &#39; + this.repetitions + &#39;: &#39; + this.average);
+  }
+};
+
+var IP = [&#39;Nipping Global Variable&#39;, &#39;Sneaky Forin&#39;, &#39;Bulging Blocking Script&#39;],
+GH = [&#39;Switch Blocks&#39;, &#39;Pesky Gnat&#39;, &#39;Aiedra&#39;],
+inhabitants = [IP,GH];
+
+function populationGetter(popn) {
+  var list = &#39;&#39;;
+  for (var i = 0, x = popn.length; i &lt; x; i++) {
+    for (var j = 0; j &lt; popn[i].length; j++) {
+      list += (popn[i][j] + &#39;, &#39;);
+    }
+  }
+  return list;
+}
+
+populationGetter(inhabitants);
+var concatTest = new SpeedTest(populationGetter, inhabitants, 100000);
+concatTest.startTest();
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[實習筆記] React & Redux 中前端怎麼跟 server 要資料？]]></title>
+    <link href="https://yucj.github.io/logMine/14827416854836.html"/>
+    <updated>2016-12-26T16:41:25+08:00</updated>
+    <id>https://yucj.github.io/logMine/14827416854836.html</id>
+    <content type="html"><![CDATA[
+<p>這次做《報導者》網站的作者列表、作者資料頁、和作者搜尋的前端部分，練習到怎麼樣在 React + Redux 的架構中安排前端和後端的資料傳遞。寫個筆記記錄一下：</p>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">一、Client 到 Database 之間的路徑</a>
+</li>
+<li>
+<a href="#toc_1">二、怎麼在 React &amp; Redux 載入外部資料</a>
+<ul>
+<li>
+<a href="#toc_2">1. Promise object in ES2015 (ES6)</a>
+</li>
+<li>
+<a href="#toc_3">2. 在 Redux 架構中處理引進外部資料的非同步請求：</a>
+<ul>
+<li>
+<a href="#toc_4">What Is an Action Creator? What Do We Expect It to Do?</a>
+</li>
+<li>
+<a href="#toc_5">What is a Container?</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>程式原始碼放在 GitHub 上：</strong></p>
+
+<ul>
+<li>[Update] Add components of authors list, author page, and sponsor #453
+<a href="https://github.com/twreporter/twreporter-react/pull/453">https://github.com/twreporter/twreporter-react/pull/453</a></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">一、Client 到 Database 之間的路徑</h2>
+
+<p>從《報導者》網站的設計可以看到一般內容網站前後端資料間傳遞的架構安排，目前《報導者》網站儲存資料的地方有兩個，一個是在我們自己 server 的主要 database，另一個是這次作者相關頁面測試使用的 Algolia 服務（Algolia的資料是定時從我們的 database 上傳的）：</p>
+
+<p><strong>Client→API_1→(Redis cache)→API_2→DB 的情況：</strong></p>
+
+<pre><code class="language-sequence">Client-&gt;API_1: 傳request
+API_1-&gt;Redis: 檢查有沒有快取
+note left of Redis: 如果未有快取
+API_1-&gt;API_2: 叫資料
+API_2-&gt;Database: 跟資料庫叫資料
+Database-&gt;API_2: 回傳資料
+API_2-&gt;API_1: 回傳資料
+API_1-&gt;Redis: 儲存快取
+API_1-&gt;Client: 回傳資料
+</code></pre>
+
+<p>各節點說明如下：</p>
+
+<ul>
+<li><p><strong>Client</strong>：使用者在瀏覽器操作觸發需要取資料的事件後（例如點擊「載入更多」按鈕）透過 Redux 架構中的 actions 發 <code>fetch</code>（<code>isomorphic-fetch</code>，取代用 <code>XMLHttpRequest</code> 或 <code>$.ajax</code>）。</p></li>
+<li><p><strong>API_1</strong>：用 node.js 的 <code>Express</code> 寫成。測試路徑設定為<code>localhost:3030</code>，原始碼資料夾在 <code>~/api/</code>。</p></li>
+<li><p><strong>Redis</strong>：Redis 是一個用 key-value pair 架構儲存資料的資料庫，我們架在自己的機器上用來作為快取減少 call API 的次數：<code>key</code> 是 request url，<code>value</code> 是 response 的 json 字串。</p></li>
+<li><p><strong>API_2</strong>：用 Python 寫成的 rest-api server。測試路徑設定為<code>localhost:8080</code>，原始碼是在另一個 repo <code>tr-projects-rest</code>。</p></li>
+<li><p><strong>Database</strong>：使用 MongoDB 資料庫，測試路徑設定為<code>localhost:27017</code>，<code>db_name</code> 是 <code>keystone</code>。</p></li>
+</ul>
+
+<p>這次開發作者列表和作者頁面時，我們嘗試把資料放在 Algolia 搜尋服務上（我同事幫忙寫了一個 node 的程式和 cron job 會定時把 mongo 的資料更新上 Algolia）。這樣前端叫資料的架構變成如下圖：</p>
+
+<p><strong>Client→API_1→(Redis cache)→API_2→Algolia 的情況：</strong></p>
+
+<pre><code class="language-sequence">Client-&gt;API_1: 傳request
+API_1-&gt;Redis: 檢查有沒有快取
+note left of Redis: 如果未有快取
+API_1-&gt;Algolia_API: 傳搜尋 query
+Algolia_API-&gt;Algolia_Index: 跟資料庫叫資料
+Algolia_Index-&gt;Algolia_API: 回傳和排序過濾處理
+Algolia_API-&gt;API_1: 回傳搜尋結果
+API_1-&gt;Redis: 儲存快取
+API_1-&gt;Client: 回傳資料
+</code></pre>
+
+<p><strong>程式怎麼判斷要跟哪邊要資料？</strong></p>
+
+<p>報導者網站程式的設計是，呼叫 <code>API_1</code> 時，網址 <code>localhost:3030/actionName?xxx=ooo</code> 的 actionName 會有其相對應的 module，在不同的 module 裡面決定是要呼叫 <code>Algolia_API</code> 還是 <code>API_2</code> 要資料。</p>
+
+<h2 id="toc_1">二、怎麼在 React &amp; Redux 載入外部資料</h2>
+
+<p>對 Javascript 新手如我來說，這部分主要是有兩個學習重點：</p>
+
+<ul>
+<li>熟悉使用 ES2016 的 <strong>Promise</strong> 作非同步的處理。</li>
+<li>理解在 Redux 的架構下，怎麼引入 middleware 來抓取外部資料。</li>
+</ul>
+
+<h3 id="toc_2">1. Promise object in ES2015 (ES6)</h3>
+
+<p>我 ES2015 的學習主要是上 Code School 裡面的 <code>ES2015: The Shape of JavaScript to Come</code>，還有閱讀以下兩個電子書：</p>
+
+<ul>
+<li>  阮一峰，《ECMAScript 6 入门》
+<a href="http://es6.ruanyifeng.com/">http://es6.ruanyifeng.com/</a></li>
+<li>  Axel Rauschmayer, <em>Exploring ES6</em>
+<a href="http://exploringjs.com/es6.html">http://exploringjs.com/es6.html</a></li>
+</ul>
+
+<p>（2017.01.08 新增：最近發現一個線上讀書會有整理好的影片和資源）</p>
+
+<ul>
+<li>  ES6 入門讀書會
+<a href="https://github.com/softnshare/es6">https://github.com/softnshare/es6</a></li>
+</ul>
+
+<p>從最基礎的來說，一個 Promise object 通常是透過 Promise 建構式生成的 instance：</p>
+
+<pre><code class="language-js">var promise = new Promise(function(resolve, reject) {
+
+  // (a) ... some code：要執行的非同步作業
+  
+  if (/* 非同步作業完成 */){  // (b) 判斷當完成時傳出結果
+    resolve(value);
+  } else { // (c) 判斷當失敗時傳出錯誤
+    reject(error);
+  }
+})
+</code></pre>
+
+<blockquote>
+<p>Promise 構造函數接受一個函數作為參數，該函數的兩個參數分別是 <code>resolve</code> 和 <code>reject</code> 。它們是兩個函數，由 JavaScript 引擎提供，不用自己部署。</p>
+
+<p><code>resolve</code> 函數的作用是，將 Promise object 的狀態從「未完成」變為「成功」（即從 Pending 變為 Resolved ），在異步操作成功時調用，並將異步操作的結果，作為參數傳遞出去；<code>reject</code> 函數的作用是，將 Promise 對象的狀態從「未完成」變為「失敗」（即從 Pending 變為 Rejected），在異步操作失敗時調用，並將異步操作報出的錯誤，作為參數傳遞出去。</p>
+
+<p>Promise 實例生成以後，可以用 then 方法分別指定 Resolved 狀態和 Reject 狀態的回調函數。</p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/promise#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">http://es6.ruanyifeng.com/#docs/promise#基本用法</a></p>
+</blockquote>
+
+<p>簡單來說就是只能透過 <code>resolve()</code>、<code>reject()</code> 改變 Promise object 的狀態（pending / resolved / rejected)，而不同的狀態透過 <code>then()</code> 和 <code>catch()</code> 等方法可以指定該狀態的 handling callback function。</p>
+
+<p>現在許多進行非同步作業的函式都是 return Promise object ，例如 <code>isomorphic-fetch</code> 的 <code>fetch()</code> 或 Algolia javascript client 的 <code>index.search()</code>。所以呼叫這些函數時都可以接 <code>Promise.prototype.then()</code> 或 <code>Promise.prototype.catch()</code> 處理。</p>
+
+<h3 id="toc_3">2. 在 Redux 架構中處理引進外部資料的非同步請求：</h3>
+
+<p>在<a href="http://chentsulin.github.io/redux/docs/advanced/AsyncFlow.html"> Redux 的官方教學</a>中有提到：「不使用 middleware 的話，Redux 的 store 只支援同步資料流」。但我們一般引進外部資料，都要透過非同步的方式處理，以免整個程式在取得資料的一個指令上就卡住，所以就要使用 middleware 來處理。</p>
+
+<blockquote>
+<p>Asynchronous middleware like redux-thunk or redux-promise wraps the store&#39;s dispatch() method and allows you to dispatch something other than actions, for example, functions or Promises. </p>
+
+<p><a href="http://redux.js.org/docs/advanced/AsyncFlow.html">http://redux.js.org/docs/advanced/AsyncFlow.html</a></p>
+
+<p>Redux middleware... provides a third-party extension point between dispatching an action, and the moment it reaches the reducer. </p>
+
+<p><a href="http://redux.js.org/docs/advanced/Middleware.html">http://redux.js.org/docs/advanced/Middleware.html</a></p>
+</blockquote>
+
+<p>在《報導者》的網站裡，目前是有用 <code>redux-thunk</code> 還有自己寫的 一個 call api 轉址 middleware。原始碼可見 <code>~/src/store/configureStore.js</code>。一個簡單的範例示意圖如下：</p>
+
+<p><strong>當使用者點擊載入更多按鈕，去 API 抓下一頁資料回來更新作者列表：</strong></p>
+
+<pre><code class="language-sequence">note right of Container: User Click
+Container-&gt;Store: trigger dispatch
+note left of Action: ↓↓Middleware↓↓
+Store-&gt;Action: dispatch(action)
+Action-&gt;API: fetch
+API-&gt;Action: response
+note left of Action: ↑↑Middleware↑↑
+Store-&gt;Reducer: pass previous state tree &amp; action 
+Reducer-&gt;Store: return next state
+Store-&gt;Container: trigger rerender
+note right of Container: display data
+</code></pre>
+
+<p>除了官網連結的 <code>redux-thunk</code> 和 <code>redux-promise</code> 以外，在網路上有看到中國支付寶前端成員整理了處理 <code>store.dispatch(action)</code> 的 middlewares 的幾個選擇：</p>
+
+<blockquote>
+<p><strong>五、Action &lt;&gt; Store，业务逻辑处理</strong></p>
+
+<p><strong>需求</strong><br/>
+统一处理业务逻辑，尤其是异步的处理。</p>
+
+<p><strong>我們選擇的方案</strong><br/>
+<code>redux-saga</code>: 用于管理 action，处理异步逻辑。可测试、可 mock、声明式的指令。</p>
+
+<p><strong>其他選項</strong><br/>
+<code>redux-loop</code>: 适用于相对简单点的场景，可以组合异步和同步的 action 。但他有个问题是改写了 combineReducer，会导致一些意想不到的兼容问题，比如我在特定场景下用不了 redux-devtool 。<br/>
+<code>redux-thunk</code>, <code>redux-promise</code> 等: 相对原始的异步方案，适用于更简单的场景。在 action 需要组合、取消等操作时，会不好处理。</p>
+
+<p><a href="https://github.com/sorrycc/blog/issues/1">https://github.com/sorrycc/blog/issues/1</a></p>
+</blockquote>
+
+<p>在 React + Redux 架構怎麼處理資料請求的回傳資料整理和呈現這邊，我有遇到一個疑惑的問題點在於 React 的 container 和 Redux 的 actions 之間的分工怎麼切分會比較好。</p>
+
+<p>原則上來說，container 是在 React 裡面，核心任務是處理 view，actions 是在 Redux 架構裡面處理 business logic。但這其實這裡的分工還會牽涉到我的 store/state 要長什麼樣子，api 如果不是給定的要怎麼設計、container 在 render 的時候要做哪些處理等等。</p>
+
+<p>我們網站在這邊處理的資料量很小，邏輯也還算單純，所以在區分上我就沒有特別細究，跑得起來就好（？）。資料量更大或邏輯更複雜的情況，在效能和團隊維護上可能會有影響。</p>
+
+<p>我們的網站大多數處理放在 actions 裡，如果只是內部使用就可以不需要 export，如果是很多地方都會用到的資料處理 function 可以寫成 <code>~/src/utils</code> 裡的 modules。</p>
+
+<p>以下是之前摘要的官方教學裡面對 action creators 和 containers 的說明，也列出來供參考：</p>
+
+<h4 id="toc_4">What Is an Action Creator? What Do We Expect It to Do?</h4>
+
+<blockquote>
+<p>Note that a reducer is a pure function. It only computes the next state. It should be completely predictable: calling it with the same inputs many times should produce the same outputs. It shouldn&#39;t perform any side effects like API calls or router transitions. <strong>These should happen before an action is dispatched</strong>.</p>
+
+<p><a href="http://redux.js.org/docs/basics/DataFlow.html">http://redux.js.org/docs/basics/DataFlow.html</a></p>
+</blockquote>
+
+<p>平常 action creator 是回傳 <strong>action object</strong> 給 dispatch function 使用：</p>
+
+<pre><code class="language-js">export function requestAuthors(url) {
+  return {
+    type: CONSTANTS.FETCH_AUTHORS_REQUEST,
+    url
+  }
+}
+</code></pre>
+
+<p>當 action creator 是回傳一個 <strong>function</strong> 時，則稱為 <strong>thunk</strong> ：</p>
+
+<pre><code class="language-js">export function fetchAuthors(page=1) {
+  return (dispatch, getState) =&gt; { // eslint-disable-line no-unused-vars
+    let url = formatUrl(&#39;authors?page=&#39;+page)
+    dispatch(requestAuthors(url))
+    return fetch(url)
+    // =&gt; fetch(&#39;http://localhost:3030/authors?page=&#39;) or fetch(&#39;api/authors&#39;)
+      .then((response) =&gt; {
+        if (response.status &gt;= 400) {
+          throw new InternalServerError(&#39;Bad response from API, response:&#39; + JSON.stringify(response))
+        }
+        return response.json()
+      })
+      .then((response) =&gt; {
+        const camelizedJson = camelizeKeys(response)
+        let items = normalize(camelizedJson.items, arrayOf(authorSchema))
+        let meta = camelizedJson.meta
+        return dispatch(receiveAuthors(items, meta))
+      }, (error) =&gt; {
+        return dispatch(failToReceiveAuthors(error))
+      })
+  }
+}
+</code></pre>
+
+<blockquote>
+<p>by using this specific middleware, an action creator can return a function instead of an action object. This way, the action creator becomes a thunk.</p>
+
+<p>When an action creator returns a function, that function will get executed by the Redux Thunk middleware. This function doesn&#39;t need to be pure; it is thus allowed to have side effects, including executing asynchronous API calls. The function can also dispatch actions—like those synchronous actions we defined earlier.</p>
+
+<p>Thunk middleware knows how to handle functions. It passes the dispatch method as an argument to the function, thus making it able to dispatch actions itself.</p>
+
+<p>The function called by the thunk middleware can return a value, that is passed on as the return value of the dispatch method.</p>
+
+<p>In this case, we return a promise to wait for. This is not required by thunk middleware, but it is convenient for us.</p>
+
+<p><a href="http://redux.js.org/docs/advanced/AsyncActions.html#async-action-creators">http://redux.js.org/docs/advanced/AsyncActions.html#async-action-creators</a></p>
+</blockquote>
+
+<h4 id="toc_5">What is a Container?</h4>
+
+<blockquote>
+<p><strong>Containers vs. Components</strong></p>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col" style="text-align:left">Presentational Components</th>
+            <th scope="col" style="text-align:left">Container Components</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <th scope="row" style="text-align:right">用途</th>
+          <td>怎麼看事情（markup, styles)</td>
+          <td>怎麼做事情 (抓資料, 更新state)</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:right">意識到 Redux</th>
+          <td>否</th>
+          <td>是</th>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:right">取得資料</th>
+          <td>從 props 讀取資料</td>
+          <td>訂閱 Redux state</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:right">改變資料</th>
+          <td>從 props 呼叫 callback</td>
+          <td>Dispatch Redux action</td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:right">從哪被寫入</th>
+          <td>經由手動</td>
+          <td>通常由 React Redux 產生</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><a href="http://chentsulin.github.io/redux/docs/basics/UsageWithReact.html">http://chentsulin.github.io/redux/docs/basics/UsageWithReact.html</a></p>
+</blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Level 1: JavaScript 的好用條件語法（JavaScript Best Practice @ Code School）]]></title>
+    <link href="https://yucj.github.io/logMine/JavaScript-Syntax-about-Condition.html"/>
+    <updated>2016-12-16T21:19:14+08:00</updated>
+    <id>https://yucj.github.io/logMine/JavaScript-Syntax-about-Condition.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">one line condition</a>
+<ul>
+<li>
+<a href="#toc_1">Ternary Conditionals</a>
+</li>
+<li>
+<a href="#toc_2">OR operator <code>||</code></a>
+</li>
+<li>
+<a href="#toc_3">AND operator <code>&amp;&amp;</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_4">The <code>switch</code> block</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">one line condition</h2>
+
+<h3 id="toc_1">Ternary Conditionals</h3>
+
+<pre><code class="language-js">判斷式 ? ifTrue : ifFalse
+</code></pre>
+
+<h3 id="toc_2">OR operator <code>||</code></h3>
+
+<p>Use to set default value:</p>
+
+<pre><code class="language-js">var something = object.property || defaultValue
+</code></pre>
+
+<p><strong>Caution: What is <code>false</code>?</strong></p>
+
+<pre><code class="language-js">// Creating Boolean objects with an initial value of false
+var bNull = new Boolean(null);
+var bEmptyString = new Boolean(&#39;&#39;);
+var bfalse = new Boolean(false);
+
+// Creating Boolean objects with an initial value of true
+var btrue = new Boolean(true);
+var btrueString = new Boolean(&#39;true&#39;);
+var bfalseString = new Boolean(&#39;false&#39;); // &lt;= !
+var bSuLin = new Boolean(&#39;Su Lin&#39;);
+var bArrayProto = new Boolean([]);  // &lt;= !
+var bObjProto = new Boolean({});    // &lt;= !
+</code></pre>
+
+<h3 id="toc_3">AND operator <code>&amp;&amp;</code></h3>
+
+<pre><code class="language-js">var something = condition1 &amp;&amp; condition2 &amp;&amp; ifAllConditionsisTrue
+
+// same as
+var something
+if (!condition1) {something = condition1}
+  else if (!condition2) {something = condition2}
+    else {something = ifAllConditionsisTrue}
+</code></pre>
+
+<p><strong>Caution:</strong> 當 condition1 或 condition2 轉 boolean 是 false 時，運算結果是 condition1 或 condition2 的值，並非一定是 false 或 undefined）</p>
+
+<h2 id="toc_4">The <code>switch</code> block</h2>
+
+<p>和串一堆 <code>if-else</code> 相比，用 <code>switch</code> 的可讀性和效能較好</p>
+
+<p><strong>Caution</strong>: Be aware of <strong>execution fall-through</strong> (Don&#39;t forget to <code>break</code> if  you don&#39;t want that)</p>
+
+<pre><code class="language-js">switch (expression) {
+  case value1:
+    //Statements executed when the result of expression matches value1
+    [break;]
+  case value2:
+    //Statements executed when the result of expression matches value2
+    [break;]
+  ...
+  case valueN:
+    //Statements executed when the result of expression matches valueN
+    [break;]
+  default:
+    //Statements executed when none of the values match the value of the expression
+    [break;]
+}
+</code></pre>
 
 ]]></content>
   </entry>

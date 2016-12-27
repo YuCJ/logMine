@@ -1,0 +1,646 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School） - My Frontend Note
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="My Frontend Note" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:yucj.github.io/logMine ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; My Frontend Note</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="git_note.html">Git 筆記</a></li>
+        
+            <li><a href="javascript_note.html">JS 筆記</a></li>
+        
+            <li><a href="ES2015.html">ES2015</a></li>
+        
+            <li><a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html">實習筆記</a></li>
+        
+            <li><a href="Babel.html">Babel</a></li>
+        
+            <li><a href="Best%20Practices.html">Best Practices</a></li>
+        
+            <li><a href="Webpack.html">Webpack</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Level 3: Caution! JavaScript 裡要小心的部分（JavaScript Best Practice @ Code School）</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/1/2</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='Best%20Practices.html'>Best Practices</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>本文為 <strong><a href="https://www.codeschool.com/courses/javascript-best-practices">JavaScript Best Practices</a></strong>（CodeSchool）線上課程筆記</p>
+</blockquote>
+
+<p><strong>本文目錄：</strong></p>
+
+<ul>
+<li>
+<a href="#toc_0">Comparasions</a>
+</li>
+<li>
+<a href="#toc_1">Handling exceptions (run-time errors)</a>
+</li>
+<li>
+<a href="#toc_2">Avoid sucky things in JavaScript</a>
+<ul>
+<li>
+<a href="#toc_3">Use variable instead of <code>with</code></a>
+</li>
+<li>
+<a href="#toc_4">Use other things instead of <code>eval</code></a>
+</li>
+<li>
+<a href="#toc_5">Bracket your code</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">Number</a>
+<ul>
+<li>
+<a href="#toc_7">Floating point arithmetic</a>
+<ul>
+<li>
+<a href="#toc_8">Solution: <code>toFix()</code> &amp; <code>parseFloat()</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">Testing for number presence before operations</a>
+<ul>
+<li>
+<a href="#toc_10">Use <code>NaN</code> (not a number) for testing? Something weird.</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">If we want to check if a given value is a number, we need a double check:</a>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">Comparasions</h2>
+
+<ul>
+<li>Use <code>===</code> instead of <code>==</code></li>
+<li><code>instanceof</code></li>
+</ul>
+
+<h2 id="toc_1">Handling exceptions (run-time errors)</h2>
+
+<ul>
+<li><strong>Syntax error</strong>: Easy to check before compiling</li>
+<li><strong>Run-time error</strong>: Need to prepare handling function</li>
+</ul>
+
+<pre><code class="language-js">try {
+    /* ...trying somthing... */
+    if (someVar === undefined) {
+        throw new ReferenceError()
+    }
+    if ((someVar instanceof Array) === false){
+        throw new TypeError()
+    }
+    if (/* ...custom error occur... */) {
+       throw new Error(&#39;Error message&#39;)
+    }
+} catch(error) {
+    /* ...handling run-time error... */
+    if (error instanceof ReferenceError) {
+        /* ...handling reference error... */
+    }
+    if (error instanceof TypeError) {
+        /* ...handling type error... */
+    }
+} finally {
+    /* Doing things whether try is success or failed */
+}
+</code></pre>
+
+<p>Feeding Birds Example:</p>
+
+<pre><code class="language-js">// Pack of goods
+var pack = {
+  foodPouch: [&#39;carrot&#39;, &#39;mystery meat&#39;, &#39;apple&#39;, 42],
+  addFood: function(foodItem) {
+    this.foodPouch = this.foodPouch || [];
+    this.foodPouch.push(foodItem);
+  },
+  feedBird: function(bird) {
+    var food = bird.birdFood,
+        foodIndex = this.foodPouch.indexOf(food);
+    // If the exact food we want is not in the array,
+    // check if the type of food is there.
+    if (foodIndex === -1) {
+      throw new ReferenceError(&#39;Bird food given is not available.&#39;);      
+    }
+    bird.fed = true;
+  }
+};
+
+// Parent Bird Class
+function Bird() {}
+
+// SyntaxBird Inherits From Parent Bird
+function SyntaxBird() {}
+SyntaxBird.prototype = Object.create(Bird.prototype);
+
+var LoopLover = function(birdFood) {
+  this.birdFood = birdFood;
+  this.fed = false;
+};
+LoopLover.prototype = Object.create(SyntaxBird.prototype);
+
+// DatatypeBird Inherits From Parent Bird
+function DatatypeBird() {}
+DatatypeBird.prototype = Object.create(Bird.prototype);
+
+var NumberNommer = function(birdFood){
+  this.birdFood = birdFood;
+};
+NumberNommer.prototype = Object.create(DatatypeBird.prototype);
+
+// bird variables below inherit from above prototype chain
+var numba = new NumberNommer(&#39;42&#39;);
+var loopy = new LoopLover(&#39;loops&#39;);
+var tryCatcher = new LoopLover(&#39;la-de&#39;);
+
+// array of all the inhabitants
+var duneInhabitants = [numba, loopy, tryCatcher];
+
+// loop through duneInhabitants and if Bird call feedBird()
+for (var i = 0; i &lt; duneInhabitants.length; i++) {
+  try {
+    pack.feedBird(duneInhabitants[i]);
+  } catch(error) {
+    console.log(duneInhabitants[i]+&quot; was not fed.&quot;);
+  }
+}
+</code></pre>
+
+<h2 id="toc_2">Avoid sucky things in JavaScript</h2>
+
+<h3 id="toc_3">Use variable instead of <code>with</code></h3>
+
+<pre><code class="language-js">with(object){
+    /* Doing things within object */
+}
+</code></pre>
+
+<p>Limit <strong>redundancy</strong> BUT make us unsure about <strong>scope</strong>:</p>
+
+<ul>
+<li> Declaring a function in the <code>with(){}</code> will not make it a method (as we expect). It will become a global function.</li>
+<li>For using <code>with(){}</code> to avoid typing deep access repeatedly, it&#39;s hard to recognize variables in <code>with(){}</code> are property or global variable.</li>
+</ul>
+
+<p>So, =&gt; <strong>Use variables to cache values of an object.</strong></p>
+
+<h3 id="toc_4">Use other things instead of <code>eval</code></h3>
+
+<ul>
+<li>Risk of injection</li>
+<li>Cause unpredictable syntax error</li>
+</ul>
+
+<p>Substitutes: Array, Object, <code>JSON.parse()</code>...</p>
+
+<h3 id="toc_5">Bracket your code</h3>
+
+<p>or the compiler may make mistake when a block contains multiple lines.</p>
+
+<h2 id="toc_6">Number</h2>
+
+<h3 id="toc_7">Floating point arithmetic</h3>
+
+<p>Javascript use binary floating point values to handle all of its decimal based operations</p>
+
+<p>See:</p>
+
+<p>What Every JavaScript Developer Should Know About Floating Point Numbers</p>
+
+<h4 id="toc_8">Solution: <code>toFix()</code> &amp; <code>parseFloat()</code></h4>
+
+<pre><code class="language-js">var num = 0.1 + 0.2;
+console.log(num.toFix(1));
+&gt; &quot;0.3&quot; // a string
+
+console.log( parseFloat(num.toFix(1)) );
+&gt; 0.3   // a number
+</code></pre>
+
+<p>A <code>parseFloat()</code> looks for the termination of numbers after a decimal:</p>
+
+<pre><code class="language-js">parseFloat(&quot;3.28084&quot;)
+&gt; 3.28084
+
+parseFloat(&quot;3.28084 meters in a foot&quot;)
+&gt; 3.28084
+</code></pre>
+
+<p>A <code>parseInt()</code> will trim off any decimal point without rounding:</p>
+
+<pre><code class="language-js">parseInt(&quot;88&quot;)
+&gt; 88
+
+parseInt(&quot;88 keys on a piano&quot;)
+&gt; 88
+
+parseInt(&quot;9.85&quot;)
+&gt; 9  // not 10
+
+parseInt(&quot;There are 88 keys on a piano&quot;)
+&gt; NaN
+</code></pre>
+
+<p><code>parseInt()</code> can accept octal, hexadecimal, and decimal values:</p>
+
+<pre><code class="language-js">var userAge = &quot;021&quot;;
+
+//ES5
+parseInt(userAge); //=&gt; 21
+
+//older systems
+parseInt(userAge); //=&gt; 17
+</code></pre>
+
+<p>So use the second parameter <strong>radix value</strong> (2 to 36):</p>
+
+<pre><code class="language-js">var userAge = &quot;021&quot;;
+
+// all environments
+parseInt(userAge, 10); //=&gt; 21
+</code></pre>
+
+<h3 id="toc_9">Testing for number presence before operations</h3>
+
+<h4 id="toc_10">Use <code>NaN</code> (not a number) for testing? Something weird.</h4>
+
+<pre><code class="language-js">typeof NaN;
+&gt; &quot;number&quot;  // WTF?
+
+NaN === NaN
+&gt; false     // Huh?
+
+isNaN(&quot;42&quot;)
+&gt; false      // &quot;42&quot; is a string, not a number, but not NaN....#^I$*
+</code></pre>
+
+<p>For why <code>NaN === NaN</code> returns <code>false</code> and else, see IEEE-754 standard:</p>
+
+<blockquote>
+<p>Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.</p>
+
+<p>(Clause 5.11, paragraph 2 of the IEEE-754-2008)<br/>
+<a href="http://stackoverflow.com/questions/1565164/what-is-the-rationale-for-all-comparisons-returning-false-for-ieee754-nan-values">http://stackoverflow.com/questions/1565164/what-is-the-rationale-for-all-comparisons-returning-false-for-ieee754-nan-values</a></p>
+</blockquote>
+
+<h2 id="toc_11">If we want to check if a given value is a number, we need a double check:</h2>
+
+<pre><code class="language-js">function isThisActuallyANumberDontLie( data ) {
+    return ( typeof data === &quot;number&quot; &amp;&amp; !isNaN(data) );
+
+isThisActuallyANumberDontLie(640);
+&gt; true
+
+isThisActuallyANumberDontLie(&quot;640&quot;);
+&gt; false
+
+isThisActuallyANumberDontLie(NaN);
+&gt; false
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14835419695141.html" 
+          title="Previous Post: Level 4: Module in JavaScript（JavaScript Best Practice @ Code School）">&laquo; Level 4: Module in JavaScript（JavaScript Best Practice @ Code School）</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="Improve-Performance-in-JavaScript.html" 
+          title="Next Post: Level 2: 寫出效率較好的 JavaScript（JavaScript Best Practice @ Code School）">Level 2: 寫出效率較好的 JavaScript（JavaScript Best Practice @ Code School） &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//logmine.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>My Frontend Note</h1>
+                <div class="site-des">我的前端筆記</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+                 <div style="{width:90%; height:auto; margin: 5px auto 5px auto;}"><img src="http://i.imgur.com/iFetvNZ.jpg?1"></div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="git_note.html"><strong>Git 筆記</strong></a>
+        
+            <a href="javascript_note.html"><strong>JS 筆記</strong></a>
+        
+            <a href="ES2015.html"><strong>ES2015</strong></a>
+        
+            <a href="%E5%AF%A6%E7%BF%92%E7%AD%86%E8%A8%98.html"><strong>實習筆記</strong></a>
+        
+            <a href="Babel.html"><strong>Babel</strong></a>
+        
+            <a href="Best%20Practices.html"><strong>Best Practices</strong></a>
+        
+            <a href="Webpack.html"><strong>Webpack</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="14988019613600.html">Webpack 2 & 3: Input(Entry) and Output</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987956627714.html">[NodeJS] Path, URL 路徑相關問題整理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987306644790.html">Webpack plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14987255686752.html">Babel plugins and loaders I used</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14971940142851.html">Webpack 2: deploy</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>
